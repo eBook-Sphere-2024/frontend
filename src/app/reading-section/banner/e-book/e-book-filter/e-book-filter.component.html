@@ -1,0 +1,9 @@
+<input class="dropdown" type="checkbox" id="dropdown" name="dropdown" />
+<label class="for-dropdown" for="dropdown">Filtering by &nbsp<i class="fa-solid fa-arrow-down"></i></label>
+<div class="section-dropdown">
+    <select [(ngModel)]="listFilter" (ngModelChange)="updateFilter($event) ">
+        <option value="0">All</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}<i
+                class=" fa-solid fa-arrow-right"></i></option>
+    </select>
+</div>

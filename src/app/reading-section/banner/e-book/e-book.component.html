@@ -1,0 +1,10 @@
+<div class="upperSection">
+    <div class="filter-part">
+        <app-e-book-filter [(filter)]="eBookItems"></app-e-book-filter>
+    </div>
+</div>
+<section class="blog_section">
+    <div class="container">
+        <app-e-book-list [eBooks]="eBookItems"></app-e-book-list>
+    </div>
+</section>
