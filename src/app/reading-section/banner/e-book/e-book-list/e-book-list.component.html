@@ -1,6 +1,7 @@
 <div class="row">
-    <app-e-book-item
-        *ngFor="let eBook of eBooks"
-        [eBook]="eBook"
-    ></app-e-book-item>
+    <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of eBooks">
+<app-e-book-item [eBook]="eBook"></app-e-book-item>
+
+    </div>  
+
 </div>
