@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     EBookComponent,
