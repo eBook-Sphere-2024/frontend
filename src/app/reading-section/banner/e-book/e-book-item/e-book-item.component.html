@@ -5,6 +5,6 @@
     <div class="detail-box">
         <h5>{{ eBook.title }}</h5>
         <p>{{ eBook.description }}</p>
-        <a href="#">Read More</a>
+        <a [routerLink]="['/ebooks', eBook.id]">Read More</a>
     </div>
 </div>
