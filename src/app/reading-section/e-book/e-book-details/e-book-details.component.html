@@ -1,5 +1,6 @@
+<!-- <app-banner></app-banner> -->
 <section class="ebookDetail">
-    <div class="container" style="background-color: #f8f8f8">
+    <div class="container" style="background-color: transparent">
         <button type="button" class="btn" (click)="$event.preventDefault();goBack()">
             <span><i class="fa-solid fa-arrow-left"></i>Go Back</span>
         </button>
@@ -16,25 +17,21 @@
                 </div>
                 <div class="items ratingBook">
                     <span class="name">Rate: </span>
-                    <input type="number" name="ratingBook" hidden value="3">
-                    <i class="fa fa-star star"></i>
-                    <i class="fa fa-star star"></i>
-                    <i class="fa fa-star star"></i>
-                    <i class="fa fa-star star"></i>
-                    <i class="fa fa-star star"></i>
+                    <input type="number" name="ratingBook" hidden [value]="eBookItem.rate">
+                    <i *ngFor="let star of stars; let i = index" class="fa fa-star star" [ngClass]="{'active': i < eBookItem.rate}"></i>
                 </div>
                 <div class="items auther">
                     <span class="name">Auther:</span>
-                    <span>{{eBookItem.author.first_name}} {{eBookItem.author.last_name}}</span>
+                    <span class="val">{{eBookItem.author.first_name}} {{eBookItem.author.last_name}}</span>
                 </div>
                 <div class="items date">
                     <span class="name">Published Date:</span>
-                    <span>{{eBookItem.publication_date}}</span>
+                    <span class="val">{{eBookItem.publication_date}}</span>
                 </div>
                 <div class="items categories">
                     <span class="name">Categories:</span>
                     <span>
-                        <a href="#" *ngFor="let category of eBookItem.categories">{{category.name}}</a>
+                        <a [routerLink]="['/ebooks/category/', category.id]" class="val" *ngFor="let category of eBookItem.categories">{{category.name}}</a>
                     </span>
                 </div>
                 <div class="icons">
