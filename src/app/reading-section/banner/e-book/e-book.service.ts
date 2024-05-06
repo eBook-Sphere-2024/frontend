@@ -24,6 +24,10 @@ export class EBookService {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/ebooks/', options).pipe(catchError(this.handleError));
   }
+  getBookById(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get<eBookItem>('http://127.0.0.1:8000/api/ebooks?id=' + id, options).pipe(catchError(this.handleError));
+  }
   getCategories() {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/ebook_categories/', options).pipe(catchError(this.handleError));

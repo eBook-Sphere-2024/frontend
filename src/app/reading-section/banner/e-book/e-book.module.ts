@@ -6,6 +6,8 @@ import { EBookFilterComponent } from './e-book-filter/e-book-filter.component';
 import { EBookComponent } from './e-book.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EBookDetailsComponent } from './e-book-details/e-book-details.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -13,12 +15,14 @@ import { FormsModule } from '@angular/forms';
     EBookItemComponent,
     EBookListComponent,
     EBookFilterComponent,
-    EBookComponent
+    EBookComponent,
+    EBookDetailsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
+    RouterModule
   ],
   exports: [
     EBookComponent,
