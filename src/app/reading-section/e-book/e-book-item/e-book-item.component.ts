@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { eBookItem } from '../../../../../shared/models/eBookItem';
+import { eBookItem } from '../../../../shared/models/eBookItem';
 
 @Component({
   selector: 'app-e-book-item',

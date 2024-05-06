@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { EventService } from '../../../../../shared/services/EventService';
+import { EventService } from '../../../../shared/services/EventService';
 import { EBookService } from '../e-book.service';
-import { Category } from '../../../../../shared/models/Category';
+import { Category } from '../../../../shared/models/Category';
 
 @Component({
   selector: 'app-e-book-filter',

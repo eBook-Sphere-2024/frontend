@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EBookDetailsComponent } from './e-book-details/e-book-details.component';
 import { RouterModule } from '@angular/router';
+import { BannerComponent } from '../banner/banner.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { RouterModule } from '@angular/router';
     EBookListComponent,
     EBookFilterComponent,
     EBookComponent,
-    EBookDetailsComponent
+    EBookDetailsComponent,
   ],
   imports: [
     CommonModule,

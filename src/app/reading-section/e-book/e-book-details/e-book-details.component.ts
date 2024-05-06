@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { eBookItem } from '../../../../../shared/models/eBookItem';
+import { eBookItem } from '../../../../shared/models/eBookItem';
 import { EBookService } from '../e-book.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 export class EBookDetailsComponent implements OnInit {
   eBookItem!: eBookItem;
-
+  stars = [1, 2, 3, 4, 5];
   constructor(private route: ActivatedRoute, private eBookService: EBookService, private Router: Router) { }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class EBookDetailsComponent implements OnInit {
             this.eBookItem = event;
             console.log(this.eBookItem);
           },
-          (error) => {
+          (error: any) => {
             console.error('Error fetching eBook details:', error);
           }
         );
@@ -34,4 +34,5 @@ export class EBookDetailsComponent implements OnInit {
     //go to e-book component
     this.Router.navigate(['ebooks']);
   }
+  
 }

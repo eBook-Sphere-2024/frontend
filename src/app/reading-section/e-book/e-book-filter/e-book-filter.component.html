@@ -1,0 +1,6 @@
+<input class="dropdown" type="checkbox" id="dropdown" name="dropdown" />
+<label class="for-dropdown" for="dropdown">Filtering by &nbsp;<i class="fa-solid fa-arrow-down"></i></label>
+<div class="section-dropdown">
+  <a [routerLink]="['/ebooks']" (click)="updateFilter('0')">All <i class="fa-solid fa-arrow-right"></i></a>
+  <a [routerLink]="['/ebooks']" *ngFor="let category of categories" (click)="updateFilter(category.id)">{{category.name}} <i class="fa-solid fa-arrow-right"></i></a>
+</div>
