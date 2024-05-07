@@ -8,19 +8,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { ReadingSectionModule } from './reading-section/reading-section.module';
-import { BannerComponent } from './reading-section/banner/banner.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    BannerComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    EBookModule,
+    ReadingSectionModule,
     FlexLayoutModule,
 
   ],
