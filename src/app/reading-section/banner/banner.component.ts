@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { EventService } from '../../../shared/services/EventService';
 
 @Component({
   selector: 'app-banner',
@@ -6,9 +7,10 @@ import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
+  @Output() searchQuery = new EventEmitter<string>();
   @ViewChildren('bannerInput') bannerInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
-  constructor() { }
+  constructor(private events: EventService) { }
 
   ngOnInit(): void {
     this.startBannerTimer();
@@ -22,5 +24,9 @@ export class BannerComponent implements OnInit {
       const nextIndex = (currentIndex + 1) % inputs.length;
       inputs[nextIndex].checked = true;
     }, 5000);
+  }
+  search(event: Event, query: string) {
+    event.preventDefault(); // Prevent form submission
+    this.events.emit('search', query);
   }
 }

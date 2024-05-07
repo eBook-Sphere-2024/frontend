@@ -6,6 +6,7 @@
     color: #fff;
     background-color: #222;
     position: relative;
+    margin-bottom: 100px;
   }
   #section-1 .content-slider {
     position: relative;
@@ -261,4 +262,10 @@
     background-color: transparent;
     color: #6bb7be;
   }  
-  
+  .try::placeholder{
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: 450;
+    font-style: italic;
+    color: #22b3c1;
+  }
