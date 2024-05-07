@@ -55,6 +55,11 @@
   transform: translateY(20px);
   transition: all 200ms linear;
 }
+a:hover{
+  color: rgb(65, 65, 65);
+}
+
+
 
 
 .dropdown:checked~.section-dropdown {

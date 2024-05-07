@@ -27,7 +27,12 @@ body{
     margin-top: 100px;
     margin-bottom: 70px;
 }
-
+.btn:active{
+    border: none;
+}
+.btn{
+    margin-bottom: 15px;
+}
 .btn span {
     color: #6bb7be;
     font-weight: 600;
@@ -35,6 +40,11 @@ body{
 
 .btn span:hover {
     color: black;
+    border: none;
+}
+
+.btn span i{
+    margin-right: 5px;
 }
 
 .book_detail_content {
@@ -180,6 +190,11 @@ body{
 .book_info a{
     text-decoration: none;
     color: black;
+}
+.book_info a:hover{
+    color:#000;
+    font-weight: bold;
+    
 }
 
 
