@@ -1,10 +1,9 @@
-<!-- <app-banner></app-banner> -->
 <section class="ebookDetail">
     <div class="container" style="background-color: transparent">
         <button type="button" class="btn" (click)="$event.preventDefault();goBack()">
             <span><i class="fa-solid fa-arrow-left"></i>Go Back</span>
         </button>
-        <div class="book_detail_content grid">
+        <div class="book_detail_content grid" *ngIf="eBookItem">
             <div class="book_img">
                 <img src="{{eBookItem.cover}}" alt="">
             </div>
@@ -18,7 +17,8 @@
                 <div class="items ratingBook">
                     <span class="name">Rate: </span>
                     <input type="number" name="ratingBook" hidden [value]="eBookItem.rate">
-                    <i *ngFor="let star of stars; let i = index" class="fa fa-star star" [ngClass]="{'active': i < eBookItem.rate}"></i>
+                    <i *ngFor="let star of stars; let i = index" class="fa fa-star star"
+                        [ngClass]="{'active': i < eBookItem.rate}"></i>
                 </div>
                 <div class="items auther">
                     <span class="name">Auther:</span>
@@ -31,7 +31,8 @@
                 <div class="items categories">
                     <span class="name">Categories:</span>
                     <span>
-                        <a [routerLink]="['/ebooks/category/', category.id]" class="val" *ngFor="let category of eBookItem.categories">{{category.name}}</a>
+                        <a [routerLink]="['/ebooks/category/', category.id]" class="val"
+                            *ngFor="let category of eBookItem.categories">{{category.name}}</a>
                     </span>
                 </div>
                 <div class="icons">
@@ -39,7 +40,7 @@
                         <i class="fa-solid fa-download fa-2x"></i>
                         <div>Download</div>
                     </div>
-                    <div class="read">
+                    <div class="read" (click)="readBook()">
                         <i class="fa-solid fa-glasses fa-2x"></i>
                         <div>Read</div>
 
@@ -49,3 +50,4 @@
         </div>
     </div>
 </section>
+<app-comment-list *ngIf="eBookItem" [eBook]="eBookItem"></app-comment-list>
