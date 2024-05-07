@@ -7,29 +7,38 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-e-book',
   templateUrl: './e-book.component.html',
-  styleUrl: './e-book.component.css'
+  styleUrls: ['./e-book.component.css']
 })
-export class EBookComponent implements OnInit{
-  [x: string]: any;
-  category: string="";
-  constructor(events: EventService, private eBookService: EBookService,private router:ActivatedRoute) { }
+export class EBookComponent implements OnInit {
+  category: string = "";
   eBookItems: eBookItem[] = [];
   name: string = "";
+  private filterReceived: boolean = false;
+
+  constructor(private events: EventService, private eBookService: EBookService, private router: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.eBookService.getBooks().subscribe((data: any) => {
-      this.eBookItems = data;
-    },
-      (error: any) => alert(error.message)
-    )
-    this.router.paramMap.subscribe(params => {
-      this.category = params.get('categoryid') ?? '';
-      console.log(this.category)
-      this.eBookService.filter_eBooks_by_category(this.category).subscribe(
-        (filtered: any) => {
-          this.eBookItems = filtered;
-        },
-        (error: any) => alert(error.message)
-      );
+    this.events.listen('filter', (eBookItem: any) => {
+      this.eBookItems = eBookItem;
+      this.filterReceived = true;
     });
+
+    // Call loadBooks if filter event is not yet received after 1 second
+    setTimeout(() => {
+      if (!this.filterReceived) {
+        this.loadBooks();
+      }
+    }, 1000);
+  }
+
+  private loadBooks(): void {
+    this.eBookService.getBooks().subscribe(
+      (data: any) => {
+        this.eBookItems = data;
+      },
+      (error: any) => {
+        alert(error.message);
+      }
+    );
   }
 }

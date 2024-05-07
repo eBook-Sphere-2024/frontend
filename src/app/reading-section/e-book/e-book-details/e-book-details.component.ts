@@ -21,7 +21,6 @@ export class EBookDetailsComponent implements OnInit {
         this.eBookService.getBookById(id).subscribe(
           (event: any) => {
             this.eBookItem = event;
-            console.log(this.eBookItem);
           },
           (error: any) => {
             console.error('Error fetching eBook details:', error);
@@ -32,7 +31,10 @@ export class EBookDetailsComponent implements OnInit {
   }
   goBack() {
     //go to e-book component
-    this.Router.navigate(['ebooks']);
+    this.Router.navigate(['reading']);
   }
-  
+  readBook() {
+    const EbookUrl = 'https://drive.google.com/file/d/1a-P4FfSO8qLZki3iQVygY8cA2NynkW91/view';
+    window.open(EbookUrl, '_blank');
+  }
 }
