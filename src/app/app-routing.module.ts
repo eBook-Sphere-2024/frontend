@@ -6,9 +6,9 @@ import { ReadingSectionComponent } from './reading-section/reading-section.compo
 
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
-  { path: 'ebooks', component: EBookComponent },
-  { path: 'ebooks/:id', component: EBookDetailsComponent },
-  { path: 'ebooks/category/:id', component: EBookComponent }
+  { path: 'reading/ebooks', component: EBookComponent },
+  { path: 'reading/ebooks/:id', component: EBookDetailsComponent },
+  { path: 'reading/ebooks/category/:id', component: EBookComponent }
 
 ];
 

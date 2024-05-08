@@ -1,3 +1,4 @@
+<app-banner></app-banner>
 <section class="ebookDetail">
     <div class="container" style="background-color: transparent">
         <button type="button" class="btn" (click)="$event.preventDefault();goBack()">
@@ -31,7 +32,7 @@
                 <div class="items categories">
                     <span class="name">Categories:</span>
                     <span>
-                        <a [routerLink]="['/ebooks/category/', category.id]" class="val"
+                        <a [routerLink]="['/reading/ebooks/category/', category.id]" class="val"
                             *ngFor="let category of eBookItem.categories">{{category.name}}</a>
                     </span>
                 </div>

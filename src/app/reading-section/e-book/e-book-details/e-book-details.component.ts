@@ -34,7 +34,7 @@ export class EBookDetailsComponent implements OnInit {
     this.Router.navigate(['reading']);
   }
   readBook() {
-    const EbookUrl = 'https://drive.google.com/file/d/1a-P4FfSO8qLZki3iQVygY8cA2NynkW91/view';
+    const EbookUrl = 'https://drive.google.com/file/d/1ssaYYPI1Bj0UY5EWhoLc_eZbykrR6w9e/view?usp=drive_open';
     window.open(EbookUrl, '_blank');
   }
 }

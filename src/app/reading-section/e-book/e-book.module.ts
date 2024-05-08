@@ -8,7 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { EBookDetailsComponent } from './e-book-details/e-book-details.component';
 import { RouterModule } from '@angular/router';
-import { CommentListComponent } from './comment-list/comment-list.component';
+import { BannerModule } from '../banner/banner.module';
+import { CommentsModule } from './comments/comments.module';
+
 
 
 @NgModule({
@@ -17,14 +19,15 @@ import { CommentListComponent } from './comment-list/comment-list.component';
     EBookListComponent,
     EBookFilterComponent,
     EBookComponent,
-    EBookDetailsComponent,
-    CommentListComponent,
+    EBookDetailsComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    BannerModule,
+    CommentsModule
   ],
   exports: [
     EBookComponent,
