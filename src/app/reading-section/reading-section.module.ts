@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReadingSectionComponent } from './reading-section.component';
-import { BannerModule } from './banner/banner.module';
 import { EBookModule } from './e-book/e-book.module';
 
 
@@ -14,7 +13,6 @@ import { EBookModule } from './e-book/e-book.module';
   imports: [
     CommonModule,
     RouterModule,
-    BannerModule,
     EBookModule,
     FormsModule
   ]

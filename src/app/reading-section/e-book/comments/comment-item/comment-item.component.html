@@ -1,0 +1,24 @@
+<div class="comment container">
+    <div class="c-score">
+        <i class="fas fa-thumbs-up score-control score-plus"></i>
+        <p class="score-number">{{ comment.likes }}</p>
+        <i class="fas fa-thumbs-down score-control score-minus"></i>
+    </div>
+    <div class="c-controls">
+        <a class="delete control-icon text-danger"><i class="fa-solid fa-trash"></i>&nbsp;Delete</a>
+        <a class="edit control-icon"><i class="fa-solid fa-pen"></i>&nbsp;Edit</a>
+        <a class="reply control-icon"><i class="fa-solid fa-reply"></i>&nbsp;Reply</a>
+    </div>
+    <div class="c-user">
+        <img src="{{ comment.user.avatar }}" alt="" class="usr-img">
+        <p class="usr-name">{{ comment.user.username }}</p>
+        <p class="cmnt-at">{{ comment.publish_date}}</p>
+    </div>
+    <p class="c-text">
+        <span class="reply-to"></span>
+        <span class="c-body">{{comment.content}}</span>
+    </p>
+</div><!--comment-->
+<div class="replies comments-wrp" *ngIf="replies">
+    <app-comment-item *ngFor="let reply of replies" [comment]="reply"></app-comment-item>
+</div><!--replies-->
