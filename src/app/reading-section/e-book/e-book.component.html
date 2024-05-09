@@ -7,16 +7,6 @@
 <div style="margin-bottom: 20px;">.</div>
 <section class="blog_section">
   <div class="container">
-    <!-- Check if there are search results -->
-    <ng-container *ngIf="DirectsearchResults.length > 0 ||inDirectsearchResults.length > 0; else showNormalBooks">
-      <!-- Display search results if available -->
-      <app-e-book-list [eBooks]="DirectsearchResults"></app-e-book-list>
-      <small><------------ Books realated to your search --------------></small>
-      <app-e-book-list [eBooks]="inDirectsearchResults"></app-e-book-list>
-    </ng-container>
-    <!-- If there are no search results, display the normal list of books -->
-    <ng-template #showNormalBooks>
       <app-e-book-list [eBooks]="eBookItems"></app-e-book-list>
-    </ng-template>
   </div>
 </section>
