@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { EventService } from '../../../shared/services/EventService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-banner',
@@ -10,7 +11,7 @@ export class BannerComponent implements OnInit {
   @Output() searchQuery = new EventEmitter<string>();
   @ViewChildren('bannerInput') bannerInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
-  constructor(private events: EventService) { }
+  constructor(private events: EventService,private router: Router) { }
 
   ngOnInit(): void {
     this.startBannerTimer();
@@ -28,5 +29,6 @@ export class BannerComponent implements OnInit {
   search(event: Event, query: string) {
     event.preventDefault(); // Prevent form submission
     this.events.emit('search', query);
+    this.router.navigate(['/search']);
   }
 }
