@@ -54,23 +54,22 @@ export class EBookService {
       catchError(error => this.handleError(error, 'get_Comments'))
     );
   }
-  get_directSearch(query: string) {
-    console.log('Fetching data for query:', query); // Logs the search query
-    let options = this.getStandardOptions(); // Obtains standard HTTP options
-    return this.http.get('http://127.0.0.1:8000/api/search/?query=' + query, options).pipe(
-      catchError(error => this.handleError(error, 'get_directSearch')) // Handles errors
-    );
-  }
+
   get_comment_replies(id: string, ebookId: string) {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/replies?id=' + id + '&ebookId=' + ebookId, options).pipe(
       catchError(error => this.handleError(error, 'get_comment_replies'))
     );
   }
+  get_directSearch(query: string) {
+    let options = this.getStandardOptions(); // Obtains standard HTTP options
+    return this.http.get('http://127.0.0.1:8000/api/search/?query=' + query, options).pipe(
+      catchError(error => this.handleError(error, 'get_directSearch'))
+    );
+  }
   get_InDirectSearch(query: string) {
     let options = this.getStandardOptions();
-    console.log('Fetching data for query at indirect search:', query); // Logs the search query
-    options = { ...options, timeout: 20000 }; // Timeout in milliseconds
+    options = { ...options, timeout: 20000 };
     return this.http.get('http://127.0.0.1:8000/api/related/?query=' + query, options).pipe(
       catchError(error => this.handleError(error, 'get_indirectSearch'))
     );
