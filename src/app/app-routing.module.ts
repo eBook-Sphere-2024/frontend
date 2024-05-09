@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { EBookComponent } from './reading-section/e-book/e-book.component';
 import { EBookDetailsComponent } from './reading-section/e-book/e-book-details/e-book-details.component';
 import { ReadingSectionComponent } from './reading-section/reading-section.component';
-import { SearchComponent } from './reading-section/banner/search/search.component';
+import { SearchBarComponent } from './reading-section/e-book/search-bar/search-bar.component';
 
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
   { path: 'reading/ebooks', component: EBookComponent },
   { path: 'reading/ebooks/:id', component: EBookDetailsComponent },
   { path: 'reading/ebooks/category/:id', component: EBookComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchBarComponent }
 ];
 
 @NgModule({

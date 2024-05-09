@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { BannerComponent } from './banner.component';
 import { FormsModule } from '@angular/forms';
-import { SearchComponent } from './search/search.component';
-import { EBookItemComponent } from '../e-book/e-book-item/e-book-item.component';
+import { ReactiveFormsModule } from '@angular/forms'
+
 @NgModule({
   declarations: [
-    BannerComponent,
-    SearchComponent,
-    
+    BannerComponent
+
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     BannerComponent

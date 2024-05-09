@@ -21,13 +21,13 @@ export class EBookComponent implements OnInit {
       this.eBookItems = eBookItem;
       this.filterReceived = true;
     });
-  
+
     // Call loadBooks if filter event is not yet received after 1 second
     setTimeout(() => {
       if (!this.filterReceived) { // Load books only if no search results
         this.loadBooks();
       }
-    }, 3000);
+    }, 30);
   }
 
   private loadBooks(): void {
@@ -38,6 +38,6 @@ export class EBookComponent implements OnInit {
       (error: any) => {
         alert(error.message);
       }
-    ),2000;
+    ), 2000;
   }
 }

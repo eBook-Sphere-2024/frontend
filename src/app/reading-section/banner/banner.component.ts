@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { EventService } from '../../../shared/services/EventService';
 import { Router } from '@angular/router';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-banner',
@@ -10,8 +11,9 @@ import { Router } from '@angular/router';
 export class BannerComponent implements OnInit {
   @Output() searchQuery = new EventEmitter<string>();
   @ViewChildren('bannerInput') bannerInputs!: QueryList<ElementRef<HTMLInputElement>>;
+  query: FormControl = new FormControl();
 
-  constructor(private events: EventService,private router: Router) { }
+  constructor(private events: EventService, private router: Router) { }
 
   ngOnInit(): void {
     this.startBannerTimer();
@@ -26,9 +28,11 @@ export class BannerComponent implements OnInit {
       inputs[nextIndex].checked = true;
     }, 5000);
   }
-  search(event: Event, query: string) {
-    event.preventDefault(); // Prevent form submission
-    this.events.emit('search', query);
-    this.router.navigate(['/search']);
+  search(event: Event) {
+    event.preventDefault();
+    const queryValue = this.query.value;
+    if (queryValue && queryValue.trim().length > 0) {
+      this.router.navigate(['/search'], { queryParams: { query: queryValue } });
+    }
   }
 }

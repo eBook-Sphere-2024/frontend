@@ -10,6 +10,7 @@ import { EBookDetailsComponent } from './e-book-details/e-book-details.component
 import { RouterModule } from '@angular/router';
 import { BannerModule } from '../banner/banner.module';
 import { CommentsModule } from './comments/comments.module';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 
 
@@ -19,7 +20,8 @@ import { CommentsModule } from './comments/comments.module';
     EBookListComponent,
     EBookFilterComponent,
     EBookComponent,
-    EBookDetailsComponent
+    EBookDetailsComponent,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,

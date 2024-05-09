@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-md-6 {
+    position: relative;
+    flex: 0 0 calc(33.333% - 30px);
+    /* Adjust the margin as needed */
+    width: calc(33.333% - 30px);
+    /* Adjust the margin as needed */
+    min-height: 550px;
+}
+
+
+.col-lg-4 {
+    flex: 0 0 33.33333333%;
+}
+
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.blog_section {
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+small {
+    color: #6f6e6e;
+    font-size: larger;
+    font-style: italic;
+    margin-left: 35%;
+    margin-top: 46px;
+}
