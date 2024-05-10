@@ -1,13 +1,20 @@
 <section class="blog_section">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of directsearchresults">
-                <app-e-book-item [eBook]="eBook"></app-e-book-item>
-            </div>
-            <small>Related eBooks</small>
-            <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of indirectsearchresults">
-                <app-e-book-item [eBook]="eBook"></app-e-book-item>
-            </div>
+            <ng-container *ngIf="directsearchresults.length > 0 || indirectsearchresults.length > 0; else noresults">
+                <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of directsearchresults">
+                    <app-e-book-item [eBook]="eBook"></app-e-book-item>
+                </div>
+                <div class="divider" *ngIf="indirectsearchresults.length>0"><span></span><span>Books related to
+                        "{{query}}"</span><span></span></div>
+                <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of indirectsearchresults">
+                    <app-e-book-item [eBook]="eBook"></app-e-book-item>
+                </div>
+            </ng-container>
+            <ng-template #noresults>
+                <!-- Render content if there are no search results -->
+                <img src="../../../../assets/images/noResult.jpg" alt="No results" style="width: 800px;height: 800px;margin-left: 20%;padding-top: 50px;">
+            </ng-template>
         </div>
     </div>
 </section>
