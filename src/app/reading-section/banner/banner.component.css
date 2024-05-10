@@ -49,6 +49,7 @@
   left: 10%;
   bottom: 130px;
   display: inline-block;
+  z-index: 50;
 }
 
 #section-1 .more-info i {
