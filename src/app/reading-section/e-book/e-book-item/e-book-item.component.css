@@ -28,7 +28,7 @@
 
 .img-box img {
   width: 100%;
-  max-height: 250px;
+  max-height: 350px;
   vertical-align: middle;
   border-style: none;
   object-fit: cover;
@@ -74,4 +74,9 @@
 .detail-box a:hover {
   background-color: #ffffff;
   color: #6bb7be;
+}
+h6{
+  color: #4f6365;
+  font-style: italic;
+  font-size: 20px;
 }
