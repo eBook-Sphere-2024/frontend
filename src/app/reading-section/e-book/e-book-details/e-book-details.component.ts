@@ -39,16 +39,24 @@ export class EBookDetailsComponent implements OnInit {
   }
 
   download() {
-    //should be the path the user choose and the name of the file he chooses
-    const file_name = "";
-    //save file to local storage 
-    this.eBookService.download_eBook("1H6lT3nfjxaS2tbcqvpOIhCBp2Tp9xPey", file_name).subscribe(
+    // Assuming the fileId is already fetched and stored in eBookItem.content
+    this.eBookService.download_eBook("1H6lT3nfjxaS2tbcqvpOIhCBp2Tp9xPey").subscribe(
       (data: any) => {
-        console.log(data)
+        // Assuming the server response contains the download link and file name
+        const downloadLink = data;
+        const fileName = this.eBookItem.title + ".pdf";
+        
+        // Create a link element
+        const link = document.createElement("a");
+        link.href = downloadLink;
+        link.download = fileName; // Set the desired file name
+  
+        // Programmatically click the link to initiate the download
+        link.click();
       },
       (error: any) => {
         console.error('Error downloading eBook:', error);
       }
     );
-  }
+  }  
 }
