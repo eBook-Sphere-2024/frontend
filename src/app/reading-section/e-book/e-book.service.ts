@@ -81,6 +81,17 @@ export class EBookService {
       catchError(error => this.handleError(error, 'get_user_profile'))
     );
   }
+  download_eBook(fileId: string, localPath: string) {
+    let options = this.getStandardOptions();
+    const body = {
+      "fileId": fileId,
+      "localPath": localPath
+    }
+    console.log(body)
+    return this.http.post('http://127.0.0.1:8000/api/download/', body, options).pipe(
+      catchError(error => this.handleError(error, 'download_eBook'))
+    );
+  }
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error);
     if (error.status === 0) {

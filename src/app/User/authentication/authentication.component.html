@@ -1,0 +1,38 @@
+<body >
+    <div class="container" id="container" #container>
+        <div class="form-container sign-up">
+            <form (ngSubmit)="registerUser()">
+                <h1 class="title">Create Account</h1>
+                <input type="text" placeholder="First Name" [(ngModel)]="userDetails.first_name" name="first_name">
+                <input type="text" placeholder="Last Name" [(ngModel)]="userDetails.last_name" name="last_name">
+                <input type="text" placeholder="Username" [(ngModel)]="userDetails.username" name="username">
+                <input type="email" placeholder="Email" [(ngModel)]="userDetails.email" name="email">
+                <input type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password">
+                <button type="submit">Sign Up</button>
+              </form>              
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1 class="title">Sign In</h1>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <a href="#">Forget Your Password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login" #loginBtn>Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register" #registerBtn>Sign Up</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+</body>

@@ -34,7 +34,21 @@ export class EBookDetailsComponent implements OnInit {
     this.Router.navigate(['reading']);
   }
   readBook() {
-    const EbookUrl = 'https://drive.google.com/file/d/1ssaYYPI1Bj0UY5EWhoLc_eZbykrR6w9e/view?usp=drive_open';
+    const EbookUrl = 'https://drive.google.com/file/d/' + this.eBookItem.content + '/view?usp=drive_open';
     window.open(EbookUrl, '_blank');
+  }
+
+  download() {
+    //should be the path the user choose and the name of the file he chooses
+    const file_name = "";
+    //save file to local storage 
+    this.eBookService.download_eBook("1H6lT3nfjxaS2tbcqvpOIhCBp2Tp9xPey", file_name).subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      (error: any) => {
+        console.error('Error downloading eBook:', error);
+      }
+    );
   }
 }

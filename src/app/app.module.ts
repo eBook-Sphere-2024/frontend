@@ -6,12 +6,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { ReadingSectionModule } from './reading-section/reading-section.module';
+import { AuthenticationModule } from './User/authentication/authentication.module';
+import { ProfileModule } from './User/UserInfo/profile/profile.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,8 @@ import { ReadingSectionModule } from './reading-section/reading-section.module';
     RouterModule,
     ReadingSectionModule,
     FlexLayoutModule,
+    AuthenticationModule,
+    ProfileModule
 
   ],
   providers: [],
