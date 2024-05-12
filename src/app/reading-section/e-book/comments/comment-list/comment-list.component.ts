@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EBookService } from '../../e-book.service';
 import { Comment } from '../../../../../shared/models/Comment';
+import { UserServices } from '../../../../User/user.service';
 
 @Component({
   selector: 'app-comment-list',
@@ -10,14 +11,14 @@ import { Comment } from '../../../../../shared/models/Comment';
 export class CommentListComponent implements OnInit {
   @Input() eBook: any;
   comments: Comment[] = [];
-  constructor(private eBookService: EBookService) { }
+  constructor(private eBookService: EBookService, private userService: UserServices) { }
 
   ngOnInit() {
     this.eBookService.get_Comments().subscribe(
       (data: any) => {
         this.comments = data;
         for (let i = 0; i < this.comments.length; i++) {
-          this.eBookService.get_user_profile(this.comments[i].user.id.toString()).subscribe(
+          this.userService.get_user_profile(this.comments[i].user.id.toString()).subscribe(
             (data: any) => {
               this.comments[i].user.avatar = data.profile_image;
             },

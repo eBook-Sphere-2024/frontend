@@ -1,4 +1,4 @@
-<body >
+<body>
     <div class="container" id="container" #container>
         <div class="form-container sign-up">
             <form (ngSubmit)="registerUser()">
@@ -9,13 +9,13 @@
                 <input type="email" placeholder="Email" [(ngModel)]="userDetails.email" name="email">
                 <input type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password">
                 <button type="submit">Sign Up</button>
-              </form>              
+            </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form (ngSubmit)="loginUser()">
                 <h1 class="title">Sign In</h1>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="text" placeholder="username" [(ngModel)]="userDetails.username" name="username">
+                <input type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password">
                 <a href="#">Forget Your Password?</a>
                 <button>Sign In</button>
             </form>
@@ -31,7 +31,7 @@
                     <h1>Hello, Friend!</h1>
                     <p>Register with your personal details to use all of site features</p>
                     <button class="hidden" id="register" #registerBtn>Sign Up</button>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
