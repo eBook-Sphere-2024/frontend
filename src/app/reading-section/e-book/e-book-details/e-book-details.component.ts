@@ -58,5 +58,5 @@ export class EBookDetailsComponent implements OnInit {
         console.error('Error downloading eBook:', error);
       }
     );
-  } 
+  }  
 }
