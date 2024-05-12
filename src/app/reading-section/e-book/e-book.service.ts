@@ -74,13 +74,6 @@ export class EBookService {
       catchError(error => this.handleError(error, 'get_indirectSearch'))
     );
   }
-  //to be removed later
-  get_user_profile(id: string) {
-    let options = this.getStandardOptions();
-    return this.http.get('http://127.0.0.1:8000/api/profile?id=' + id, options).pipe(
-      catchError(error => this.handleError(error, 'get_user_profile'))
-    );
-  }
   download_eBook(fileId: string) {
     let options = this.getStandardOptions();
     const body = {

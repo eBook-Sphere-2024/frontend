@@ -8,20 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent {
-  userDetails:User = {
-    id:0,
-    first_name: '',
-    last_name: '',
-    username: '',
-    email: '',
-    password: ''
-  };
+  userDetails: User = {} as User;
 
   @ViewChild('container') container!: ElementRef;
   @ViewChild('registerBtn') registerBtn!: ElementRef;
   @ViewChild('loginBtn') loginBtn!: ElementRef;
 
-  constructor(private userService: UserServices,private router: Router) {}
+  constructor(private userService: UserServices, private router: Router) { }
 
   ngAfterViewInit() {
     this.registerBtn.nativeElement.addEventListener('click', () => {
@@ -37,7 +30,23 @@ export class AuthenticationComponent {
       .subscribe(
         response => {
           console.log('Registration successful:', response);
-          // Handle successful registration here, e.g., redirect to login page
+          // Store the response in session storage
+          sessionStorage.setItem('Token', JSON.stringify(response));
+          this.router.navigate(['/profile']);
+        },
+        error => {
+          console.error('Registration failed:', error);
+        }
+      );
+
+  }
+  loginUser() {
+    this.userService.login(this.userDetails)
+      .subscribe(
+        response => {
+          console.log('Login successful:', response);
+          // Store the response in session storage
+          sessionStorage.setItem('Token', JSON.stringify(response));
           this.router.navigate(['/profile']);
         },
         error => {
@@ -45,6 +54,5 @@ export class AuthenticationComponent {
           // Handle registration failure here
         }
       );
-    
   }
 }

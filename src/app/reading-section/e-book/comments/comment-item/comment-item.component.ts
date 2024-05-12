@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from '../../../../../shared/models/Comment';
 import { EBookService } from '../../e-book.service';
+import { UserServices } from '../../../../User/user.service';
+import { User } from '../../../../../shared/models/User';
 
 @Component({
   selector: 'app-comment-item',
@@ -10,8 +12,9 @@ import { EBookService } from '../../e-book.service';
 export class CommentItemComponent implements OnInit {
   @Input() comment!: Comment
   replies!: Comment[]
+  userProfile!: User;
 
-  constructor(private eBookService: EBookService) {
+  constructor(private eBookService: EBookService, private userService: UserServices) {
   }
 
   ngOnInit(): void {
@@ -20,7 +23,7 @@ export class CommentItemComponent implements OnInit {
       (data: any) => {
         this.replies = data;
         for (let i = 0; i < this.replies.length; i++) {
-          this.eBookService.get_user_profile(this.replies[i].user.id.toString()).subscribe(
+          this.userService.get_user_profile(this.replies[i].user.id.toString()).subscribe(
             (data: any) => {
               this.replies[i].user.avatar = data.profile_image;
             },
@@ -34,6 +37,36 @@ export class CommentItemComponent implements OnInit {
         alert(error.message);
       }
     );
+
+    this.getCurrentUser()
+  }
+  getCurrentUser() {
+    let token = sessionStorage.getItem('Token');
+    console.log(token);
+    if (token) {
+      this.userService.userProfile(token).subscribe(
+        (data: any) => {
+          // Assign the received user profile data to userProfileData
+          this.userProfile = data;
+          this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
+            (data: any) => {
+              // Assign the received user profile data to userProfileData
+              this.userProfile.avatar = data.profile_image;
+            },
+            (error) => {
+              // Handle error if any
+              console.error('Error fetching user profile:', error);
+            }
+          )
+          console.log(this.userProfile);
+        },
+        (error) => {
+          // Handle error if any
+          console.error('Error fetching user profile:', error);
+        }
+      );
+
+    }
   }
 
 }
