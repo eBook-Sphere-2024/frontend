@@ -40,7 +40,7 @@ export class EBookDetailsComponent implements OnInit {
 
   download() {
     // Assuming the fileId is already fetched and stored in eBookItem.content
-    this.eBookService.download_eBook("1H6lT3nfjxaS2tbcqvpOIhCBp2Tp9xPey").subscribe(
+    this.eBookService.download_eBook(this.eBookItem.content).subscribe(
       (data: any) => {
         // Assuming the server response contains the download link and file name
         const downloadLink = data;
