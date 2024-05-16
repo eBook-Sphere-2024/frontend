@@ -1,8 +1,9 @@
-.comments{
+.comments {
     margin-top: 100px;
     margin-left: 15px;
     padding-bottom: 5px;
 }
+
 .comments .header {
     margin-left: 200px;
     color: #6bb7be;
@@ -247,6 +248,7 @@
     background-color: var(--Grayish-Blue);
     grid-area: no;
 }
+
 .containerr {
     width: 850px;
     border-radius: 8px;
@@ -255,6 +257,7 @@
     height: 180px;
     margin-bottom: 200px;
 }
+
 .bu-primary {
     background-color: #6bb7be;
     color: #fff;
@@ -263,3 +266,6 @@
     border-radius: 4px;
 }
 
+.NewCommentForm {
+    width: 100%;
+}

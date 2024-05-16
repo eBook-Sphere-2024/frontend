@@ -4,10 +4,12 @@
         <p class="score-number">{{ comment.likes }}</p>
         <i class="fas fa-thumbs-down score-control score-minus"></i>
     </div>
-    <div class="c-controls" *ngIf="comment.user.username === userProfile.username">
-        <a class="delete control-icon"><i class="fa-solid fa-trash"></i>&nbsp;Delete</a>
-        <a class="edit control-icon"><i class="fa-solid fa-pen"></i>&nbsp;Edit</a>
-        <a class="reply control-icon"><i class="fa-solid fa-reply"></i>&nbsp;Reply</a>
+    <div class="c-controls">
+        <a class="delete control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"
+            (click)="$event.preventDefault(); deleteComment()"><i class="fa-solid fa-trash"></i>&nbsp;Delete</a>
+        <a class="edit control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"><i
+                class="fa-solid fa-pen"></i>&nbsp;Edit</a>
+        <a class="reply control-icon" *ngIf="userProfile"><i class="fa-solid fa-reply"></i>&nbsp;Reply</a>
     </div>
     <div class="c-user">
         <img src="{{ comment.user.avatar }}" alt="" class="usr-img">
