@@ -18,7 +18,6 @@ export class CommentItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.eBookService.get_comment_replies(this.comment.id.toString(), this.comment.ebook.id.toString()).subscribe(
       (data: any) => {
         this.replies = data;
@@ -37,7 +36,6 @@ export class CommentItemComponent implements OnInit {
         alert(error.message);
       }
     );
-
     this.getCurrentUser()
   }
   getCurrentUser() {
@@ -67,6 +65,18 @@ export class CommentItemComponent implements OnInit {
       );
 
     }
+  }
+  deleteComment() {
+    console.log(this.comment.id.toString());
+    this.eBookService.delete_comment(this.comment.id.toString()).subscribe(
+      (data: any) => {
+        console.log(data);
+        window.location.reload();
+      },
+      (error: any) => {
+        alert(error.message);
+      }
+    );
   }
 
 }

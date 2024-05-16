@@ -1,4 +1,3 @@
-
 <section class="comments">
     <h3 class="header"><i class="fa-solid fa-comments"></i>&nbsp;&nbsp;Comments</h3>
     <ng-template class="reply-input-template">
@@ -16,7 +15,7 @@
     </ng-template>
 
     <main>
-        <div class="comment-section">
+        <div class="comment-section" *ngIf="userProfile">
             <div class="comments-wrp">
             </div>
             <div class="containerr" style="max-height: 200px;">
@@ -29,10 +28,22 @@
                     <i class='bx bx-star star' style="--i: 4;"></i>
                 </div>
                 <div class="reply-input">
-                    <img src="images/avatars/image-juliusomo.webp" alt="" class="usr-img">
-                    <textarea class="cmnt-input" placeholder="Add a comment..."></textarea>
-                    <button class="bu-primary">SEND</button>
+                    <img src="{{userProfile.avatar}}" alt="" class="usr-img">
+                    <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="NewCommentForm">
+                        <textarea class="cmnt-input" formControlName="formMessage" placeholder="Add a comment..."
+                            required></textarea>
+                        <div *ngIf="commentForm?.get('formMessage')?.hasError('required') && commentForm?.get('formMessage')?.touched"
+                            class="error-message">
+                            Message is required.
+                        </div>
+                        <div *ngIf="commentForm?.get('formMessage')?.hasError('minlength') && commentForm?.get('formMessage')?.touched"
+                            class="error-message">
+                            Message must be at least 4 characters long.
+                        </div>
+                        <button type="submit" class="bu-primary" [disabled]="commentForm.invalid">SEND</button>
+                    </form>
                 </div>
+
             </div>
             <div class="modal-wrp invisible">
                 <div class="modal container">

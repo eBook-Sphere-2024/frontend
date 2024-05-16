@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { eBookItem } from '../../../shared/models/eBookItem';
-
+import { Comment } from '../../../shared/models/Comment';
 @Injectable({
   providedIn: 'root'
 })
@@ -61,6 +61,24 @@ export class EBookService {
       catchError(error => this.handleError(error, 'get_comment_replies'))
     );
   }
+  addComment(userId: string, ebookId: string, content: string) {
+    let options = this.getStandardOptions();
+    let body = {
+      "user": userId,
+      "ebook": ebookId,
+      "content": content
+    }
+    return this.http.post<Comment>('http://127.0.0.1:8000/api/comments/', body, options).pipe(
+      catchError(error => this.handleError(error, 'addComment'))
+    );
+  }
+
+  delete_comment(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.delete('http://127.0.0.1:8000/api/comments?id=' + id, options).pipe(
+      catchError(error => this.handleError(error, 'delete_comment'))
+    )
+  }
   get_directSearch(query: string) {
     let options = this.getStandardOptions(); // Obtains standard HTTP options
     return this.http.get('http://127.0.0.1:8000/api/search/?query=' + query, options).pipe(
@@ -84,6 +102,7 @@ export class EBookService {
       catchError(error => this.handleError(error, 'download_eBook'))
     );
   }
+
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error);
     if (error.status === 0) {
