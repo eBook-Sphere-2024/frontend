@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UserServices } from '../../User/user.service';
 import { User } from '../../../shared/models/User';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -47,7 +48,7 @@ export class AuthenticationComponent {
           console.log('Login successful:', response);
           // Store the response in session storage
           sessionStorage.setItem('Token', JSON.stringify(response));
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/User']);
         },
         error => {
           console.error('Registration failed:', error);
@@ -55,4 +56,11 @@ export class AuthenticationComponent {
         }
       );
   }
+  userData= new FormGroup({
+    first_name: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+    last_name: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
+    username: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    password: new FormControl('',[Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]),
+  })
 }

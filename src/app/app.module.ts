@@ -6,14 +6,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavComponent } from './nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { ReadingSectionModule } from './reading-section/reading-section.module';
-import { AuthenticationModule } from './User/authentication/authentication.module';
-import { ProfileModule } from './User/UserInfo/profile/profile.module';
+import { UserModule } from './User/user.module';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,9 +23,7 @@ import { ProfileModule } from './User/UserInfo/profile/profile.module';
     RouterModule,
     ReadingSectionModule,
     FlexLayoutModule,
-    AuthenticationModule,
-    ProfileModule
-
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
