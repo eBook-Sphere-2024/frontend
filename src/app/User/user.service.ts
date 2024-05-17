@@ -35,6 +35,7 @@ export class UserServices {
   }
   login(userDetails: User) {
     let options = this.getStandardOptions();
+    console.log(userDetails)
     let body = {
       "username": userDetails.username,
       "password": userDetails.password

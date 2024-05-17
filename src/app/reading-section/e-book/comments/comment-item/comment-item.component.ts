@@ -3,21 +3,27 @@ import { Comment } from '../../../../../shared/models/Comment';
 import { EBookService } from '../../e-book.service';
 import { UserServices } from '../../../../User/user.service';
 import { User } from '../../../../../shared/models/User';
+import { eBookItem } from '../../../../../shared/models/eBookItem';
 
 @Component({
   selector: 'app-comment-item',
   templateUrl: './comment-item.component.html',
-  styleUrl: './comment-item.component.css'
+  styleUrls: ['./comment-item.component.css']
 })
 export class CommentItemComponent implements OnInit {
-  @Input() comment!: Comment
-  replies!: Comment[]
-  userProfile!: User;
+  @Input() comment!: Comment;
+  @Input() userProfile!: User;
+  @Input() eBook!: eBookItem;
+  replies!: Comment[];
+  isEditing: boolean = false;
+  isAddingReply: boolean = false;
 
-  constructor(private eBookService: EBookService, private userService: UserServices) {
-  }
+  constructor(private eBookService: EBookService, private userService: UserServices) { }
 
   ngOnInit(): void {
+    this.getReplies();
+  }
+  getReplies(): void {
     this.eBookService.get_comment_replies(this.comment.id.toString(), this.comment.ebook.id.toString()).subscribe(
       (data: any) => {
         this.replies = data;
@@ -29,48 +35,43 @@ export class CommentItemComponent implements OnInit {
             (error: any) => {
               alert(error.message);
             }
-          )
+          );
         }
       },
       (error: any) => {
         alert(error.message);
       }
     );
-    this.getCurrentUser()
   }
-  getCurrentUser() {
-    let token = sessionStorage.getItem('Token');
-    console.log(token);
-    if (token) {
-      this.userService.userProfile(token).subscribe(
-        (data: any) => {
-          // Assign the received user profile data to userProfileData
-          this.userProfile = data;
-          this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
-            (data: any) => {
-              // Assign the received user profile data to userProfileData
-              this.userProfile.avatar = data.profile_image;
-            },
-            (error) => {
-              // Handle error if any
-              console.error('Error fetching user profile:', error);
-            }
-          )
-          console.log(this.userProfile);
-        },
-        (error) => {
-          // Handle error if any
-          console.error('Error fetching user profile:', error);
-        }
-      );
 
-    }
+  promptDeleteComment(): void {
+    console.log('prompt delete comment');
+    const modalWrp = document.querySelector('.modal-wrp') as HTMLElement;
+    modalWrp.classList.remove('invisible');
+
+    const yesButton = modalWrp.querySelector('.yes') as HTMLButtonElement;
+    const noButton = modalWrp.querySelector('.no') as HTMLButtonElement;
+
+    const yesClickListener = () => {
+      this.deleteComment();
+      modalWrp.classList.add('invisible');
+      yesButton.removeEventListener('click', yesClickListener);
+      noButton.removeEventListener('click', noClickListener);
+    };
+
+    const noClickListener = () => {
+      modalWrp.classList.add('invisible');
+      yesButton.removeEventListener('click', yesClickListener);
+      noButton.removeEventListener('click', noClickListener);
+    };
+
+    yesButton.addEventListener('click', yesClickListener);
+    noButton.addEventListener('click', noClickListener);
   }
-  deleteComment() {
-    console.log(this.comment.id.toString());
+
+  deleteComment(): void {
     this.eBookService.delete_comment(this.comment.id.toString()).subscribe(
-      (data: any) => {
-        console.log(data);
+      () => {
         window.location.reload();
       },
       (error: any) => {
@@ -78,5 +79,32 @@ export class CommentItemComponent implements OnInit {
       }
     );
   }
+  onContentChange(event: any): void {
+    const newTextContent = event.target.textContent.trim(); // Trim any leading or trailing whitespace
+    if (newTextContent.length > 4) {
+      this.comment.content = newTextContent;
+    }
+  }
+  toggleEditComment(): void {
+    this.isEditing = !this.isEditing;
+    if (!this.isEditing) {
+      this.saveComment();
+    }
+  }
 
+  saveComment(): void {
+    console.log(this.comment);
+    this.eBookService.edit_comment(this.comment).subscribe(
+      () => {
+        //window.location.reload();
+      },
+      (error: any) => {
+        alert(error.message);
+      }
+    );
+  }
+  addReplyComment(): void {
+    console.log('add reply comment');
+    this.isAddingReply = !this.isAddingReply;
+  }
 }

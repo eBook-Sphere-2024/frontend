@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
 import { User } from '../../../../shared/models/User';
 import { UserServices } from '../../user.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -9,13 +9,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(private userService: UserServices) { }
   userProfile!: User;
+  userData: FormGroup;
+  constructor(
+    private userService: UserServices,
+    private fb: FormBuilder // Inject FormBuilder
+  ) {
+    this.userData = this.fb.group({ // Initialize the FormGroup
+      first_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      last_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      username: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+    });
 
+  }
   ngOnInit(): void {
     let token = sessionStorage.getItem('Token');
-    console.log(token);
     if (token) {
       this.userService.userProfile(token).subscribe(
         (data: any) => {
@@ -23,7 +32,6 @@ export class ProfileComponent implements OnInit {
           this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
             (data: any) => {
               this.userProfile.avatar = data.profile_image;
-              console.log(this.userProfile);
             },
             (error) => {
               console.error('Error fetching user profile:', error);
@@ -36,11 +44,4 @@ export class ProfileComponent implements OnInit {
       );
     }
   }
-  userData= new FormGroup({
-    first_name: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
-    last_name: new FormControl('',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]),
-    username: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]),
-  })
 }

@@ -48,9 +48,9 @@ export class EBookService {
     );
   }
 
-  get_Comments() {
+  get_Comments(id: string) {
     let options = this.getStandardOptions();
-    return this.http.get('http://127.0.0.1:8000/api/comments/', options).pipe(
+    return this.http.get('http://127.0.0.1:8000/api/comments?id=' + id, options).pipe(
       catchError(error => this.handleError(error, 'get_Comments'))
     );
   }
@@ -61,18 +61,41 @@ export class EBookService {
       catchError(error => this.handleError(error, 'get_comment_replies'))
     );
   }
-  addComment(userId: string, ebookId: string, content: string) {
+  addComment(userId: string, ebookId: string, content: string, _comment: Comment | null = null) {
     let options = this.getStandardOptions();
-    let body = {
-      "user": userId,
-      "ebook": ebookId,
-      "content": content
+    let body;
+    console.log(_comment)
+    if (_comment == null || typeof _comment === 'undefined') {
+      body = {
+        "user": userId,
+        "ebook": ebookId,
+        "content": content
+      }
     }
+    else {
+      console.log(_comment)
+      const reply_to = _comment ? _comment.id : null;
+      body = {
+        "user": userId,
+        "ebook": ebookId,
+        "content": content,
+        "reply_to": reply_to
+      }
+    }
+
     return this.http.post<Comment>('http://127.0.0.1:8000/api/comments/', body, options).pipe(
       catchError(error => this.handleError(error, 'addComment'))
     );
   }
-
+  edit_comment(comment: Comment) {
+    let options = this.getStandardOptions();
+    let body = {
+      "content": comment.content
+    }
+    return this.http.patch('http://127.0.0.1:8000/api/comments/?id=' + comment.id, body, options).pipe(
+      catchError(error => this.handleError(error, 'edit_comment'))
+    )
+  }
   delete_comment(id: string) {
     let options = this.getStandardOptions();
     return this.http.delete('http://127.0.0.1:8000/api/comments?id=' + id, options).pipe(

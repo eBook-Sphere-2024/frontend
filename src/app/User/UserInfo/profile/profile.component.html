@@ -1,47 +1,51 @@
 <section>
-<form (ngSubmit)="$event.preventDefault();" [formGroup]="userData">
-  <div class="form-row"  >
-    <div class="form-group col-md-6 ">
-      <label>First name</label>
-      <input type="text" class="form-control mr-50" placeholder="First name" formControlName="first_name" value="{{userProfile?.first_name}}">
-      <div *ngIf="userData.get('first_name')?.invalid && (userData.get('first_name')?.touched || userData.get('first_name')?.dirty)">
-        <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('required')">First Name is required</small>
-        <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('pattern')">First Name must be only characters</small>
+  <form [formGroup]="userData" (ngSubmit)="$event.preventDefault();">
+    <div class="form-row">
+      <div class="form-group col-md-6 ">
+        <label>First name</label>
+        <input type="text" class="form-control mr-50" placeholder="First name" formControlName="first_name"
+          value="{{userProfile?.first_name}}">
+        <div
+          *ngIf="userData.get('first_name')?.invalid && (userData.get('first_name')?.touched || userData.get('first_name')?.dirty)">
+          <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('required')">First Name is
+            required</small>
+          <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('pattern')">First Name must be only
+            characters</small>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Last name</label>
+        <input type="text" class="form-control" placeholder="Last name" formControlName="last_name"
+          value="{{userProfile?.last_name}}">
+        <div
+          *ngIf="userData.get('last_name')?.invalid && (userData.get('last_name')?.touched || userData.get('last_name')?.dirty)">
+          <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('required')">Last Name is
+            required</small>
+          <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('pattern')">Last Name must be only
+            characters</small>
+        </div>
+      </div>
     </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" placeholder="Username" formControlName="username"
+        value="{{userProfile?.username}}">
+      <div
+        *ngIf="userData.get('username')?.invalid && (userData.get('username')?.touched || userData.get('username')?.dirty)">
+        <small class="text-danger" *ngIf="userData.get('username')?.hasError('required')">UserName is required</small>
+        <small class="text-danger" *ngIf="userData.get('username')?.hasError('pattern')">UserName must be only
+          characters</small>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label>Last name</label>
-      <input type="text" class="form-control" placeholder="Last name" formControlName="last_name" value="{{userProfile?.last_name}}">
-      <div *ngIf="userData.get('last_name')?.invalid && (userData.get('last_name')?.touched || userData.get('last_name')?.dirty)">
-        <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('required')">Last Name is required</small>
-        <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('pattern')">Last Name must be only characters</small>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" placeholder="Email" formControlName="email"
+        value="{{userProfile?.email}}">
+      <div *ngIf="userData.get('email')?.invalid && (userData.get('email')?.touched || userData.get('email')?.dirty)">
+        <small class="text-danger" *ngIf="userData.get('email')?.hasError('required')">Email is required</small>
+        <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
+      </div>
     </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" placeholder="Username" formControlName="username" value="{{userProfile?.username}}">
-    <div *ngIf="userData.get('username')?.invalid && (userData.get('username')?.touched || userData.get('username')?.dirty)">
-      <small class="text-danger" *ngIf="userData.get('username')?.hasError('required')">UserName is required</small>
-      <small class="text-danger" *ngIf="userData.get('username')?.hasError('pattern')">UserName must be only characters</small>
-  </div>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input type="email" class="form-control" placeholder="Email"  formControlName="email" value="{{userProfile?.email}}">
-    <div *ngIf="userData.get('email')?.invalid && (userData.get('email')?.touched || userData.get('email')?.dirty)">
-      <small class="text-danger" *ngIf="userData.get('email')?.hasError('required')">Email is required</small>
-      <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
-  </div>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress">Password</label>
-    <input type="password" class="form-control" placeholder="Password" formControlName="password">
-    <div *ngIf="userData.get('password')?.invalid && (userData.get('password')?.touched || userData.get('password')?.dirty)">
-      <small class="text-danger" *ngIf="userData.get('password')?.hasError('required')">Password is required</small>
-      <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must contain characters and numbers</small>
-  </div>
-  </div>
-  <button type="submit" class="btnn" [disabled]="userData.invalid">Save Changes</button>
-</form>
+    <button type="submit" class="btnn" [disabled]="userData.invalid">Save Changes</button>
+  </form>
 </section>
