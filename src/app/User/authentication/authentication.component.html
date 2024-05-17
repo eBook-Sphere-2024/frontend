@@ -1,14 +1,34 @@
 <body>
     <div class="container" id="container" #container>
         <div class="form-container sign-up">
-            <form (ngSubmit)="registerUser()">
+            <form (ngSubmit)="registerUser()" [formGroup]="userData">
                 <h1 class="title">Create Account</h1>
-                <input type="text" placeholder="First Name" [(ngModel)]="userDetails.first_name" name="first_name">
-                <input type="text" placeholder="Last Name" [(ngModel)]="userDetails.last_name" name="last_name">
-                <input type="text" placeholder="Username" [(ngModel)]="userDetails.username" name="username">
-                <input type="email" placeholder="Email" [(ngModel)]="userDetails.email" name="email">
-                <input type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password">
-                <button type="submit">Sign Up</button>
+                <input type="text" placeholder="First Name" [(ngModel)]="userDetails.first_name" name="first_name" formControlName="first_name">
+                <div *ngIf="userData.get('first_name')?.invalid && (userData.get('first_name')?.touched || userData.get('first_name')?.dirty)">
+                    <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('required')">First Name is required</small>
+                    <small class="text-danger" *ngIf="userData.get('first_name')?.hasError('pattern')">First Name must be only characters</small>
+                </div>
+                <input type="text" placeholder="Last Name" [(ngModel)]="userDetails.last_name" name="last_name" formControlName="last_name">
+                <div *ngIf="userData.get('last_name')?.invalid && (userData.get('last_name')?.touched || userData.get('last_name')?.dirty)">
+                    <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('required')">Last Name is required</small>
+                    <small class="text-danger" *ngIf="userData.get('last_name')?.hasError('pattern')">Last Name must be only characters</small>
+                </div>
+                <input type="text" placeholder="Username" [(ngModel)]="userDetails.username" name="username" formControlName="username">
+                <div *ngIf="userData.get('username')?.invalid && (userData.get('username')?.touched || userData.get('username')?.dirty)">
+                    <small class="text-danger" *ngIf="userData.get('username')?.hasError('required')">UserName is required</small>
+                    <small class="text-danger" *ngIf="userData.get('username')?.hasError('pattern')">UserName must be only characters</small>
+                </div>
+                <input type="email" placeholder="Email" [(ngModel)]="userDetails.email" name="email" formControlName="email">
+                <div *ngIf="userData.get('email')?.invalid && (userData.get('email')?.touched || userData.get('email')?.dirty)">
+                    <small class="text-danger" *ngIf="userData.get('email')?.hasError('required')">Email is required</small>
+                    <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
+                </div>
+                <input type="password" placeholder="Password" [(ngModel)]="userDetails.password" name="password" formControlName="password">
+                <div *ngIf="userData.get('password')?.invalid && (userData.get('password')?.touched || userData.get('password')?.dirty)">
+                    <small class="text-danger" *ngIf="userData.get('password')?.hasError('required')">Password is required</small>
+                    <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must contain characters and numbers</small>
+                </div>
+                <button type="submit" [disabled]="userData.invalid">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">

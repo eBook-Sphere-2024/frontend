@@ -23,7 +23,7 @@ body{
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 570px;
 }
 
 .container p{
@@ -184,12 +184,14 @@ body{
     justify-content: center;
     flex-direction: column;
     padding: 0 30px;
-    text-align: center;
     top: 0;
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
 }
-
+form small{
+    font-size: 12px;
+    text-align: left;
+}
 .toggle-left{
     transform: translateX(-200%);
 }

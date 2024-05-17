@@ -1,17 +1,17 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { User } from '../../../../../shared/models/User';
-import { UserServices } from '../../../user.service';
+import { Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
+import { UserServices } from '../user.service';
+import { User } from '../../../shared/models/User';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-user-info',
+  templateUrl: './user-info.component.html',
+  styleUrl: './user-info.component.css'
 })
-export class ProfileComponent implements OnInit {
+export class UserInfoComponent implements OnInit{
+  userProfile!: User;
   @ViewChild('nav') nav!: ElementRef;
   @ViewChild('toggleBtn') toggleBtn!: ElementRef;
   @ViewChild('content') content!: ElementRef;
-  userProfile!: User;
 
   constructor(private userService: UserServices) { }
   toggleVisibility() {
@@ -43,7 +43,6 @@ export class ProfileComponent implements OnInit {
           console.error('Error fetching user profile:', error);
         }
       );
-
     }
   }
 }

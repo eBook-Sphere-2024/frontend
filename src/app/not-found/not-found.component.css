@@ -1,0 +1,13 @@
+h1{
+    margin-top: 80px;
+    text-align: center;
+    color: #6b85be;
+    font-size: 60px;
+
+    font-family:cursive;
+}
+img{
+    width:1200px ;
+    height:500px;
+    background-size: cover;
+}

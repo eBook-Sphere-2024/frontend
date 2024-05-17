@@ -55,10 +55,15 @@ export class UserServices {
     );
   }
   get_user_profile(id: string) {
-    console.log(id)
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/profile?id=' + id, options).pipe(
       catchError(error => this.handleError(error, 'get_user_profile'))
+    );
+  }
+  get_createdBooks(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get('http://127.0.0.1:8000/api/autherBooks/?id=' + id, options).pipe(
+      catchError(error => this.handleError(error, 'get_createdBooks'))
     );
   }
   private handleError(error: HttpErrorResponse, context: string) {
