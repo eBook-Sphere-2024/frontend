@@ -14,6 +14,7 @@ export class CommentListComponent implements OnInit {
   @Input() eBook: any;
   comments: Comment[] = [];
   userProfile!: User;
+  rating: number = 0;
 
   commentForm = new FormGroup({
     formMessage: new FormControl('', [Validators.required, Validators.minLength(4)])
@@ -26,7 +27,7 @@ export class CommentListComponent implements OnInit {
     this.getCurrentUser();
   }
   getComments() {
-    this.eBookService.get_Comments().subscribe(
+    this.eBookService.get_Comments(this.eBook.id.toString()).subscribe(
       (data: any) => {
         this.comments = data;
         for (let i = 0; i < this.comments.length; i++) {
@@ -73,21 +74,30 @@ export class CommentListComponent implements OnInit {
 
     }
   }
-  submitComment() {
-    if (this.commentForm.valid) {
-      const commentText = this.commentForm.get('formMessage')?.value ?? '';
-      this.eBookService.addComment(this.userProfile.id.toString(), this.eBook.id.toString(), commentText).subscribe(
-        response => {
-          console.log('Add comment successful:', response);
-        },
-        error => {
-          console.error('Add comment failed:', error);
-          // Handle registration failure here
-        }
-      );
-      this.commentForm.reset();
-      this.getComments()
-    }
+  addRatingEventListeners() {
+    const stars = document.querySelectorAll('.rating .star') as NodeListOf<HTMLElement>;
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        this.setRating(index + 1);
+      });
+    });
   }
+
+  setRating(rating: number) {
+    this.rating = rating;
+    const ratingInput = document.getElementById('ratingValue') as HTMLInputElement;
+    ratingInput.value = rating.toString();
+
+    const stars = document.querySelectorAll('.rating .star') as NodeListOf<HTMLElement>;
+    stars.forEach((star, index) => {
+      if (index < rating) {
+        star.classList.add('active');
+      } else {
+        star.classList.remove('active');
+      }
+    });
+  }
+
+
 }
 
