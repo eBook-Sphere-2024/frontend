@@ -12,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AuthenticationComponent {
   userData: FormGroup;
   userlogin: FormGroup;
-
+  loginFialure: string = '';
+  usernameFail: string = '';
   @ViewChild('container') container!: ElementRef;
   @ViewChild('registerBtn') registerBtn!: ElementRef;
   @ViewChild('loginBtn') loginBtn!: ElementRef;
@@ -47,7 +48,6 @@ export class AuthenticationComponent {
   }
 
   registerUser() {
-    // Access form values using this.userData.value
     this.userService.post_register(this.userData.value)
       .subscribe(
         response => {
@@ -56,11 +56,12 @@ export class AuthenticationComponent {
           this.router.navigate(['/User/profile']);
         },
         error => {
-          console.error('Registration failed:', error);
+          if(error.status==400 && error.error.non_field_errors[0]=='Username already exists')
+            this.usernameFail = 'Username already exists'
+          console.log('user registration error:', this.usernameFail);
         }
       );
   }
-
   loginUser() {
     this.userService.login(this.userlogin.value)
       .subscribe(
@@ -70,8 +71,11 @@ export class AuthenticationComponent {
           this.router.navigate(['/User/profile']);
         },
         error => {
-          console.error('Login failed:', error);
+          if(error.status==400 && error.error.massage=='Username or password is incorrect')
+            console.log("jjjj");
+            this.loginFialure = 'Username or password is incorrect';
+          
         }
       );
-  }
+  }  
 }

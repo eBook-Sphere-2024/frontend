@@ -11,6 +11,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class ProfileComponent implements OnInit {
   userProfile!: User;
   userData: FormGroup;
+  userUpdate!: User;
   constructor(
     private userService: UserServices,
     private fb: FormBuilder // Inject FormBuilder
@@ -44,4 +45,19 @@ export class ProfileComponent implements OnInit {
       );
     }
   }
+  updateProfile() {
+      this.userUpdate.id= this.userProfile.id,
+      this.userUpdate.first_name= this.userData.value.first_name,
+      this.userUpdate.last_name=this.userData.value.last_name,
+      this.userUpdate.username= this.userData.value.username,
+      this.userUpdate.email=this.userData.value.email
+    this.userService.update_user_profile(this.userUpdate).subscribe(
+      (data: any) => {
+        console.log("response: ",data);
+      },
+      (error) => {
+        console.error('Error updating user profile:', error);
+      }
+    );
+  }  
 }

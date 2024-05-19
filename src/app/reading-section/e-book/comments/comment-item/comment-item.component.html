@@ -1,35 +1,34 @@
 <div class="comment containerr">
 
     <div class="c-controls">
-        <a class="delete control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"
-            (click)="promptDeleteComment()">
+        <a class="delete control-icon" *ngIf="userProfile && comment.user.username === userProfile.username" (click)="promptDeleteComment()">
             <i class="fa-solid fa-trash"></i>&nbsp;Delete
         </a>
-        <a class="edit control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"
-            (click)="toggleEditComment()">
+        <a class="edit control-icon" *ngIf="userProfile && comment.user.username === userProfile.username" (click)="toggleEditComment()">
             <i class="fa-solid fa-pen"></i>&nbsp;{{ isEditing ? 'Save' : 'Edit' }}
         </a>
-        <a class="reply control-icon" *ngIf="userProfile && userProfile.id != comment.user.id"
-            (click)="addReplyComment()">
+        <a class="reply control-icon" *ngIf="userProfile && userProfile.id !== comment.user.id" (click)="addReplyComment()">
             <i class="fa-solid fa-reply"></i>&nbsp;Reply
         </a>
     </div>
     <div class="c-user">
         <img src="{{ comment.user.avatar }}" alt="" class="usr-img">
-        <p class="usr-name">{{ comment.user.username }}</p>
-        <p class="cmnt-at">{{ comment.publish_date }}</p>
+        <p class="usr-name" [ngClass]="{'this-user': userProfile && comment.user.username === userProfile.username}">
+            {{ comment.user.username }}
+        </p>
+        <p class="cmnt-at">{{ formatTime(comment.publish_date.toString()) }}</p>
     </div>
     <p class="c-text">
         <span class="reply-to"></span>
-        <span class="c-body" [attr.contenteditable]="isEditing" (input)="onContentChange($event)">{{ comment.content
-            }}</span>
+        <span class="c-body" [attr.contenteditable]="isEditing" (input)="onContentChange($event)">
+            {{ comment.content }}
+        </span>
     </p>
 </div><!--comment-->
 
 <div class="replies comments-wrp" *ngIf="replies">
     <app-comment-item *ngFor="let reply of replies" [comment]="reply" [userProfile]="userProfile"></app-comment-item>
-    <div class="comment-section" [class.invisible2]="!isAddingReply"
-        *ngIf="userProfile && userProfile.id != comment.user.id">
+    <div class="comment-section" [class.invisible2]="!isAddingReply" *ngIf="userProfile && userProfile.id !== comment.user.id">
         <app-add-comment-form [userProfile]="userProfile" [eBook]="eBook" [comment]="comment"></app-add-comment-form>
     </div>
 </div><!--replies-->

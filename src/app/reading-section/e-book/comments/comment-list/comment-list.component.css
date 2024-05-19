@@ -73,10 +73,6 @@
     align-items: center;
 }
 
-.comments .usr-name {
-    color: var(--Dark-blue);
-    font-weight: 700;
-}
 
 .comments .usr-img {
     height: 2rem;
@@ -286,11 +282,15 @@
     color: #6bb7be;
     margin-bottom: 1.7rem;
 }
-
+.rating-title img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
 .rating {
     display: flex;
     margin-left: 24%;
-
 }
 
 .rating .star {
@@ -301,11 +301,15 @@
 }
 
 .rating .star:hover,
-.rating .star:hover~.star {
-    color: #ffc107;
+.rating .star:hover ~ .star {
+    color: #ddd;
 }
 
+.rating .star:hover ~ .star {
+    color: #ddd;
+}
 
+.rating .star:hover,
 .rating .star.selected {
     color: #ffc107;
 }
