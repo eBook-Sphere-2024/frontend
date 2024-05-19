@@ -30,7 +30,7 @@
                     <small class="text-danger" *ngIf="userData.get('username')?.hasError('pattern')">Username must be
                         only characters</small>
                 </div>
-
+                <small *ngIf="usernameFail" class="text-danger">{{ usernameFail }}</small>
                 <input type="email" placeholder="Email" formControlName="email">
                 <div
                     *ngIf="userData.get('email')?.invalid && (userData.get('email')?.touched || userData.get('email')?.dirty)">
@@ -48,7 +48,7 @@
                         contain characters and numbers</small>
                 </div>
 
-                <button type="submit" [disabled]="userData.invalid">Sign Up</button>
+                <button type="submit" [disabled]="userData.invalid" id="register" #register>Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -70,8 +70,10 @@
                     <small class="text-danger" *ngIf="userlogin.get('password')?.hasError('pattern')">Password must
                         contain characters and numbers</small>
                 </div>
+                <small *ngIf="loginFialure" class="text-danger">{{ loginFialure }}</small>
                 <a href="#">Forget Your Password?</a>
-                <button [disabled]="userlogin.invalid">Sign In</button>
+                
+                <button [disabled]="userlogin.invalid" id="login" #login>Sign In</button>
             </form>
         </div>
         <div class="toggle-container">

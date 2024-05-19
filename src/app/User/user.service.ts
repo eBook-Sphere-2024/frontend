@@ -30,7 +30,6 @@ export class UserServices {
       "password": userDetails.password
     }
     return this.http.post<User>('http://127.0.0.1:8000/api/users/', body, options).pipe(
-      catchError(error => this.handleError(error, 'register'))
     );
   }
   login(userDetails: User) {
@@ -42,7 +41,7 @@ export class UserServices {
     }
 
     return this.http.post<User>('http://127.0.0.1:8000/api/login/', body, options).pipe(
-      catchError(error => this.handleError(error, 'login'))
+      
     );
   }
   userProfile(token: string) {
@@ -59,6 +58,18 @@ export class UserServices {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/profile?id=' + id, options).pipe(
       catchError(error => this.handleError(error, 'get_user_profile'))
+    );
+  }
+  update_user_profile(userDetails: User) {
+    let options = this.getStandardOptions();
+    let body = {
+      "id": userDetails.id,
+      "first_name": userDetails.first_name,
+      "last_name": userDetails.last_name,
+      "username": userDetails.username,
+      "email": userDetails.email,
+    }
+    return this.http.patch<User>('http://127.0.0.1:8000/api/users/', body, options).pipe(
     );
   }
   get_createdBooks(id: string) {

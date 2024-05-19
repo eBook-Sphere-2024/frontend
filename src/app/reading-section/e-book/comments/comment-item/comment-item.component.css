@@ -1,3 +1,17 @@
+/* Additional styles */
+.this-user::after {
+    font-weight: 400;
+    content: "you";
+    color: #fff;
+    background-color: #6bb7be;
+    padding: 0 .4rem;
+    padding-bottom: .2rem;
+    font-size: .8rem;
+    margin-left: .5rem;
+    border-radius: 2px;
+}
+
+/* Existing styles */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
@@ -35,8 +49,7 @@
     grid-template-areas:
         "score user controls"
         "score comment comment"
-        "score comment comment"
-    ;
+        "score comment comment";
     grid-template-columns: auto 1fr auto;
     gap: 1rem;
     row-gap: 1rem;
@@ -79,11 +92,6 @@
     align-items: center;
 }
 
-.usr-name {
-    color: var(--Dark-blue);
-    font-weight: 700;
-}
-
 .usr-img {
     height: 2rem;
     width: 2rem;
@@ -103,7 +111,9 @@
     cursor: pointer;
 }
 
-.edit,
+.edit{
+    color:rgb(82, 136, 236)
+}
 .reply {
     color: #6bb7be;
 }
@@ -144,7 +154,6 @@ a {
     border-left: 1px solid var(--Light-grayish-blue);
 }
 
-
 .reply-to {
     color: #6bb7be;
     font-weight: 500;
@@ -181,25 +190,9 @@ a {
     resize: none;
 }
 
-.this-user .usr-name::after {
-    font-weight: 400;
-    content: "you";
-    color: var(--White);
-    background-color: #6bb7be;
-    padding: 0 .4rem;
-    padding-bottom: .2rem;
-    font-size: .8rem;
-    margin-left: .5rem;
-    border-radius: 2px;
-}
-
-.this-user .reply {
-    display: none;
-}
-
-.this-user .edit,
-.this-user .delete {
-    display: flex;
+.comments .usr-name {
+    color: #6bb7be;
+    font-weight: 700;
 }
 
 .modal-wrp {
@@ -248,26 +241,29 @@ a {
 
 .modaal p {
     grid-area: body;
-    color: var(--Grayish-Blue);
     line-height: 1.5;
 }
 
 .modaal .yes {
     grid-area: yes;
-    background-color: var(--Soft-Red);
+    background-color: hsl(358, 79%, 66%);
+    color: #fff;
 }
 
 .modaal .yes:hover {
-    background-color: hsl(358, 79%, 66%);
+    color: hsl(358, 79%, 66%);
+    background-color: #edecec;
 }
 
 .modaal .no {
-    background-color: var(--Grayish-Blue);
+    background-color: hsl(211, 10%, 45%);
     grid-area: no;
+    color: #fff;
 }
 
 .modaal .no:hover {
-    background-color: rgb(248, 246, 241);
+    color:black;
+    background-color: #edecec;
 }
 
 .cmnt-at {

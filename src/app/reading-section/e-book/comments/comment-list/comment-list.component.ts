@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrl: './comment-list.component.css'
+  styleUrls: ['./comment-list.component.css']  // Fixed typo here
 })
 export class CommentListComponent implements OnInit {
   @Input() eBook: any;
@@ -25,7 +25,9 @@ export class CommentListComponent implements OnInit {
   ngOnInit() {
     this.getComments();
     this.getCurrentUser();
+    this.addRatingEventListeners();
   }
+
   getComments() {
     this.eBookService.get_Comments(this.eBook.id.toString()).subscribe(
       (data: any) => {
@@ -38,7 +40,7 @@ export class CommentListComponent implements OnInit {
             (error: any) => {
               alert(error.message);
             }
-          )
+          );
         }
       },
       (error: any) => {
@@ -46,34 +48,29 @@ export class CommentListComponent implements OnInit {
       }
     );
   }
+
   getCurrentUser() {
     let token = sessionStorage.getItem('Token');
-    console.log(token);
     if (token) {
       this.userService.userProfile(token).subscribe(
         (data: any) => {
-          // Assign the received user profile data to userProfileData
           this.userProfile = data;
           this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
             (data: any) => {
-              // Assign the received user profile data to userProfileData
               this.userProfile.avatar = data.profile_image;
             },
             (error) => {
-              // Handle error if any
               console.error('Error fetching user profile:', error);
             }
-          )
-          console.log(this.userProfile);
+          );
         },
         (error) => {
-          // Handle error if any
           console.error('Error fetching user profile:', error);
         }
       );
-
     }
   }
+
   addRatingEventListeners() {
     const stars = document.querySelectorAll('.rating .star') as NodeListOf<HTMLElement>;
     stars.forEach((star, index) => {
@@ -91,13 +88,10 @@ export class CommentListComponent implements OnInit {
     const stars = document.querySelectorAll('.rating .star') as NodeListOf<HTMLElement>;
     stars.forEach((star, index) => {
       if (index < rating) {
-        star.classList.add('active');
+        star.classList.add('selected');
       } else {
-        star.classList.remove('active');
+        star.classList.remove('selected');
       }
     });
   }
-
-
 }
-

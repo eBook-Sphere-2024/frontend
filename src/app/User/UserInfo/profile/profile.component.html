@@ -1,5 +1,5 @@
 <section>
-  <form [formGroup]="userData" (ngSubmit)="$event.preventDefault();">
+  <form [formGroup]="userData" (ngSubmit)="updateProfile()">
     <div class="form-row">
       <div class="form-group col-md-6 ">
         <label>First name</label>
@@ -46,6 +46,6 @@
         <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
       </div>
     </div>
-    <button type="submit" class="btnn" [disabled]="userData.invalid">Save Changes</button>
+    <button type="submit" class="btnn" >Save Changes</button>
   </form>
 </section>
