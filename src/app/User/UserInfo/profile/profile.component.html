@@ -36,6 +36,7 @@
         <small class="text-danger" *ngIf="userData.get('username')?.hasError('pattern')">UserName must be only
           characters</small>
       </div>
+      <small *ngIf="username_fail" class="text-danger">{{ username_fail }}</small>
     </div>
     <div class="form-group">
       <label>Email</label>
@@ -46,6 +47,6 @@
         <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
       </div>
     </div>
-    <button type="submit" class="btnn" >Save Changes</button>
+    <button type="submit" class="btnn">Save Changes</button>
   </form>
 </section>
