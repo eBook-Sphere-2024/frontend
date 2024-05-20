@@ -33,7 +33,24 @@ export class EBookService {
       catchError(error => this.handleError(error, 'getBookById'))
     );
   }
-
+  getBookRating(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get('http://127.0.0.1:8000/api/rate?id=' + id, options).pipe(
+      catchError(error => this.handleError(error, 'getBookRating'))
+    );
+  }
+  rate_ebook(id: string, userId: string, rating: number) {
+    let options = this.getStandardOptions();
+    let body = {
+      "user": userId,
+      "ebook": id,
+      "rate": rating
+    }
+    console.log(body)
+    return this.http.put('http://127.0.0.1:8000/api/rate/', body, options).pipe(
+      catchError(error => this.handleError(error, 'rate_ebook'))
+    );
+  }
   getCategories() {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/ebook_categories/', options).pipe(
@@ -64,7 +81,6 @@ export class EBookService {
   addComment(userId: string, ebookId: string, content: string, _comment: Comment | null = null) {
     let options = this.getStandardOptions();
     let body;
-    console.log(_comment)
     if (_comment == null || typeof _comment === 'undefined') {
       body = {
         "user": userId,
@@ -73,7 +89,6 @@ export class EBookService {
       }
     }
     else {
-      console.log(_comment)
       const reply_to = _comment ? _comment.id : null;
       body = {
         "user": userId,

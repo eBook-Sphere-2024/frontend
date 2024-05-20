@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../shared/models/User';
 import { UserServices } from '../../user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,9 +12,10 @@ export class ProfileComponent implements OnInit {
   userProfile!: User;
   userData: FormGroup;
   userUpdate!: User;
+  username_fail: string = '';
   constructor(
     private userService: UserServices,
-    private fb: FormBuilder // Inject FormBuilder
+    private fb: FormBuilder
   ) {
     this.userData = this.fb.group({ // Initialize the FormGroup
       first_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
@@ -33,6 +34,12 @@ export class ProfileComponent implements OnInit {
           this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
             (data: any) => {
               this.userProfile.avatar = data.profile_image;
+
+              // Set form values here, inside the subscription block
+              this.userData.get('first_name')?.setValue(this.userProfile.first_name);
+              this.userData.get('last_name')?.setValue(this.userProfile.last_name);
+              this.userData.get('username')?.setValue(this.userProfile.username);
+              this.userData.get('email')?.setValue(this.userProfile.email);
             },
             (error) => {
               console.error('Error fetching user profile:', error);
@@ -46,18 +53,24 @@ export class ProfileComponent implements OnInit {
     }
   }
   updateProfile() {
-      this.userUpdate.id= this.userProfile.id,
-      this.userUpdate.first_name= this.userData.value.first_name,
-      this.userUpdate.last_name=this.userData.value.last_name,
-      this.userUpdate.username= this.userData.value.username,
-      this.userUpdate.email=this.userData.value.email
+    this.userUpdate = {
+      id: this.userProfile.id,
+      first_name: this.userData.get('first_name')?.value,
+      last_name: this.userData.get('last_name')?.value,
+      username: this.userData.get('username')?.value,
+      email: this.userData.get('email')?.value,
+      password: this.userProfile.password
+    }
     this.userService.update_user_profile(this.userUpdate).subscribe(
       (data: any) => {
-        console.log("response: ",data);
+        this.userProfile = data;
+        this.username_fail = '';
       },
       (error) => {
-        console.error('Error updating user profile:', error);
+        if (error.status == 400 && error.error.message == 'Username already exists') {
+          this.username_fail = 'Username already exists'
+        }
       }
     );
-  }  
+  }
 }

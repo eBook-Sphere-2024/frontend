@@ -110,13 +110,12 @@ export class CommentItemComponent implements OnInit {
   formatTime(timestamp: string): string {
     const currentDate = new Date();
     const commentDate = new Date(timestamp);
-  
+
     const timeDifference = Math.abs(currentDate.getTime() - commentDate.getTime());
     const seconds = Math.floor(timeDifference / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
-    console.log(days, hours, minutes, seconds);
     if (days > 0) {
       return days === 1 ? "1 day ago" : `${days} days ago`;
     } else if (hours > 0) {
@@ -126,5 +125,5 @@ export class CommentItemComponent implements OnInit {
     } else {
       return "Just now";
     }
-}
+  }
 }

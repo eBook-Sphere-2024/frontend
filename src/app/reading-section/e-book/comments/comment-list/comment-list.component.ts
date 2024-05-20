@@ -93,5 +93,20 @@ export class CommentListComponent implements OnInit {
         star.classList.remove('selected');
       }
     });
+
+    this.addRate();
+  }
+  addRate() {
+    let token = sessionStorage.getItem('Token');
+    if (token) {
+      this.eBookService.rate_ebook(this.eBook.id.toString(), this.userProfile.id.toString(), this.rating).subscribe(
+        (data: any) => {
+          console.log(data);
+        },
+        (error: any) => {
+          alert(error.message);
+        }
+      );
+    }
   }
 }

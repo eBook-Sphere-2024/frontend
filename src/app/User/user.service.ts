@@ -41,7 +41,7 @@ export class UserServices {
     }
 
     return this.http.post<User>('http://127.0.0.1:8000/api/login/', body, options).pipe(
-      
+
     );
   }
   userProfile(token: string) {
@@ -62,13 +62,7 @@ export class UserServices {
   }
   update_user_profile(userDetails: User) {
     let options = this.getStandardOptions();
-    let body = {
-      "id": userDetails.id,
-      "first_name": userDetails.first_name,
-      "last_name": userDetails.last_name,
-      "username": userDetails.username,
-      "email": userDetails.email,
-    }
+    let body = userDetails
     return this.http.patch<User>('http://127.0.0.1:8000/api/users/', body, options).pipe(
     );
   }

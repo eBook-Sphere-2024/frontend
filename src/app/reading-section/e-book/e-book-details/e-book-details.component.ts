@@ -21,6 +21,15 @@ export class EBookDetailsComponent implements OnInit {
         this.eBookService.getBookById(id).subscribe(
           (event: any) => {
             this.eBookItem = event;
+            this.eBookService.getBookRating(id).subscribe(
+              (event: any) => {
+                console.log(event);
+                this.eBookItem.rate = event;
+              },
+              (error: any) => {
+                console.error('Error fetching eBook rating:', error);
+              }
+            )
           },
           (error: any) => {
             console.error('Error fetching eBook details:', error);
@@ -45,12 +54,12 @@ export class EBookDetailsComponent implements OnInit {
         // Assuming the server response contains the download link and file name
         const downloadLink = data;
         const fileName = this.eBookItem.title + ".pdf";
-        
+
         // Create a link element
         const link = document.createElement("a");
         link.href = downloadLink;
         link.download = fileName; // Set the desired file name
-  
+
         // Programmatically click the link to initiate the download
         link.click();
       },
@@ -58,5 +67,5 @@ export class EBookDetailsComponent implements OnInit {
         console.error('Error downloading eBook:', error);
       }
     );
-  }  
+  }
 }
