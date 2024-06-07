@@ -9,7 +9,10 @@ import { ProfileComponent } from './User/UserInfo/profile/profile.component';
 import { UserInfoComponent } from './User/UserInfo/user-info.component';
 import { CreatedBooksComponent } from './User/UserInfo/created-books/created-books.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { ChangePasswordComponent } from './User/UserInfo/change-password/change-password.component';
+import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
+import { EmailValidationComponent } from './User/forget-password/email-validation/email-validation.component';
+import { ResetPasswordComponent } from './User/forget-password/reset-password/reset-password.component';
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
   { path: 'reading/ebooks', component: EBookComponent },
@@ -21,9 +24,12 @@ const routes: Routes = [
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'createdBooks', component: CreatedBooksComponent },
+      { path: 'changePassword', component: ChangePasswordComponent },
       { path: '', component: ProfileComponent },
     ]
    },
+      { path: 'ForgetPasswordByEmail', component: EmailValidationComponent },
+      { path: 'resetPassword', component: ResetPasswordComponent },
   {path: '**', component: NotFoundComponent}
 ];
 

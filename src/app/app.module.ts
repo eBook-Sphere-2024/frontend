@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ReadingSectionModule } from './reading-section/reading-section.module';
 import { UserModule } from './User/user.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RouterModule,
     ReadingSectionModule,
     FlexLayoutModule,
-    UserModule
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

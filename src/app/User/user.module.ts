@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { UserComponent } from './user.component';
 import { UserInfoModule } from './UserInfo/user-info.module';
+import { ForgetPasswordModule } from './forget-password/forget-password.module';
 
 
 
@@ -13,7 +14,8 @@ import { UserInfoModule } from './UserInfo/user-info.module';
   imports: [
     CommonModule,
     AuthenticationModule,
-    UserInfoModule
+    UserInfoModule,
+    ForgetPasswordModule
   ],
   exports:[
     UserComponent
