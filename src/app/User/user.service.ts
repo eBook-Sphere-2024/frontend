@@ -66,6 +66,12 @@ export class UserServices {
     return this.http.patch<User>('http://127.0.0.1:8000/api/users/', body, options).pipe(
     );
   }
+  change_password(data: any) {
+    let options = this.getStandardOptions();
+    let body = data
+    return this.http.patch<User>('http://127.0.0.1:8000/api/changePassword/', body, options).pipe(
+    );
+  }
   get_createdBooks(id: string) {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/autherBooks/?id=' + id, options).pipe(

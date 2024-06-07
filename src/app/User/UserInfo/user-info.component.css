@@ -42,7 +42,7 @@ nav span {
     margin-top: 20px;
 }
 
-nav img {
+nav .avatar {
     margin-top: 0;
     width: 200px;
     height: 200px;
@@ -51,11 +51,11 @@ nav img {
 }
 
 .sidebar-menu {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column; */
     justify-content: space-around;
-    height: 35%;
+    height: 36%;
     width: 100%;
     list-style: none;
     overflow: hidden;

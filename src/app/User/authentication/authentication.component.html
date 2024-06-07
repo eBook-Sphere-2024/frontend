@@ -71,8 +71,7 @@
                         contain characters and numbers</small>
                 </div>
                 <small *ngIf="loginFialure" class="text-danger">{{ loginFialure }}</small>
-                <a href="#">Forget Your Password?</a>
-                
+                <a class="forget" href="/ForgetPasswordByEmail">Forget Your Password?</a>
                 <button [disabled]="userlogin.invalid" id="login" #login>Sign In</button>
             </form>
         </div>

@@ -38,10 +38,12 @@ body{
 }
 
 .container a{
-    color: #333;
+    color: #58999f;
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
+}.container a:hover{
+    color: gray;
 }
 
 .container button{
