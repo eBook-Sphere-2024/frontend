@@ -59,7 +59,7 @@ export class ChangePasswordComponent implements OnInit {
       );
     }
   }
-  ChangePassword(){
+  ChangePassword() {
     let data = {
       username: this.userData.get('username')?.value,
       old_password: this.userData.get('old_password')?.value,
@@ -67,10 +67,12 @@ export class ChangePasswordComponent implements OnInit {
     }
     this.userService.change_password(data).subscribe(
       (data: any) => {
-        this.changeSuccefully= true
+        this.changeSuccefully = true
+        this.changeFail = false
       },
       error => {
         this.changeFail = true
+        this.changeSuccefully = false
         this.failMessage = error.error.errors.non_field_errors[0]
       }
     );

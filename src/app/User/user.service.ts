@@ -78,6 +78,21 @@ export class UserServices {
       catchError(error => this.handleError(error, 'get_createdBooks'))
     );
   }
+  uploadAvatar(id: number, file: File) {
+    const formData = new FormData();
+    formData.append('user', id.toString());
+    formData.append('profile_image', file);
+
+    // Set headers to indicate multipart/form-data
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+    // Send the request with the FormData and headers
+    return this.http.patch('http://127.0.0.1:8000/api/profile/', formData, { headers }).pipe(
+      catchError(error => throwError(error))
+    );
+  }
+
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error['error']);
     if (error.status === 0) {

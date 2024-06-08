@@ -46,6 +46,8 @@
                         required</small>
                     <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must
                         contain characters and numbers</small>
+                    <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must be at
+                        least 8 characters long.</small>
                 </div>
 
                 <button type="submit" [disabled]="userData.invalid" id="register" #register>Sign Up</button>
