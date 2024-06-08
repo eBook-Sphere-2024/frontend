@@ -1,4 +1,5 @@
 <section class="email-validation">
+    <form [formGroup]="emailValidationForm" (ngSubmit)="onSubmit()">
     <div class="container">
         <div class="row">
             <div class="text-center">
@@ -7,10 +8,20 @@
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <div
+                    *ngIf="emailValidationForm.get('email')?.invalid && (emailValidationForm.get('email')?.touched || emailValidationForm.get('email')?.dirty)">
+                    <small class="text-danger" *ngIf="emailValidationForm.get('email')?.hasError('required')">Email is
+                        required</small>
+                </div>
+            </div>
+            <div class="alertt">
+                <small *ngIf="validationSuccess!==''" class="sucess"><i class="fa-solid fa-square-check"></i>{{validationSuccess}}</small>
+                <small *ngIf="validationError!==''" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ validationError }}</small>
             </div>
             <div class="form-group">
                 <button type="submit" class="btnn">Send</button>
             </div>
         </div>
     </div>
+    </form>
 </section>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { UserServices } from '../../user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,8 +10,10 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 })
 export class ResetPasswordComponent {
   userPassword: FormGroup;
-  
-  constructor(private fb: FormBuilder) {
+  validationError: string = '';
+  validationSuccess: string = '';
+
+  constructor(private fb: FormBuilder,private userService: UserServices,private route: ActivatedRoute) {
     this.userPassword = this.fb.group({
       new_password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.minLength(8)]],
       confirm_password: ['', [Validators.required]],
@@ -25,4 +29,33 @@ export class ResetPasswordComponent {
     }
     return null;
   }
+
+  onSubmit() {
+    const uidb64 = this.route.snapshot.params['uidb64'];
+    const token = this.route.snapshot.params['token'];
+    console.log("uidb64: ",uidb64);
+    console.log("token: ",token);
+    console.log(this.userPassword.get('new_password')?.value);
+    console.log(this.userPassword.get('confirm_password')?.value);
+    let body = {
+      "new_password": this.userPassword.get('new_password')?.value,
+      "confirm_password": this.userPassword.get('confirm_password')?.value,
+      "token": token,
+      "uidb64": uidb64
+    }
+    console.log(body);
+    this.userService.resetPasswordByToken(body, uidb64, token).subscribe(
+      (data: any) => {
+        console.log(data.message);
+        this.validationSuccess = data.message;
+      },
+      (error) => {
+        console.log(error);
+        if(error.error[0] === 'Invalid token or user ID.'){
+            this.validationError = "Link is invalid or expired. Please try again.";
+        }
+      }
+    );
+  }
+  
 }

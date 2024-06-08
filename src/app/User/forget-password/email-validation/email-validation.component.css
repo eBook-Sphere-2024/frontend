@@ -3,7 +3,6 @@ section{
     margin-bottom: 100px;
     margin-left: 25%;
     margin-right: 10%;
-    text-align: center;
     font-style: italic;
     font-size: 30px;
     font-family: cursive;
@@ -12,10 +11,6 @@ section{
     box-shadow: 5px 5px 7px 7px rgb(204 195 195);
     border-radius: 5px;
 }
-.email-validation {
-    text-align: center;
-}
-
 .email-validation .container {
     padding: 30px;
     width: 100%;
@@ -33,7 +28,7 @@ section{
 }
 
 .email-validation .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .email-validation input[type="email"] {
@@ -59,4 +54,17 @@ section{
 }
 h4{
     color: rgb(139, 139, 139);
-}
+}small{
+    font-size: 15px;
+}.btnn{
+    margin-left: 45%;
+}.alertt .sucess{
+    color: rgb(94 196 149) !important;
+    font-size: large;
+  }.alertt .fail{
+    color: rgb(192, 47, 47) !important;
+    font-size: large;
+  }
+  .alertt small i{
+    margin-right: 5px;
+  }

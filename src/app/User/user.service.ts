@@ -72,6 +72,18 @@ export class UserServices {
     return this.http.patch<User>('http://127.0.0.1:8000/api/changePassword/', body, options).pipe(
     );
   }
+  reset_password_BY_email(data: any) {
+    let options = this.getStandardOptions();
+    let body = data
+    return this.http.post<User>('http://127.0.0.1:8000/api/password-reset/', body, options).pipe(
+    );
+  }
+  resetPasswordByToken(data: any, uidb64: string, token: string) {
+    let options = this.getStandardOptions();
+    let body = data
+    return this.http.post<User>('http://127.0.0.1:8000/api/password-reset-confirm/'+uidb64+'/'+token+'/', body, options).pipe(
+    );
+  }
   get_createdBooks(id: string) {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/autherBooks/?id=' + id, options).pipe(
