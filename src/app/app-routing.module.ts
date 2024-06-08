@@ -29,7 +29,7 @@ const routes: Routes = [
     ]
    },
       { path: 'ForgetPasswordByEmail', component: EmailValidationComponent },
-      { path: 'resetPassword', component: ResetPasswordComponent },
+      { path: 'resetPassword/:uidb64/:token', component: ResetPasswordComponent },
   {path: '**', component: NotFoundComponent}
 ];
 
