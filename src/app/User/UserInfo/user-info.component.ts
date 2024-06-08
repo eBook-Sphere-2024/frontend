@@ -7,7 +7,7 @@ import { User } from '../../../shared/models/User';
   templateUrl: './user-info.component.html',
   styleUrl: './user-info.component.css'
 })
-export class UserInfoComponent implements OnInit{
+export class UserInfoComponent implements OnInit {
   userProfile!: User;
   @ViewChild('nav') nav!: ElementRef;
   @ViewChild('toggleBtn') toggleBtn!: ElementRef;
@@ -45,4 +45,30 @@ export class UserInfoComponent implements OnInit{
       );
     }
   }
+  triggerFileInput(): void {
+    const fileInput = document.getElementById('file-input') as HTMLInputElement;
+    fileInput.click();
+  }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.uploadFile(input);
+  }
+  uploadFile(fileInput: HTMLInputElement): void {
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+
+      this.userService.uploadAvatar(this.userProfile.id, file).subscribe(
+        (response: any) => {
+          console.log('Avatar uploaded successfully:', response);
+          // Update the user profile avatar with the new one
+          this.userProfile.avatar = response.avatarUrl; // Adjust according to your response structure
+          window.location.reload();
+        },
+        (error: any) => {
+          console.error('Error uploading avatar:', error);
+        }
+      );
+    }
+  }
+
 }

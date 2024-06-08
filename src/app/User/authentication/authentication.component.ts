@@ -28,7 +28,7 @@ export class AuthenticationComponent {
       last_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$')], Validators.minLength(8)],
+      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.minLength(8)]],
     });
 
     this.userlogin = this.fb.group({ // Initialize the FormGroup
@@ -56,7 +56,7 @@ export class AuthenticationComponent {
           this.router.navigate(['/User/profile']);
         },
         error => {
-          if(error.status==400 && error.error.non_field_errors[0]=='Username already exists')
+          if (error.status == 400 && error.error.non_field_errors[0] == 'Username already exists')
             this.usernameFail = 'Username already exists'
           console.log('user registration error:', this.usernameFail);
         }
@@ -71,11 +71,11 @@ export class AuthenticationComponent {
           this.router.navigate(['/User/profile']);
         },
         error => {
-          if(error.status==400 && error.error.massage=='Username or password is incorrect')
+          if (error.status == 400 && error.error.massage == 'Username or password is incorrect')
             console.log("jjjj");
-            this.loginFialure = 'Username or password is incorrect';
-          
+          this.loginFialure = 'Username or password is incorrect';
+
         }
       );
-  }  
+  }
 }

@@ -5,7 +5,12 @@
     </button>
     <span>Hello {{userProfile?.first_name}} <i class="fa-solid fa-heart"></i></span>
     <span>
-      <img src="{{userProfile?.avatar}}" alt="avatar" class="avatar img-fluid">
+      <div class="edit-icon">
+        <img id="avatar" src="{{userProfile?.avatar}}" alt="avatar" class="avatar img-fluid">
+        <i class="fas fa-edit" id="edit-icon" (click)="triggerFileInput()">
+          <input type="file" id="file-input" accept="image/*" style="display: none;" (change)="onFileSelected($event)">
+        </i>
+      </div>
     </span>
     <ul class="sidebar-menu">
       <li><a routerLink="/User/profile"><i class="fa fa-user"></i>Profile</a></li>
