@@ -13,6 +13,9 @@ import { ChangePasswordComponent } from './User/UserInfo/change-password/change-
 import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
 import { EmailValidationComponent } from './User/forget-password/email-validation/email-validation.component';
 import { ResetPasswordComponent } from './User/forget-password/reset-password/reset-password.component';
+import { EbookMakerComponent } from './ebook-maker/ebook-maker.component';
+import { EditorComponent } from './ebook-maker/editor/editor.component';
+
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
   { path: 'reading/ebooks', component: EBookComponent },
@@ -20,17 +23,20 @@ const routes: Routes = [
   { path: 'reading/ebooks/category/:id', component: EBookComponent },
   { path: 'search', component: SearchBarComponent },
   { path: 'authentication', component: AuthenticationComponent },
-  { path: 'User', component: UserInfoComponent,
+  {
+    path: 'User', component: UserInfoComponent,
     children: [
       { path: 'profile', component: ProfileComponent },
       { path: 'createdBooks', component: CreatedBooksComponent },
       { path: 'changePassword', component: ChangePasswordComponent },
       { path: '', component: ProfileComponent },
     ]
-   },
-      { path: 'ForgetPasswordByEmail', component: EmailValidationComponent },
-      { path: 'resetPassword/:uidb64/:token', component: ResetPasswordComponent },
-  {path: '**', component: NotFoundComponent}
+  },
+  { path: 'ForgetPasswordByEmail', component: EmailValidationComponent },
+  { path: 'resetPassword/:uidb64/:token', component: ResetPasswordComponent },
+  { path: 'maker', component: EbookMakerComponent },
+  { path: 'maker/editor', component: EditorComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
