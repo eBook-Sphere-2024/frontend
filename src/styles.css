@@ -1,4 +1,7 @@
 /* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
+@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
+
+
 body::-webkit-scrollbar {
   width: 8px;
 }
