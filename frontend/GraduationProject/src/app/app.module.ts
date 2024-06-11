@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,18 +8,22 @@ import { ButtonModule } from "@syncfusion/ej2-angular-buttons";
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DocumentEditorModule, DocumentEditorContainerModule, ButtonModule, DropDownButtonModule
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        DocumentEditorModule,
+        DocumentEditorContainerModule,
+        ButtonModule,
+        DropDownButtonModule,
+    ],
+    providers: [
+        provideClientHydration(),
+        ToolbarService,
+        PrintService,
+        WordExportService,
+    ],
+    bootstrap: [AppComponent],
 
-  ],
-  providers: [
-    provideClientHydration(), ToolbarService, PrintService, WordExportService
-  ],
-  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
