@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@fortawesome/fontawesome-free": "^6.5.2",
+    "@progress/kendo-file-saver": "^1.1.1",
     "@syncfusion/ej2-angular-buttons": "^25.2.7",
     "@syncfusion/ej2-angular-documenteditor": "^25.2.7",
     "@syncfusion/ej2-angular-splitbuttons": "^25.2.4",
@@ -27,6 +28,7 @@
     "@syncfusion/ej2-pdf-export": "^25.2.3",
     "@syncfusion/ej2-splitbuttons": "^25.2.4",
     "bootstrap": "^5.3.3",
+    "file-saver": "^2.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"

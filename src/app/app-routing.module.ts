@@ -15,6 +15,7 @@ import { EmailValidationComponent } from './User/forget-password/email-validatio
 import { ResetPasswordComponent } from './User/forget-password/reset-password/reset-password.component';
 import { EbookMakerComponent } from './ebook-maker/ebook-maker.component';
 import { EditorComponent } from './ebook-maker/editor/editor.component';
+import { TemplatesComponent } from './ebook-maker/templates/templates.component';
 
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'resetPassword/:uidb64/:token', component: ResetPasswordComponent },
   { path: 'maker', component: EbookMakerComponent },
   { path: 'maker/editor', component: EditorComponent },
+  { path: 'maker/templates', component: TemplatesComponent },
   { path: '**', component: NotFoundComponent }
 ];
 
