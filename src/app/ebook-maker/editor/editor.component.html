@@ -1,11 +1,15 @@
 <div class="tem1" [style.display]="isOpenEbook ? 'none' : 'block'">
+    <div class="box">
+        <h1>Choose from the following:</h1>
     <div class="button-container bctn">
+        
         <input id="open_sfdt" #open_sfdt style="position:fixed; left:-100em" type="file" (change)="onFileChange($event)"
             accept=".sfdt" />
 
         <button ejs-button (click)="onFileOpenClick()" class="bu">Open an existing eBook</button>
         <button class="button bu" (click)="$event.preventDefault();createEbook()">CREATE A NEW EBOOK</button>
     </div>
+</div>
 </div>
 
 

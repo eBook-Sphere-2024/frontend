@@ -6,6 +6,7 @@ import { CreatedBooksComponent } from './created-books/created-books.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 
 
 
@@ -15,7 +16,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ProfileComponent,
     CreatedBooksComponent,
     ChangePasswordComponent,
-    
+    FavoriteListComponent
   ],
   imports: [
     CommonModule,

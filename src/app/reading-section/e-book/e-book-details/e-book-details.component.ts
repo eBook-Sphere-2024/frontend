@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { eBookItem } from '../../../../shared/models/eBookItem';
 import { EBookService } from '../e-book.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { UserServices } from '../../../User/user.service';
+import { User } from '../../../../shared/models/User';
 
 @Component({
   selector: 'app-e-book-details',
@@ -11,8 +13,10 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 export class EBookDetailsComponent implements OnInit {
   eBookItem!: eBookItem;
+  userProfile!: User;
+  isFavourite:boolean=false;
   stars = [1, 2, 3, 4, 5];
-  constructor(private route: ActivatedRoute, private eBookService: EBookService, private Router: Router) { }
+  constructor(private route: ActivatedRoute, private eBookService: EBookService, private Router: Router,private userService: UserServices) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -37,7 +41,47 @@ export class EBookDetailsComponent implements OnInit {
         );
       }
     });
+    let token = sessionStorage.getItem('Token');
+    console.log("token",token);
+    if (token) {
+      this.userService.userProfile(token).subscribe(
+        (data: any) => {
+          this.userProfile = data;
+          this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
+            (data: any) => {
+              this.userProfile.avatar = data.profile_image;
+              this.userService.getFavoriteBooksForUser(this.userProfile.id).subscribe(
+                (data: any) => {
+                  console.log(data);
+                  if (data.length > 0) {
+                    for (let i = 0; i < data.length; i++) {
+                      if (data[i].ebook == this.eBookItem.id) {
+                        this.isFavourite = true;
+                        console.log(this.isFavourite);
+                        break;
+                      }
+                    }
+                  } else {
+                    this.isFavourite = false;
+                  }
+                },
+                (error) => {
+                  console.error('Error fetching favorite books:', error);
+                }
+              );
+            },
+            (error) => {
+              console.error('Error fetching user profile:', error);
+            }
+          );
+        },
+        (error) => {
+          console.error('Error fetching user profile:', error);
+        }
+      );
   }
+}
+
   goBack() {
     //go to e-book component
     this.Router.navigate(['reading']);
@@ -67,5 +111,33 @@ export class EBookDetailsComponent implements OnInit {
         console.error('Error downloading eBook:', error);
       }
     );
+  }
+  favourite(){
+    let data={
+      user_id:this.userProfile.id,
+      ebook_id:this.eBookItem.id
+    }
+    if(this.isFavourite){//remove from favorite
+      this.userService.RemoveFromFavorites(data).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.isFavourite=false;
+        },
+        (error: any) => {
+          console.error('Error removing from favorites:', error);
+        }
+      );
+    }else{ //add to favorite
+      
+      this.userService.AddToFavorites(data).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.isFavourite=true;
+        },
+        (error: any) => {
+          console.error('Error adding to favorites:', error);
+        }
+      );
+    }
   }
 }

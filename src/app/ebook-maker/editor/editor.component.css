@@ -40,13 +40,26 @@ div.rightButtons {
     align-items: center;
 
 }
-
+.box{
+    font-family: cursive;
+    font-style: italic;
+    text-align: center;
+    margin: 10%;
+    padding: 3%;
+    background-color: #fff;
+    box-shadow: 5px 5px 7px 7px rgb(204 195 195);
+    height: 250px;
+    width: 900px;
+    margin-left: 20%;
+    color: #4e888e;
+}
 /* Styles for button container */
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 8%;
+    margin-top: 4%;
     justify-content: space-evenly;
 }
 

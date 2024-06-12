@@ -195,4 +195,12 @@ body{
     color:#000;
     font-weight: bold;
     
+}.favourite{
+    cursor: pointer;
+    color: #000;
+    font-size: 30px;
+}.favourite i{
+    font-size: 30px;
+    margin-left: 6px;
+    color: #069ba8;
 }
