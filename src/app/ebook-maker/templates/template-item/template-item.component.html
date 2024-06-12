@@ -1,0 +1,9 @@
+<div class="box">
+    <div class="img-box">
+        <img [src]="template.cover" alt="">
+    </div>
+    <div class="detail-box">
+        <h5>{{ template.name }}</h5>
+        <a (click)="$event.preventDefault();editTemplate()">Edit Template</a>
+    </div>
+</div>

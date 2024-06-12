@@ -4,7 +4,9 @@ import { ItemModel, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { PdfBitmap, PdfDocument, PdfPageOrientation, PdfPageSettings, PdfSection, SizeF } from '@syncfusion/ej2-pdf-export';
 import '@syncfusion/ej2-pdf-export';
 import { EventService } from '../../../shared/services/EventService';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+import { Template } from '../../../shared/models/Template';
+import { EbookMakerService } from '../ebook-maker.service';
 
 @Component({
   selector: 'app-editor',
@@ -16,13 +18,43 @@ export class EditorComponent implements OnInit {
 
   @ViewChild('documentEditor', { static: true }) editorObj!: DocumentEditorContainerComponent;
   @ViewChild('fileInput', { static: true }) fileInput!: ElementRef;
-  isOpenEbook: boolean = false
-  constructor() { }
+  isOpenEbook: boolean = false;
+  template!: Template;
+  content !: string;
 
+  constructor(private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
+    events.listen('editTemplate', (data: any) => {
+      this.template = data;
+      this.Opentemplate();
+    })
+
+  }
+  Opentemplate() {
+    this.ebookMakerService.getTemplateContent(this.template.content).subscribe(
+      (data: Blob) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (this.editorObj && this.editorObj.documentEditor) {
+            this.editorObj.documentEditor.open(reader.result as string);
+            this.editorObj.documentEditor.documentName = this.template.name;
+          } else {
+            // console.error('DocumentEditorContainerComponent is not initialized.');
+          }
+        };
+        reader.readAsText(data);
+      },
+      (error: any) => {
+        console.error('Error loading template:', error);
+        alert(error.message);
+      }
+    );
+    this.isOpenEbook = true;
+  }
   ngOnInit(): void {
+
   }
   createEbook() {
-
+    this.router.navigate(['/maker/templates']);
   }
   public onFileOpenClick(): void {
     // Open file picker.
@@ -31,7 +63,6 @@ export class EditorComponent implements OnInit {
   }
 
   public onFileChange(e: any): void {
-
     if (e.target.files[0]) {
       // Get the selected file.
       let file = e.target.files[0];
@@ -45,13 +76,11 @@ export class EditorComponent implements OnInit {
 
         };
         this.isOpenEbook = true;
-        console.log(this.isOpenEbook)
         // Read the input file.
         fileReader.readAsText(file);
         this.editorObj.documentEditor.documentName = file.name.substr(0, file.name.lastIndexOf('.'));
       }
     }
-
   }
 
   onCreated() {
@@ -97,7 +126,7 @@ export class EditorComponent implements OnInit {
 
           loadedPages++;
           if (loadedPages === pageCount) {
-            pdfDocument.save(this.editorObj.documentEditor.documentName || 'sample.pdf');
+            pdfDocument.save(this.editorObj.documentEditor.documentName + '.pdf' || 'sample.pdf');
           }
         };
       }, 500);

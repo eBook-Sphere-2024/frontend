@@ -5,10 +5,14 @@ import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService, Pr
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { provideClientHydration } from '@angular/platform-browser';
+import { TemplatesComponent } from './templates/templates.component';
+import { TemplateItemComponent } from './templates/template-item/template-item.component';
 
 @NgModule({
   declarations: [
-    EditorComponent
+    EditorComponent,
+    TemplatesComponent,
+    TemplateItemComponent
   ],
   imports: [
     CommonModule,
