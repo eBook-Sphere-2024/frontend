@@ -47,7 +47,11 @@
                         <div class="read" (click)="readBook()">
                             <i class="fa-solid fa-glasses fa-2x"></i>
                             <div>Read</div>
-
+                        </div>
+                        <div class="favourite" (click)="favourite()">
+                            <div *ngIf="isFavourite"><i class="fa-solid fa-heart"></i></div>
+                            <div *ngIf="!isFavourite"><i class="fa-regular fa-heart"></i></div>
+                            <div>Favorite</div>
                         </div>
                     </div>
                 </div>

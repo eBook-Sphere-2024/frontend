@@ -16,6 +16,7 @@ import { ResetPasswordComponent } from './User/forget-password/reset-password/re
 import { EbookMakerComponent } from './ebook-maker/ebook-maker.component';
 import { EditorComponent } from './ebook-maker/editor/editor.component';
 import { TemplatesComponent } from './ebook-maker/templates/templates.component';
+import { FavoriteListComponent } from './User/UserInfo/favorite-list/favorite-list.component';
 
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'createdBooks', component: CreatedBooksComponent },
       { path: 'changePassword', component: ChangePasswordComponent },
+      { path: 'FavoriteList', component: FavoriteListComponent },
       { path: '', component: ProfileComponent },
     ]
   },
