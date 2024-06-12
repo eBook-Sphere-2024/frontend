@@ -1,0 +1,48 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "image": "assets/images/products/image1.jpg",
+            "pdfSrc": "assets/pdf/Java.pdf",
+            "name": "Java",
+            "price": "3$",
+            "rating": 5,
+            "currentPageNumper": 396,
+            "minuts": 34,
+            "progress": 100
+        },
+        {
+            "id": 2,
+            "image": "assets/images/products/image2.jpg",
+            "pdfSrc": "assets/pdf/JavaScript.pdf",
+            "name": "JavaScript",
+            "price": "5$",
+            "rating": 4,
+            "currentPageNumper": 1,
+            "minuts": 5,
+            "progress": 0.24691358024691357
+        },
+        {
+            "id": 3,
+            "image": "assets/images/products/image3.jpg",
+            "pdfSrc": "assets/pdf/Python.pdf",
+            "name": "Python",
+            "price": "free",
+            "rating": 3,
+            "currentPageNumper": 230,
+            "minuts": 3,
+            "progress": 59.58549222797927
+        },
+        {
+            "id": 4,
+            "image": "assets/images/products/image4.jpg",
+            "pdfSrc": "assets/pdf/CS.pdf",
+            "name": "c#",
+            "price": "1$",
+            "rating": 3,
+            "currentPageNumper": 408,
+            "minuts": 2,
+            "progress": 100
+        }
+    ]
+}
