@@ -35,11 +35,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
-            ],
-            "scripts": []
+                "src/styles.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+                "./node_modules/swiper/swiper-bundle.min.css"
+              ],
+            "scripts": [
+                "./node_modules/swiper/swiper-bundle.min.js"
+              ]
+
           },
           "configurations": {
             "production": {
