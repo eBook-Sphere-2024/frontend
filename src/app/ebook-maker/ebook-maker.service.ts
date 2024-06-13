@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { User } from '../../shared/models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,29 @@ export class EbookMakerService {
   getTemplateContent(fileId: string): Observable<Blob> {
     return this.http.get('http://127.0.0.1:8000/api/getTemplateById/?id=' + fileId, { responseType: 'blob' });
   }
+  publish(pdfDocument: any, title: string, author: string, description: string, categories: any[]) {
+
+    const blob = new Blob([pdfDocument], { type: 'application/pdf' });
+
+    const formData = new FormData();
+    formData.append('pdfFile', blob, title + '.pdf'); // Assuming title is used as the filename
+    formData.append('ebookTitle', title);
+    formData.append('authorId', author);
+    formData.append('description', description);
+
+    // Append each category to FormData
+    categories.forEach(category => {
+      formData.append('categories', category.name);
+    });
+
+    console.log(formData);
+
+    return this.http.post<any>('http://127.0.0.1:8000/api/publish/', formData).pipe(
+      catchError(error => this.handleError(error, 'publish'))
+    );
+  }
+
+
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error);
     if (error.status === 0) {
