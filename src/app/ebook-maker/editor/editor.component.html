@@ -1,15 +1,15 @@
 <div class="tem1" [style.display]="isOpenEbook ? 'none' : 'block'">
     <div class="box">
         <h1>Choose from the following:</h1>
-    <div class="button-container bctn">
-        
-        <input id="open_sfdt" #open_sfdt style="position:fixed; left:-100em" type="file" (change)="onFileChange($event)"
-            accept=".sfdt" />
+        <div class="button-container bctn">
 
-        <button ejs-button (click)="onFileOpenClick()" class="bu">Open an existing eBook</button>
-        <button class="button bu" (click)="$event.preventDefault();createEbook()">CREATE A NEW EBOOK</button>
+            <input id="open_sfdt" #open_sfdt style="position:fixed; left:-100em" type="file"
+                (change)="onFileChange($event)" accept=".sfdt" />
+
+            <button ejs-button (click)="onFileOpenClick()" class="bu">Open an existing eBook</button>
+            <button class="button bu" (click)="$event.preventDefault();createEbook()">CREATE A NEW EBOOK</button>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -22,7 +22,7 @@
                 <button ejs-button (click)="onPrint()">Print</button>
                 <button ejs-dropdownbutton [items]="items" content="Export as"
                     (select)="onExportItemClick($event)"></button>
-                <button ejs-button (click)="onExportAsPDF()">Publish</button>
+                <button ejs-button (click)="$event.preventDefault();openPublishDialog();">Publish</button>
             </div>
         </div>
         <ejs-documenteditorcontainer #documentEditor height="718" style="display: block" (created)="onCreated()"
@@ -31,3 +31,25 @@
         </ejs-documenteditorcontainer>
     </div>
 </div>
+
+<!-- Publish dialog -->
+<dialog id="publishDialog">
+    <h2>Publish eBook</h2>
+    <div class="form-container">
+
+        <label for="ebookTitle">EBook Title:</label>
+        <input type="text" id="ebookTitle" name="ebookTitle" [(ngModel)]="ebookTitle" required>
+
+        <label for="description">EBook description:</label>
+        <input type="text" id="description" name="description" [(ngModel)]="description" required>
+
+        <label for="categorySelect">Select Categories:</label>
+        <select multiple #categorySelect>
+            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+        </select>
+    </div>
+    <div class="button-container">
+        <button (click)="closePublishDialog()">Cancel</button>
+        <button (click)="selectCategories(categorySelect.selectedOptions)">Publish</button>
+    </div>
+</dialog>

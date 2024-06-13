@@ -7,6 +7,7 @@ import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { provideClientHydration } from '@angular/platform-browser';
 import { TemplatesComponent } from './templates/templates.component';
 import { TemplateItemComponent } from './templates/template-item/template-item.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TemplateItemComponent } from './templates/template-item/template-item.c
 
     DocumentEditorContainerModule,
     ButtonModule,
-    DropDownButtonModule
+    DropDownButtonModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(), ToolbarService, PrintService, WordExportService
