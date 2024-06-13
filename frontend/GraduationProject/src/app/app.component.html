@@ -1,20 +1,41 @@
-<div style="margin: 70px" class="test">
-  <div class="bar">
-    <p>Our Editor</p>
-    <div class="rightButtons">
-      <button class="e-de-icon-Print" ejs-button (click)="onPrint()">Print</button>
-      <button class="e-de-icon-Download" ejs-dropdownbutton [items]="items"  (select)="onSelected($event)" content="Export as"></button>
+<div style="margin: 0px" class="test">
+    <div class="bar">
+        <p class="stritch">Our Editor</p>
+        <div class="rightButtons">
+            <button
+                class="e-de-icon-Print"
+                ejs-button
+                (click)="onPrint()"
+                content="Print"
+            ></button>
+            <button
+                class="e-de-icon-Download"
+                ejs-dropdownbutton
+                [items]="ExportItems"
+                (select)="onSelected($event)"
+                content="Export as"
+            ></button>
+        </div>
     </div>
-  </div>
-  <ejs-documenteditorcontainer
-    #documentEditor
-    height="718"
-    style="display: block"
-    serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
-  ></ejs-documenteditorcontainer>
+    <div class="row gap-05">
+        <ejs-documenteditorcontainer
+            #documentEditor
+            height="825px"
+            width="100%"
+            style="display: block"
+            serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
+        ></ejs-documenteditorcontainer>
+        <!--
+        <div class="panle-color column">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        -->
+    </div>
 </div>
 <script>
     window.onbeforeunload = function () {
-        return 'Want to save your changes?';
-    };    
+        return "Want to save your changes?";
+    };
 </script>

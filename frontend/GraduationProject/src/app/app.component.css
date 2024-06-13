@@ -4,6 +4,7 @@ div.bar {
     border: none;
     justify-content: space-between;
     display: flex;
+    align-items: center;
 }
 p {
     background-color: #3f51b5;
@@ -34,3 +35,13 @@ div.rightButtons {
     align-items: center;
 }
 
+.panle-color {
+    border: solid #252526 5px; 
+    width: 20%;
+}
+.box{
+    width: auto;
+    height: 260px;
+    border: solid #3f3f41 5px; 
+    display: block;
+}
