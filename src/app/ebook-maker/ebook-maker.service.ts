@@ -36,13 +36,15 @@ export class EbookMakerService {
     formData.append('authorId', author);
     formData.append('description', description);
 
+    let categoriesList: any[] = [];
     // Append each category to FormData
     categories.forEach(category => {
-      formData.append('categories', category.name);
+      categoriesList.push(category.id);
     });
 
-    console.log(formData);
-
+    categoriesList.forEach(category => {
+      formData.append('categories', category);
+    })
     return this.http.post<any>('http://127.0.0.1:8000/api/publish/', formData).pipe(
       catchError(error => this.handleError(error, 'publish'))
     );

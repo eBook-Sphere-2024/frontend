@@ -281,26 +281,65 @@ export class EditorComponent implements OnInit {
   }
 
   async publish(entry: any) {
-    alert("save a copy of your document in the directory you selected");
-    this.onExportAsPDF();
-    this.dirHandle = await this.chooseDirectory();
-    if (this.dirHandle) {
-      const dirEntries = await this.dirHandle.values();
-      for await (const dirEntry of dirEntries) {
-        if (dirEntry.name === this.editorObj.documentEditor.documentName + '.pdf') {
-          entry = dirEntry;
+    try {
+      // Trigger PDF export
+      this.onExportAsPDF();
+
+      const chooseDirPromise = this.chooseDirectory();
+      let timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        alert("Please choose a directory promptly.");
+        throw new Error("Directory selection timeout");
+      }, 15000); // 15 seconds timeout
+
+      this.dirHandle = await chooseDirPromise;
+      clearTimeout(timeout);
+
+      if (this.dirHandle) {
+        let maxNumber = -Infinity; // Initialize to very small number
+        let maxEntry = null;
+
+        // Fetch directory entries
+        const dirEntries = await this.dirHandle.values();
+
+        for await (const dirEntry of dirEntries) {
+          const fileName = dirEntry.name;
+          const regex = /^(.+)\((\d+)\)\.pdf$/; // Regex to match "name(number).pdf"
+          const match = fileName.match(regex);
+
+          if (match) {
+            const currentNumber = parseInt(match[2], 10); // Extract and parse the number
+            if (currentNumber > maxNumber) {
+              maxNumber = currentNumber;
+              maxEntry = dirEntry;
+              entry = maxEntry;
+            }
+          } else {
+            if (dirEntry.name === this.editorObj.documentEditor.documentName + '.pdf') {
+              entry = dirEntry;
+            }
+          }
         }
+
+        // Read PDF file
+        const pdfDocument = await this.readPDFFile(entry);
+
+        // Call service to publish document
+        this.ebookMakerService.publish(pdfDocument, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
+          (res: any) => {
+            alert('Document published successfully and it will be reviewed by our team.');
+          },
+          (error: any) => {
+            alert('Error publishing document: ' + error.message);
+          }
+        );
+      } else {
+        alert('No directory selected.'); // Handle case where directory selection failed
       }
+    } catch (error) {
+      console.error('Error in publish():', error); // Log any unexpected errors
+      alert('An unexpected error occurred. Please try again.'); // Notify user of unexpected error
     }
-    const pdfDocument = await this.readPDFFile(entry);
-    this.ebookMakerService.publish(pdfDocument, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
-      (res: any) => {
-        alert('Document published successfully and it will be reviewed by our team.');
-      },
-      (error: any) => {
-        alert('Error publishing document: ' + error.message);
-      }
-    );
   }
   async readPDFFile(entry: any): Promise<any> {
     try {
