@@ -1,8 +1,9 @@
 <section class="blog_section">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of eBooks">
-                <div class="box">
+            <div *ngFor="let eBook of eBooks" >
+            <div class="col-md-6 col-lg-4 mx-auto" *ngIf="eBook.is_reviewed">
+                <div class="box" >
                     <div class="img-box">
                         <img [src]="eBook.cover" alt="">
                     </div>
@@ -14,6 +15,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
   </section>
