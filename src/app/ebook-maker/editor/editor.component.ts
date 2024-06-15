@@ -1,17 +1,17 @@
 import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { LocationStrategy } from '@angular/common';
 import { DocumentEditorContainerComponent, ImageFormat, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import { ItemModel, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { PdfBitmap, PdfDocument, PdfPageOrientation, PdfPageSettings, PdfSection, SizeF } from '@syncfusion/ej2-pdf-export';
 import '@syncfusion/ej2-pdf-export';
 import { EventService } from '../../../shared/services/EventService';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Template } from '../../../shared/models/Template';
 import { EbookMakerService } from '../ebook-maker.service';
 import { EBookService } from '../../reading-section/e-book/e-book.service';
 import { Category } from '../../../shared/models/Category';
 import { User } from '../../../shared/models/User';
 import { UserServices } from '../../User/user.service';
-
 
 @Component({
   selector: 'app-editor',
@@ -35,14 +35,29 @@ export class EditorComponent implements OnInit {
   description: string = '';
   userProfile!: User;
   selectedCategories: Category[] = [];
+  previousUrl: string = '';
 
-  constructor(private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
+  constructor(private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
     events.listen('editTemplate', (data: any) => {
       this.template = data;
       this.Opentemplate();
     })
+    this.events.listen('openEditor', (_data: any) => {
+      if (this.isOpenEbook) {
+        window.location.reload();
+      }
+    });
+
+    history.pushState(null, '', window.location.href);
+    this.locationStrategy.onPopState(() => {
+      history.pushState(null, '', window.location.href);
+      if (this.isOpenEbook) {
+        window.location.reload();
+      }
+    });
 
   }
+
   Opentemplate() {
     this.ebookMakerService.getTemplateContent(this.template.content).subscribe(
       (data: Blob) => {
@@ -74,6 +89,7 @@ export class EditorComponent implements OnInit {
         alert(error.message);
       }
     );
+
     let token = sessionStorage.getItem('Token');
     if (token) {
       this.userService.userProfile(token).subscribe(
@@ -326,7 +342,7 @@ export class EditorComponent implements OnInit {
 
         // Call service to publish document
         this.ebookMakerService.publish(pdfDocument, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
-          (res: any) => {
+          (_res: any) => {
             alert('Document published successfully and it will be reviewed by our team.');
           },
           (error: any) => {
