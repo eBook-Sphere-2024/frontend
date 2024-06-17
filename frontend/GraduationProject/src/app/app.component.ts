@@ -22,13 +22,18 @@ import { blob } from "stream/consumers";
 import { file } from "jszip";
 import { HttpClient } from "@angular/common/http";
 import { saveAs } from "file-saver";
+import { DocxToOdtConverterService } from "../service/DocxToOdtConverterService";
+
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css",
 })
 export class AppComponent implements OnInit {
-    constructor(private epubService: EpubService) {}
+    constructor(
+        private epubService: EpubService,
+        private converterService: DocxToOdtConverterService
+    ) {}
     ngOnInit(): void {}
     title = "GraduationProject";
 
@@ -95,7 +100,6 @@ export class AppComponent implements OnInit {
     public onSaveTxt() {
         this.editorObj.documentEditor.save("sampleDocument", "Txt");
     }
-
     public onPrint() {
         this.editorObj.documentEditor.print();
     }
@@ -236,22 +240,19 @@ export class AppComponent implements OnInit {
         }
 
         try {
-            const blob = await this.epubService.convertTxtToEpub(txtContent);
-
-            // Download the EPUB file
-            const a = document.createElement("a");
-            a.href = URL.createObjectURL(blob);
-            a.download = "book.epub";
-            a.click();
+            await this.epubService.convertTxtToEpub(txtContent);
         } catch (error) {
             console.error("Error converting to EPUB:", error);
         }
     }
 
-    // i will use backend to save the file
     public onSaveEpub() {
         this.onBlobReceived(this.editorObj.documentEditor.saveAsBlob("Txt"));
     }
-    // i will use backend to save the file
-    public onSaveOdt() {}
+
+    public onSaveOdt() {
+         this.converterService.convertDocxToOdt(
+             this.editorObj.documentEditor.saveAsBlob("Docx")
+         );
+    }
 }
