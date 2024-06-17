@@ -15,19 +15,26 @@ import {
 } from "@syncfusion/ej2-pdf-export";
 import { ItemModel } from "@syncfusion/ej2-splitbuttons";
 import { MenuEventArgs } from "@syncfusion/ej2-navigations";
+import path from "node:path";
 
+import { EpubService } from "../service/EpubService";
+import { blob } from "stream/consumers";
+import { file } from "jszip";
+import { HttpClient } from "@angular/common/http";
+import { saveAs } from "file-saver";
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.css",
 })
 export class AppComponent implements OnInit {
+    constructor(private epubService: EpubService) {}
     ngOnInit(): void {}
     title = "GraduationProject";
 
     @ViewChild("documentEditor", { static: false })
     editorObj!: DocumentEditorContainerComponent;
-
+    private txtBlob: Promise<Blob> = Promise.resolve(new Blob());
     //Custom toolbat item.
     /*
     public toolItem: CustomToolbarItemModel = {
@@ -88,6 +95,7 @@ export class AppComponent implements OnInit {
     public onSaveTxt() {
         this.editorObj.documentEditor.save("sampleDocument", "Txt");
     }
+
     public onPrint() {
         this.editorObj.documentEditor.print();
     }
@@ -113,6 +121,14 @@ export class AppComponent implements OnInit {
             text: "Pdf (*.pdf)",
             id: "pdf",
         },
+        {
+            text: "ePub (*.epub)",
+            id: "epub",
+        },
+        {
+            text: "openDocument Text (*.odt)",
+            id: "odt",
+        },
     ];
 
     public onSelected(event: any): void {
@@ -132,6 +148,12 @@ export class AppComponent implements OnInit {
                 break;
             case "pdf":
                 this.onSaveAsPdf();
+                break;
+            case "epub":
+                this.onSaveEpub();
+                break;
+            case "odt":
+                this.onSaveOdt();
                 break;
         }
     }
@@ -191,4 +213,45 @@ export class AppComponent implements OnInit {
             }, 500);
         }
     }
+
+    async onBlobReceived(blobPromise: Promise<Blob>): Promise<void> {
+        this.txtBlob = blobPromise;
+
+        try {
+            const blob = await this.txtBlob;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                this.convertToEpub(reader.result as string);
+            };
+            reader.readAsText(blob);
+        } catch (error) {
+            console.error("Error reading blob:", error);
+        }
+    }
+
+    async convertToEpub(txtContent: string): Promise<void> {
+        if (!txtContent) {
+            alert("Failed to read text content from the blob.");
+            return;
+        }
+
+        try {
+            const blob = await this.epubService.convertTxtToEpub(txtContent);
+
+            // Download the EPUB file
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "book.epub";
+            a.click();
+        } catch (error) {
+            console.error("Error converting to EPUB:", error);
+        }
+    }
+
+    // i will use backend to save the file
+    public onSaveEpub() {
+        this.onBlobReceived(this.editorObj.documentEditor.saveAsBlob("Txt"));
+    }
+    // i will use backend to save the file
+    public onSaveOdt() {}
 }

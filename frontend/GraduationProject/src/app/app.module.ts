@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService, PrintService, WordExportService } from "@syncfusion/ej2-angular-documenteditor";
 import { ButtonModule } from "@syncfusion/ej2-angular-buttons";
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
-
+import { HttpClientModule } from "@angular/common/http"; 
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -16,6 +16,7 @@ import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
         DocumentEditorContainerModule,
         ButtonModule,
         DropDownButtonModule,
+        HttpClientModule,
     ],
     providers: [
         provideClientHydration(),
