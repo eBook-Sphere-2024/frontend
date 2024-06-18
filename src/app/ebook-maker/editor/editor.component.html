@@ -26,7 +26,7 @@
             </div>
         </div>
         <ejs-documenteditorcontainer #documentEditor height="718" style="display: block" (created)="onCreated()"
-            [enableToolbar]="true" [enableSpellCheck]="true"
+            [enableToolbar]="true" [enableSpellCheck]="true" [toolbarItems]="toolbarItems"
             serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/">
         </ejs-documenteditorcontainer>
     </div>
@@ -37,17 +37,19 @@
     <h2>Publish Your eBook</h2>
     <div class="form-container">
         <div>
-        <label for="ebookTitle">eBook Title:</label>
-        <input type="text" id="ebookTitle" name="ebookTitle" [(ngModel)]="ebookTitle" required>
-    </div><div>
-        <label for="description">eBook description:</label>
-        <input type="text" id="description" name="description" [(ngModel)]="description" required>
-    </div><div>
-        <label for="categorySelect">Select Categories:</label>
-        <select multiple #categorySelect>
-            <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
-        </select>
-    </div>
+            <label for="ebookTitle">eBook Title:</label>
+            <input type="text" id="ebookTitle" name="ebookTitle" [(ngModel)]="ebookTitle" required>
+        </div>
+        <div>
+            <label for="description">eBook description:</label>
+            <input type="text" id="description" name="description" [(ngModel)]="description" required>
+        </div>
+        <div>
+            <label for="categorySelect">Select Categories:</label>
+            <select multiple #categorySelect>
+                <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            </select>
+        </div>
     </div>
     <div class="button-containerr">
         <button (click)="closePublishDialog()">Cancel</button>

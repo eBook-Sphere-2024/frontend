@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { LocationStrategy } from '@angular/common';
-import { DocumentEditorContainerComponent, ImageFormat, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
+import { CustomToolbarItemModel, DocumentEditorContainerComponent, ImageFormat, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import { ItemModel, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { PdfBitmap, PdfDocument, PdfPageOrientation, PdfPageSettings, PdfSection, SizeF } from '@syncfusion/ej2-pdf-export';
 import '@syncfusion/ej2-pdf-export';
@@ -37,6 +37,7 @@ export class EditorComponent implements OnInit {
   selectedCategories: Category[] = [];
   previousUrl: string = '';
 
+
   constructor(private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
     events.listen('editTemplate', (data: any) => {
       this.template = data;
@@ -55,8 +56,19 @@ export class EditorComponent implements OnInit {
         window.location.reload();
       }
     });
-
   }
+  toolItem: CustomToolbarItemModel = {
+
+    prefixIcon: "e-de-ctnr-lock",
+
+    tooltipText: "Disable Image",
+
+    text: "Disable Image",
+
+    id: "Custom"
+
+  };
+  public toolbarItems = ['Undo', 'Redo', 'Separator', 'Image', 'Table', 'Hyperlink', 'Bookmark', 'TableOfContents', 'Separator', 'Header', 'Footer', 'PageSetup', 'PageNumber', 'Break', 'Separator', 'Find', 'Separator', 'Comments', 'TrackChanges', 'Separator', 'LocalClipboard', 'RestrictEditing', 'Separator', 'FormFields', 'UpdateFields']
 
   Opentemplate() {
     this.ebookMakerService.getTemplateContent(this.template.content).subscribe(

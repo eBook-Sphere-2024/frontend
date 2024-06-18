@@ -11,8 +11,8 @@ import { RouterModule } from '@angular/router';
 import { BannerModule } from '../banner/banner.module';
 import { CommentsModule } from './comments/comments.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-
-
+import { ReaderComponent } from './reader/reader.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     EBookFilterComponent,
     EBookComponent,
     EBookDetailsComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ReaderComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +30,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     FormsModule,
     RouterModule,
     BannerModule,
-    CommentsModule
+    CommentsModule,
+    NgxExtendedPdfViewerModule
   ],
   exports: [
     EBookComponent,

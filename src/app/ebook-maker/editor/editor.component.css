@@ -40,7 +40,8 @@ div.rightButtons {
     align-items: center;
 
 }
-.box{
+
+.box {
     font-family: cursive;
     font-style: italic;
     text-align: center;
@@ -53,6 +54,7 @@ div.rightButtons {
     margin-left: 20%;
     color: #4e888e;
 }
+
 /* Styles for button container */
 .button-container {
     display: flex;
@@ -85,7 +87,9 @@ div.rightButtons {
 .bu:hover {
     background-color: #ffffff;
     color: #6bb7be;
-}#publishDialog {
+}
+
+#publishDialog {
     width: 400px;
     padding: 20px;
     border: 1px solid #ccc;

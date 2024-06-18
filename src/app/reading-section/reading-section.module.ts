@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { ReadingSectionComponent } from './reading-section.component';
 import { EBookModule } from './e-book/e-book.module';
 import { BannerModule } from './banner/banner.module';
-
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { BannerModule } from './banner/banner.module';
     RouterModule,
     EBookModule,
     BannerModule,
-    FormsModule
+    FormsModule,
+    NgxExtendedPdfViewerModule
   ]
 })
 export class ReadingSectionModule { }

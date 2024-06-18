@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { eBookItem } from '../../../shared/models/eBookItem';
 import { Comment } from '../../../shared/models/Comment';
 @Injectable({
@@ -139,6 +139,9 @@ export class EBookService {
     return this.http.post('http://127.0.0.1:8000/api/download/', body, options).pipe(
       catchError(error => this.handleError(error, 'download_eBook'))
     );
+  }
+  getEbookContent(ebookId: string): Observable<Blob> {
+    return this.http.get('http://127.0.0.1:8000/api/ebookContent/?id=' + ebookId, { responseType: 'blob' }).pipe(map((res: Blob) => res));;
   }
 
   private handleError(error: HttpErrorResponse, context: string) {
