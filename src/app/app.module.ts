@@ -11,7 +11,7 @@ import { DocumentEditorModule, DocumentEditorContainerModule, ToolbarService, Pr
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { EbookMakerModule } from './ebook-maker/ebook-maker.module';
-
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,8 @@ import { EbookMakerModule } from './ebook-maker/ebook-maker.module';
     DocumentEditorContainerModule,
     ButtonModule,
     DropDownButtonModule,
-    EbookMakerModule
+    EbookMakerModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     provideClientHydration(), ToolbarService, PrintService, WordExportService
