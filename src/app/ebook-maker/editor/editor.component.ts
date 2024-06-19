@@ -1,18 +1,19 @@
 import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { LocationStrategy } from '@angular/common';
-import { CustomToolbarItemModel, DocumentEditorContainerComponent, ImageFormat, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
+import { DocumentEditorContainerComponent, ImageFormat, ToolbarService } from '@syncfusion/ej2-angular-documenteditor';
 import { ItemModel, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { PdfBitmap, PdfDocument, PdfPageOrientation, PdfPageSettings, PdfSection, SizeF } from '@syncfusion/ej2-pdf-export';
 import '@syncfusion/ej2-pdf-export';
 import { EventService } from '../../../shared/services/EventService';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { Template } from '../../../shared/models/Template';
 import { EbookMakerService } from '../ebook-maker.service';
 import { EBookService } from '../../reading-section/e-book/e-book.service';
 import { Category } from '../../../shared/models/Category';
 import { User } from '../../../shared/models/User';
 import { UserServices } from '../../User/user.service';
-
+import { DocxToOdtConverterService } from "../../../shared/services/DocxToOdtConverterService";
+import { EpubService } from "../../../shared/services/EpubService";
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -36,9 +37,9 @@ export class EditorComponent implements OnInit {
   userProfile!: User;
   selectedCategories: Category[] = [];
   previousUrl: string = '';
+  private txtBlob: Promise<Blob> = Promise.resolve(new Blob());
 
-
-  constructor(private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
+  constructor(private epubService: EpubService, private converterService: DocxToOdtConverterService, private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
     events.listen('editTemplate', (data: any) => {
       this.template = data;
       this.Opentemplate();
@@ -57,17 +58,6 @@ export class EditorComponent implements OnInit {
       }
     });
   }
-  toolItem: CustomToolbarItemModel = {
-
-    prefixIcon: "e-de-ctnr-lock",
-
-    tooltipText: "Disable Image",
-
-    text: "Disable Image",
-
-    id: "Custom"
-
-  };
   public toolbarItems = ['Undo', 'Redo', 'Separator', 'Image', 'Table', 'Hyperlink', 'Bookmark', 'TableOfContents', 'Separator', 'Header', 'Footer', 'PageSetup', 'PageNumber', 'Break', 'Separator', 'Find', 'Separator', 'Comments', 'TrackChanges', 'Separator', 'LocalClipboard', 'RestrictEditing', 'Separator', 'FormFields', 'UpdateFields']
 
   Opentemplate() {
@@ -248,16 +238,24 @@ export class EditorComponent implements OnInit {
 
   public items: ItemModel[] = [
     {
-      text: 'Docx',
-      id: 'docx',
+      text: "Word Document (*.docx)",
+      id: "docx",
     },
     {
-      text: 'TXT',
-      id: 'TXT',
+      text: "Text (*.txt)",
+      id: "txt",
     },
     {
-      text: 'PDF',
-      id: 'PDF'
+      text: "Pdf (*.pdf)",
+      id: "pdf",
+    },
+    {
+      text: "ePub (*.epub)",
+      id: "epub",
+    },
+    {
+      text: "openDocument Text (*.odt)",
+      id: "odt",
     }
   ];
 
@@ -266,11 +264,51 @@ export class EditorComponent implements OnInit {
     console.log(event.item.properties.id);
     if (event.item.properties.id === 'docx') {
       this.editorObj.documentEditor.save('sample.docx', 'Docx');
-    } else if (event.item.properties.id === 'TXT') {
+    } else if (event.item.properties.id === 'txt') {
       this.editorObj.documentEditor.save('sample.txt', 'Txt');
-    } else if (event.item.properties.id === 'PDF') {
+    } else if (event.item.properties.id === 'pdf') {
       this.onExportAsPDF();
+    } else if (event.item.properties.id === 'epub') {
+      this.onSaveEpub();
+    } else if (event.item.properties.id === 'odt') {
+      this.onSaveOdt();
     }
+  }
+  async onBlobReceived(blobPromise: Promise<Blob>): Promise<void> {
+    this.txtBlob = blobPromise;
+
+    try {
+      const blob = await this.txtBlob;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.convertToEpub(reader.result as string);
+      };
+      reader.readAsText(blob);
+    } catch (error) {
+      console.error("Error reading blob:", error);
+    }
+  }
+
+  async convertToEpub(txtContent: string): Promise<void> {
+    if (!txtContent) {
+      alert("Failed to read text content from the blob.");
+      return;
+    }
+
+    try {
+      await this.epubService.convertTxtToEpub(txtContent);
+    } catch (error) {
+      console.error("Error converting to EPUB:", error);
+    }
+  }
+  public onSaveEpub() {
+    this.onBlobReceived(this.editorObj.documentEditor.saveAsBlob("Txt"));
+  }
+
+  public onSaveOdt() {
+    this.converterService.convertDocxToOdt(
+      this.editorObj.documentEditor.saveAsBlob("Docx")
+    );
   }
   openPublishDialog(): void {
     const dialog = document.getElementById('publishDialog') as HTMLDialogElement;
