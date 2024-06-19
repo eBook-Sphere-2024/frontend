@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 export class DocxToOdtConverterService {
     constructor() {}
 
-    convertDocxToOdt(docxBlobPromise: Promise<Blob>) {
+    convertDocxToOdt(docxBlobPromise: Promise<Blob>, odtName: string) {
         docxBlobPromise
             .then((docxBlob) => {
                 const reader = new FileReader();
@@ -18,7 +18,7 @@ export class DocxToOdtConverterService {
                     const odtBlob = new Blob([arrayBuffer], {
                         type: "application/vnd.oasis.opendocument.text",
                     });
-                    saveAs(odtBlob, "converted.odt");
+                    saveAs(odtBlob, odtName+".odt");
                 };
                 reader.readAsArrayBuffer(docxBlob);
             })

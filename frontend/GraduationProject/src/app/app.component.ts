@@ -92,17 +92,24 @@ export class AppComponent implements OnInit {
         }
     }
 */
+    public getDocumentEditorName(): string {
+        return this.editorObj.documentEditor.documentName=== "" ? "sampleDocument" : this.editorObj.documentEditor.documentName;
+    }
     public onSaveDocx() {
-        this.editorObj.documentEditor.save("sampleDocument", "Docx");
+        let name = this.getDocumentEditorName();
+        this.editorObj.documentEditor.save(name, "Docx");
     }
     public onSaveDotx() {
-        this.editorObj.documentEditor.save("sampleDocument", "Dotx");
+        let name = this.getDocumentEditorName();
+        this.editorObj.documentEditor.save(name, "Dotx");
     }
     public onSaveSfdt() {
-        this.editorObj.documentEditor.save("sampleDocument", "Sfdt");
+        let name = this.getDocumentEditorName();
+        this.editorObj.documentEditor.save(name, "Sfdt");
     }
     public onSaveTxt() {
-        this.editorObj.documentEditor.save("sampleDocument", "Txt");
+        let name = this.getDocumentEditorName();
+        this.editorObj.documentEditor.save(name, "Txt");
     }
     public onPrint() {
         this.editorObj.documentEditor.print();
@@ -255,15 +262,17 @@ export class AppComponent implements OnInit {
     }
 
     async onSaveEpub() {
-        let epubName = this.editorObj.documentEditor.documentName;
+        let name = this.getDocumentEditorName();
         this.docBlobTemp = this.editorObj.documentEditor.saveAsBlob("Docx");
         const blob = await this.docBlobTemp;
-        this.docxToEpubService.convertDocxToEpub(blob, epubName);
+        this.docxToEpubService.convertDocxToEpub(blob, name);
     }
 
     public onSaveOdt() {
+        let name = this.getDocumentEditorName();
         this.converterService.convertDocxToOdt(
-            this.editorObj.documentEditor.saveAsBlob("Docx")
+            this.editorObj.documentEditor.saveAsBlob("Docx"),
+            name
         );
     }
 }
