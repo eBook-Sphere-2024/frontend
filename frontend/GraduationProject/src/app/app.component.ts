@@ -255,9 +255,10 @@ export class AppComponent implements OnInit {
     }
 
     async onSaveEpub() {
+        let epubName = this.editorObj.documentEditor.documentName;
         this.docBlobTemp = this.editorObj.documentEditor.saveAsBlob("Docx");
         const blob = await this.docBlobTemp;
-        this.docxToEpubService.convertDocxToEpub(blob);
+        this.docxToEpubService.convertDocxToEpub(blob, epubName);
     }
 
     public onSaveOdt() {

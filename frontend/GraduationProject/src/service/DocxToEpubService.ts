@@ -8,11 +8,11 @@ import { DOMParser } from "@xmldom/xmldom";
     providedIn: "root",
 })
 export class DocxToEpubService {
-    async convertDocxToEpub(docxBlob: Blob): Promise<void> {
+    async convertDocxToEpub(docxBlob: Blob, epubName: string): Promise<void> {
         try {
             const arrayBuffer = await this.readFileAsArrayBuffer(docxBlob);
             const htmlContent = await this.transformDocxToHtml(arrayBuffer);
-            this.convertHtmlToEpub(htmlContent);
+            this.convertHtmlToEpub(htmlContent, epubName);
         } catch (error) {
             console.error("Error during DOCX to EPUB conversion:", error);
         }
@@ -37,7 +37,7 @@ export class DocxToEpubService {
         return html;
     }
 
-    private convertHtmlToEpub(htmlContent: string): void{
+    private convertHtmlToEpub(htmlContent: string, epubName: string): void {
         const zip = new JSZip();
 
         // Define EPUB structure
@@ -63,12 +63,8 @@ export class DocxToEpubService {
         // Save the EPUB file
         let saveBeforeReturn = zip.generateAsync({ type: "blob" });
         saveBeforeReturn.then((blob) => {
-            saveAs(blob, "newconverted.epub");
-            
+            saveAs(blob, epubName + ".epub");
         });
-        
-        
-
     }
 
     private createOpfFile(): string {
