@@ -24,6 +24,8 @@ import { HttpClient } from "@angular/common/http";
 import { saveAs } from "file-saver";
 import { DocxToOdtConverterService } from "../service/DocxToOdtConverterService";
 
+import { DocxToEpubService } from "../service/DocxToEpubService";
+
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
@@ -32,7 +34,8 @@ import { DocxToOdtConverterService } from "../service/DocxToOdtConverterService"
 export class AppComponent implements OnInit {
     constructor(
         private epubService: EpubService,
-        private converterService: DocxToOdtConverterService
+        private converterService: DocxToOdtConverterService,
+        private docxToEpubService: DocxToEpubService
     ) {}
     ngOnInit(): void {}
     title = "GraduationProject";
@@ -40,6 +43,7 @@ export class AppComponent implements OnInit {
     @ViewChild("documentEditor", { static: false })
     editorObj!: DocumentEditorContainerComponent;
     private txtBlob: Promise<Blob> = Promise.resolve(new Blob());
+    private docBlobTemp: Promise<Blob> = Promise.resolve(new Blob());
     //Custom toolbat item.
     /*
     public toolItem: CustomToolbarItemModel = {
@@ -246,13 +250,19 @@ export class AppComponent implements OnInit {
         }
     }
 
-    public onSaveEpub() {
+    public onSaveEpubTextOnly() {
         this.onBlobReceived(this.editorObj.documentEditor.saveAsBlob("Txt"));
     }
 
+    async onSaveEpub() {
+        this.docBlobTemp = this.editorObj.documentEditor.saveAsBlob("Docx");
+        const blob = await this.docBlobTemp;
+        this.docxToEpubService.convertDocxToEpub(blob);
+    }
+
     public onSaveOdt() {
-         this.converterService.convertDocxToOdt(
-             this.editorObj.documentEditor.saveAsBlob("Docx")
-         );
+        this.converterService.convertDocxToOdt(
+            this.editorObj.documentEditor.saveAsBlob("Docx")
+        );
     }
 }
