@@ -13,7 +13,9 @@ import { Category } from '../../../shared/models/Category';
 import { User } from '../../../shared/models/User';
 import { UserServices } from '../../User/user.service';
 import { DocxToOdtConverterService } from "../../../shared/services/DocxToOdtConverterService";
-import { EpubService } from "../../../shared/services/EpubService";
+import { DocxToEpubService } from "../../../shared/services/DocxToEpubService";
+import jsPDF from 'jspdf';
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -37,9 +39,10 @@ export class EditorComponent implements OnInit {
   userProfile!: User;
   selectedCategories: Category[] = [];
   previousUrl: string = '';
-  private txtBlob: Promise<Blob> = Promise.resolve(new Blob());
+  ebooksavedTitle: string = '';
+  private docBlobTemp: Promise<Blob> = Promise.resolve(new Blob());
 
-  constructor(private epubService: EpubService, private converterService: DocxToOdtConverterService, private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
+  constructor(private docxToEpubService: DocxToEpubService, private converterService: DocxToOdtConverterService, private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
     events.listen('editTemplate', (data: any) => {
       this.template = data;
       this.Opentemplate();
@@ -150,12 +153,17 @@ export class EditorComponent implements OnInit {
   }
   async createFile(dirHandle: any, fileName: string, content: string) {
     try {
-      const fileHandle = await dirHandle.getFileHandle(fileName, { create: true });
+      await this.openEbookNameDialog();
+      if (!this.ebooksavedTitle) {
+        return;
+      }
+      const fileHandle = await dirHandle.getFileHandle(this.ebooksavedTitle + '.sfdt', { create: true });
       const writable = await fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
-      this.fileHandle = fileHandle;  // Store the fileHandle for subsequent saves
+      this.fileHandle = fileHandle;
       alert('Document saved successfully.');
+
     } catch (err) {
       console.error('Error writing file.', err);
     }
@@ -171,7 +179,46 @@ export class EditorComponent implements OnInit {
       console.error('Error updating file.', err);
     }
   }
+  // Method to open the eBook name dialog and return a promise that resolves with the entered title
+  openEbookNameDialog(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const dialog = document.getElementById('ebookNameDialog') as HTMLDialogElement;
+      const input = document.getElementById('ebooksavedTitle') as HTMLInputElement;
+      const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
 
+      // Show the dialog
+      dialog.showModal();
+
+      // Function to handle the OK button click event
+      const handleOkClick = () => {
+        console.log(input.value.trim());
+        if (input.value.trim() !== '') {
+          this.ebooksavedTitle = input.value.trim();
+          resolve(this.ebooksavedTitle);
+        } else {
+          alert('Please enter ebook title');
+          reject('No title entered');
+        }
+        dialog.close();
+      };
+
+      // Add event listener to handle OK button click
+      okButton.addEventListener('click', handleOkClick, { once: true });
+
+      // Handle dialog close event
+      dialog.addEventListener('close', () => {
+        // If dialog is closed without clicking OK, reject the promise
+        if (input.value.trim() === '') {
+          reject('Dialog closed without entering a title');
+        }
+      }, { once: true });
+    });
+  }
+
+  closeEbookNameDialog() {
+    const dialog = document.getElementById('ebookNameDialog') as HTMLDialogElement;
+    dialog.close();
+  }
   public async onSave() {
     const blob = await this.editorObj.documentEditor.saveAsBlob('Sfdt');
     const reader = new FileReader();
@@ -192,44 +239,6 @@ export class EditorComponent implements OnInit {
       }
     };
     reader.readAsText(blob);
-  }
-
-  public onExportAsPDF() {
-    const pdfDocument: PdfDocument = new PdfDocument();
-    const pageCount: number = this.editorObj.documentEditor.pageCount;
-    this.editorObj.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
-    let loadedPages = 0;
-
-    for (let i = 1; i <= pageCount; i++) {
-      setTimeout(() => {
-        const format: ImageFormat = 'image/jpeg' as ImageFormat;
-        const image = this.editorObj.documentEditor.exportAsImage(i, format);
-
-        image.onload = () => {
-          const imageHeight = parseInt(image.style.height.replace('px', ''), 10);
-          const imageWidth = parseInt(image.style.width.replace('px', ''), 10);
-          const section: PdfSection = pdfDocument.sections.add() as PdfSection;
-          const settings: PdfPageSettings = new PdfPageSettings();
-
-          if (imageWidth > imageHeight) {
-            settings.orientation = PdfPageOrientation.Landscape;
-          }
-          settings.size = new SizeF(imageWidth, imageHeight);
-          section.setPageSettings(settings);
-
-          const page = section.pages.add();
-          const graphics = page.graphics;
-          const imageStr = image.src.replace('data:image/jpeg;base64,', '');
-          const pdfImage = new PdfBitmap(imageStr);
-          graphics.drawImage(pdfImage, 0, 0, imageWidth, imageHeight);
-
-          loadedPages++;
-          if (loadedPages === pageCount) {
-            pdfDocument.save(this.editorObj.documentEditor.documentName + '.pdf' || 'sample.pdf');
-          }
-        };
-      }, 500);
-    }
   }
 
   public onPrint() {
@@ -260,54 +269,82 @@ export class EditorComponent implements OnInit {
   ];
 
   // Method to handle item click event
-  onExportItemClick(event: any): void {
-    console.log(event.item.properties.id);
+  async onExportItemClick(event: any) {
+    if (this.ebooksavedTitle === '') {
+      await this.openEbookNameDialog();
+      if (this.ebooksavedTitle === '') {
+        return;
+      }
+    }
     if (event.item.properties.id === 'docx') {
-      this.editorObj.documentEditor.save('sample.docx', 'Docx');
+      this.editorObj.documentEditor.save(this.ebooksavedTitle, 'Docx');
     } else if (event.item.properties.id === 'txt') {
-      this.editorObj.documentEditor.save('sample.txt', 'Txt');
+      this.editorObj.documentEditor.save(this.ebooksavedTitle, 'Txt');
     } else if (event.item.properties.id === 'pdf') {
-      this.onExportAsPDF();
+      this.onExportAsPDF(this.ebooksavedTitle);
     } else if (event.item.properties.id === 'epub') {
-      this.onSaveEpub();
+      this.onSaveEpub(this.ebooksavedTitle);
     } else if (event.item.properties.id === 'odt') {
-      this.onSaveOdt();
+      this.onSaveOdt(this.ebooksavedTitle);
     }
   }
-  async onBlobReceived(blobPromise: Promise<Blob>): Promise<void> {
-    this.txtBlob = blobPromise;
-
-    try {
-      const blob = await this.txtBlob;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.convertToEpub(reader.result as string);
-      };
-      reader.readAsText(blob);
-    } catch (error) {
-      console.error("Error reading blob:", error);
+  public onExportAsPDF(filename: string) {
+    let obj = this;
+    let pdfdocument: PdfDocument = new PdfDocument();
+    let count: number = obj.editorObj.documentEditor.pageCount;
+    obj.editorObj.documentEditor.documentEditorSettings.printDevicePixelRatio = 2;
+    let loadedPage = 0;
+    for (let i = 1; i <= count; i++) {
+      setTimeout(() => {
+        let format: ImageFormat = "image/jpeg" as ImageFormat;
+        // Getting pages as image
+        let image = obj.editorObj.documentEditor.exportAsImage(
+          i,
+          format
+        );
+        image.onload = function () {
+          let imageHeight = parseInt(
+            image.style.height.toString().replace("px", "")
+          );
+          let imageWidth = parseInt(
+            image.style.width.toString().replace("px", "")
+          );
+          let section: PdfSection =
+            pdfdocument.sections.add() as PdfSection;
+          let settings: PdfPageSettings = new PdfPageSettings(0);
+          if (imageWidth > imageHeight) {
+            settings.orientation = PdfPageOrientation.Landscape;
+          }
+          settings.size = new SizeF(imageWidth, imageHeight);
+          (section as PdfSection).setPageSettings(settings);
+          let page = section.pages.add();
+          let graphics = page.graphics;
+          let imageStr = image.src.replace(
+            "data:image/jpeg;base64,",
+            ""
+          );
+          let pdfImage = new PdfBitmap(imageStr);
+          graphics.drawImage(pdfImage, 0, 0, imageWidth, imageHeight);
+          loadedPage++;
+          if (loadedPage == count) {
+            pdfdocument.save(filename + '.pdf');
+          }
+        };
+      }, 500);
     }
   }
 
-  async convertToEpub(txtContent: string): Promise<void> {
-    if (!txtContent) {
-      alert("Failed to read text content from the blob.");
-      return;
-    }
-
-    try {
-      await this.epubService.convertTxtToEpub(txtContent);
-    } catch (error) {
-      console.error("Error converting to EPUB:", error);
-    }
+  async onSaveEpub(filename: string) {
+    let name = filename;
+    this.docBlobTemp = this.editorObj.documentEditor.saveAsBlob("Docx");
+    const blob = await this.docBlobTemp;
+    this.docxToEpubService.convertDocxToEpub(blob, name);
   }
-  public onSaveEpub() {
-    this.onBlobReceived(this.editorObj.documentEditor.saveAsBlob("Txt"));
-  }
-
-  public onSaveOdt() {
+  public onSaveOdt(filename: string) {
+    let name = filename;
     this.converterService.convertDocxToOdt(
-      this.editorObj.documentEditor.saveAsBlob("Docx")
+      this.editorObj.documentEditor.saveAsBlob("Docx"),
+      name
     );
   }
   openPublishDialog(): void {
@@ -347,83 +384,56 @@ export class EditorComponent implements OnInit {
   }
 
   async publish(entry: any) {
-    try {
-      // Trigger PDF export
-      this.onExportAsPDF();
+    const pageCount: number = this.editorObj.documentEditor.pageCount;
+    this.editorObj.documentEditor.documentEditorSettings.printDevicePixelRatio = 3;
+    const images: HTMLImageElement[] = [];
 
-      const chooseDirPromise = this.chooseDirectory();
-      let timeout = setTimeout(() => {
-        clearTimeout(timeout);
-        alert("Please choose a directory promptly.");
-        throw new Error("Directory selection timeout");
-      }, 15000); // 15 seconds timeout
-
-      this.dirHandle = await chooseDirPromise;
-      clearTimeout(timeout);
-
-      if (this.dirHandle) {
-        let maxNumber = -Infinity; // Initialize to very small number
-        let maxEntry = null;
-
-        // Fetch directory entries
-        const dirEntries = await this.dirHandle.values();
-
-        for await (const dirEntry of dirEntries) {
-          const fileName = dirEntry.name;
-          const regex = /^(.+)\((\d+)\)\.pdf$/; // Regex to match "name(number).pdf"
-          const match = fileName.match(regex);
-
-          if (match) {
-            const currentNumber = parseInt(match[2], 10); // Extract and parse the number
-            if (currentNumber > maxNumber) {
-              maxNumber = currentNumber;
-              maxEntry = dirEntry;
-              entry = maxEntry;
-            }
-          } else {
-            if (dirEntry.name === this.editorObj.documentEditor.documentName + '.pdf') {
-              entry = dirEntry;
-            }
-          }
-        }
-
-        // Read PDF file
-        const pdfDocument = await this.readPDFFile(entry);
-
-        // Call service to publish document
-        this.ebookMakerService.publish(pdfDocument, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
-          (_res: any) => {
-            alert('Document published successfully and it will be reviewed by our team.');
-          },
-          (error: any) => {
-            alert('Error publishing document: ' + error.message);
-          }
-        );
-      } else {
-        alert('No directory selected.'); // Handle case where directory selection failed
-      }
-    } catch (error) {
-      console.error('Error in publish():', error); // Log any unexpected errors
-      alert('An unexpected error occurred. Please try again.'); // Notify user of unexpected error
-    }
-  }
-  async readPDFFile(entry: any): Promise<any> {
-    try {
-      const file = await entry.getFile();
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-      return new Promise<any>((resolve, reject) => {
-        fileReader.onload = () => {
-          const arrayBuffer = fileReader.result as ArrayBuffer;
-          resolve(arrayBuffer);
-        };
-        fileReader.onerror = reject;
+    for (let i = 1; i <= pageCount; i++) {
+      const format: ImageFormat = 'image/jpeg' as ImageFormat;
+      const image = await new Promise<HTMLImageElement>((resolve) => {
+        setTimeout(() => {
+          const img = this.editorObj.documentEditor.exportAsImage(i, format);
+          img.onload = () => resolve(img);
+        }, 500);
       });
-    } catch (err) {
-      console.error('Error reading PDF file:', err);
-      throw err; // Propagate the error
+      images.push(image);
     }
+
+    // Create a PDF document using jsPDF
+    const pdf = new jsPDF();
+    const a4Width = 210; // Width in mm for A4
+    const a4Height = 297; // Height in mm for A4
+
+    images.forEach((image, index) => {
+      const imageWidth = image.naturalWidth;
+      const imageHeight = image.naturalHeight;
+
+      // Calculate scaling factor to fit A4 dimensions
+      const scaleFactor = a4Width / imageWidth;
+      const scaledHeight = imageHeight * scaleFactor;
+
+      if (index > 0) {
+        pdf.addPage();
+      }
+
+      // Add image to PDF with scaled dimensions
+      pdf.addImage(image.src, 'JPEG', 0, 0, a4Width, scaledHeight);
+    });
+
+    // Convert the PDF to a Blob
+    const pdfBlob = pdf.output('blob');
+
+    // Call service to publish document
+    this.ebookMakerService.publish(pdfBlob, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
+      (_res: any) => {
+        alert('Document published successfully and it will be reviewed by our team.');
+      },
+      (error: any) => {
+        alert('Error publishing document: ' + error.message);
+      }
+    );
   }
+
 
   public itemBeforeEvent(args: MenuEventArgs) {
     args.element.style.height = '105px';

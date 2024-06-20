@@ -170,3 +170,27 @@ div.rightButtons {
 .button-containerr button:last-child:hover {
     background-color: #4e888e;
 }
+
+#ebookNameDialog {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    margin-top: 150px;
+}
+
+#ebookNameDialog h2 {
+    font-family: cursive;
+    font-style: italic;
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    color: cadetblue;
+}
