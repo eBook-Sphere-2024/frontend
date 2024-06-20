@@ -3,6 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { User } from '../../shared/models/User';
+import { switchMap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -120,13 +122,40 @@ export class UserServices {
   RemoveFromFavorites(data: any) {
     let options = {
       ...this.getStandardOptions(),
-      body: data // Add the body property to the options
+      body: data 
     };
     return this.http.delete('http://127.0.0.1:8000/api/FavoriteBooks/', options).pipe(
       catchError(error => this.handleError(error, 'RemoveFromFavorites'))
     );
   }
-  
+  getReaderAnalysis(){
+    let options = this.getStandardOptions();
+    return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
+      catchError(error => this.handleError(error, 'getReaderAnalysis'))
+    );
+  }
+  updateReaderAnalysis(user_id: number, ebook_id: string, dataPost: any,dataPatch: any) {
+    let options = this.getStandardOptions();
+
+    return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
+      switchMap((analyses: any[]) => {
+        const existingAnalysis = analyses.find(analysis => analysis.user === user_id && analysis.ebook === ebook_id);
+        if (existingAnalysis) {
+          console.log("raeder id: ", existingAnalysis);
+          // If exists, update it using PATCH
+          return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id='+ existingAnalysis, dataPatch, options).pipe(
+            catchError(error => this.handleError(error, 'updateReaderAnalysis (patch)'))
+          );
+        } else {
+          // If not exists, create a new one using POST
+          return this.http.post('http://127.0.0.1:8000/api/ReaderAnalysis/', dataPost, options).pipe(
+            catchError(error => this.handleError(error, 'updateReaderAnalysis (post)'))
+          );
+        }
+      }),
+      catchError(error => this.handleError(error, 'updateReaderAnalysis (get)'))
+    );
+  }
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error['error']);
     if (error.status === 0) {

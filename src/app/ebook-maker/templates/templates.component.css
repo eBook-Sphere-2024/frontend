@@ -10,11 +10,14 @@ h2{
     color: hsl(230deg 51.53% 28.27%);
 }
 .card_container{
+    margin-left: 10%;
     display: flex;
+    width: calc(80% /1);
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
+    margin-bottom: 50px;
 }.card{
     font-family: cursive;
     padding: 20px;
