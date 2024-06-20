@@ -9,6 +9,8 @@
                     <div class="detail-box">
                         <h5>{{ eBook.title }}</h5>
                         <h6>{{eBook.author.username}}</h6>
+                        <h6>{{ getHighestProgress(eBook.id) | async }}</h6>
+                        <h6 *ngIf="eBook.id "></h6>
                         <p>{{ eBook.description }}</p>
                         <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
                         <a (click)="removeFavorite(eBook)" class="remove">Remove</a>
