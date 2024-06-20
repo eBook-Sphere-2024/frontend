@@ -56,3 +56,18 @@
         <button (click)="selectCategories(categorySelect.selectedOptions)">Publish</button>
     </div>
 </dialog>
+
+<dialog id="ebookNameDialog">
+    <h2>Enter the Name of Your eBook</h2>
+    <div class="form-container">
+        <div>
+            <label for="ebooksavedTitle">eBook Title:</label>
+            <input type="text" id="ebooksavedTitle" name="ebooksavedTitle" [(ngModel)]="ebooksavedTitle" required>
+        </div>
+    </div>
+    <div class="button-containerr">
+
+        <button class="cancel" (click)="closeEbookNameDialog()">Cancel</button>
+        <button class="ok">OK</button>
+    </div>
+</dialog>
