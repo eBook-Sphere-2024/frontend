@@ -89,7 +89,8 @@ div.rightButtons {
     color: #6bb7be;
 }
 
-#publishDialog {
+#publishDialog,
+#signinDialog {
     width: 400px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -101,7 +102,8 @@ div.rightButtons {
     margin-top: 150px;
 }
 
-#publishDialog h2 {
+#publishDialog h2,
+#signinDialog h2 {
     font-family: cursive;
     font-style: italic;
     font-size: medium;
@@ -142,6 +144,10 @@ div.rightButtons {
 
 .button-containerr {
     justify-content: space-between;
+}
+
+#signinDialog .button-containerr {
+    margin-left: 24%;
 }
 
 .button-containerr button {

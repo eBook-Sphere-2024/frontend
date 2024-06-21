@@ -4,6 +4,7 @@ import { EBookService } from '../../e-book.service';
 import { UserServices } from '../../../../User/user.service';
 import { User } from '../../../../../shared/models/User';
 import { eBookItem } from '../../../../../shared/models/eBookItem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment-item',
@@ -18,12 +19,13 @@ export class CommentItemComponent implements OnInit {
   isEditing: boolean = false;
   isAddingReply: boolean = false;
 
-  constructor(private eBookService: EBookService, private userService: UserServices) { }
+  constructor(private eBookService: EBookService, private userService: UserServices, private router: Router) { }
 
   ngOnInit(): void {
     this.getReplies();
   }
   getReplies(): void {
+    console.log(this.comment.id.toString(), this.comment.ebook.id.toString());
     this.eBookService.get_comment_replies(this.comment.id.toString(), this.comment.ebook.id.toString()).subscribe(
       (data: any) => {
         this.replies = data;
@@ -104,8 +106,11 @@ export class CommentItemComponent implements OnInit {
     );
   }
   addReplyComment(): void {
-    console.log('add reply comment');
-    this.isAddingReply = !this.isAddingReply;
+    if (this.userProfile) {
+      this.isAddingReply = !this.isAddingReply;
+    } else {
+      this.opensigninDialog();
+    }
   }
   formatTime(timestamp: string): string {
     const currentDate = new Date();
@@ -125,5 +130,20 @@ export class CommentItemComponent implements OnInit {
     } else {
       return "Just now";
     }
+  }
+
+
+  opensigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.showModal();
+    const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
+    okButton.addEventListener('click', () => {
+      this.router.navigate(['/authentication']);
+    });
+  }
+
+  closesigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.close();
   }
 }

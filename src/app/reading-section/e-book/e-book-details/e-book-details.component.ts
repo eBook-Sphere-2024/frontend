@@ -87,30 +87,40 @@ export class EBookDetailsComponent implements OnInit {
     this.Router.navigate(['reading']);
   }
   readBook() {
-    this.events.emit('pdfVieweruser', this.userProfile);
-    this.Router.navigate(['/read', this.eBookItem.id]);
+    if (this.userProfile) {
+      this.events.emit('pdfVieweruser', this.userProfile);
+      this.Router.navigate(['/read', this.eBookItem.id]);
+    }
+    else {
+      this.opensigninDialog();
+    }
   }
 
   download() {
-    // Assuming the fileId is already fetched and stored in eBookItem.content
-    this.eBookService.download_eBook(this.eBookItem.content).subscribe(
-      (data: any) => {
-        // Assuming the server response contains the download link and file name
-        const downloadLink = data;
-        const fileName = this.eBookItem.title + ".pdf";
+    if (this.userProfile) {
+      // Assuming the fileId is already fetched and stored in eBookItem.content
+      this.eBookService.download_eBook(this.eBookItem.content).subscribe(
+        (data: any) => {
+          // Assuming the server response contains the download link and file name
+          const downloadLink = data;
+          const fileName = this.eBookItem.title + ".pdf";
 
-        // Create a link element
-        const link = document.createElement("a");
-        link.href = downloadLink;
-        link.download = fileName; // Set the desired file name
+          // Create a link element
+          const link = document.createElement("a");
+          link.href = downloadLink;
+          link.download = fileName; // Set the desired file name
 
-        // Programmatically click the link to initiate the download
-        link.click();
-      },
-      (error: any) => {
-        console.error('Error downloading eBook:', error);
-      }
-    );
+          // Programmatically click the link to initiate the download
+          link.click();
+        },
+        (error: any) => {
+          console.error('Error downloading eBook:', error);
+        }
+      );
+    } else {
+      this.opensigninDialog();
+    }
+
   }
   favourite() {
     let data = {
@@ -137,5 +147,18 @@ export class EBookDetailsComponent implements OnInit {
         }
       );
     }
+  }
+  opensigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.showModal();
+    const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
+    okButton.addEventListener('click', () => {
+      this.Router.navigate(['/authentication']);
+    });
+  }
+
+  closesigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.close();
   }
 }

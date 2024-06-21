@@ -1,13 +1,15 @@
 <div class="comment containerr">
 
     <div class="c-controls">
-        <a class="delete control-icon" *ngIf="userProfile && comment.user.username === userProfile.username" (click)="promptDeleteComment()">
+        <a class="delete control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"
+            (click)="promptDeleteComment()">
             <i class="fa-solid fa-trash"></i>&nbsp;Delete
         </a>
-        <a class="edit control-icon" *ngIf="userProfile && comment.user.username === userProfile.username" (click)="toggleEditComment()">
+        <a class="edit control-icon" *ngIf="userProfile && comment.user.username === userProfile.username"
+            (click)="toggleEditComment()">
             <i class="fa-solid fa-pen"></i>&nbsp;{{ isEditing ? 'Save' : 'Edit' }}
         </a>
-        <a class="reply control-icon" *ngIf="userProfile && userProfile.id !== comment.user.id" (click)="addReplyComment()">
+        <a class="reply control-icon" (click)="addReplyComment()">
             <i class="fa-solid fa-reply"></i>&nbsp;Reply
         </a>
     </div>
@@ -28,7 +30,7 @@
 
 <div class="replies comments-wrp" *ngIf="replies">
     <app-comment-item *ngFor="let reply of replies" [comment]="reply" [userProfile]="userProfile"></app-comment-item>
-    <div class="comment-section" [class.invisible2]="!isAddingReply" *ngIf="userProfile && userProfile.id !== comment.user.id">
+    <div class="comment-section" [class.invisible2]="!isAddingReply" *ngIf="userProfile ">
         <app-add-comment-form [userProfile]="userProfile" [eBook]="eBook" [comment]="comment"></app-add-comment-form>
     </div>
 </div><!--replies-->
@@ -41,3 +43,11 @@
         <button class="no">NO, CANCEL</button>
     </div>
 </div>
+
+<dialog id="signinDialog">
+    <h2>Please Sign In first</h2>
+    <div class="button-containerr">
+        <button class="cancel" (click)="closesigninDialog()">Cancel</button>
+        <button class="ok">login</button>
+    </div>
+</dialog>
