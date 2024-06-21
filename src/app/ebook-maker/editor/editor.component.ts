@@ -105,11 +105,19 @@ export class EditorComponent implements OnInit {
     }
   }
   createEbook() {
-    this.router.navigate(['/maker/templates']);
+    if (this.userProfile) {
+      this.router.navigate(['/maker/templates']);
+    } else {
+      this.opensigninDialog();
+    }
   }
   public onFileOpenClick(): void {
     // Open file picker.
-    (document.getElementById('open_sfdt') as HTMLElement).click();
+    if (this.userProfile) {
+      (document.getElementById('open_sfdt') as HTMLElement).click();
+    } else {
+      this.opensigninDialog();
+    }
 
   }
 
@@ -437,5 +445,20 @@ export class EditorComponent implements OnInit {
 
   public itemBeforeEvent(args: MenuEventArgs) {
     args.element.style.height = '105px';
+  }
+
+
+  opensigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.showModal();
+    const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
+    okButton.addEventListener('click', () => {
+      this.router.navigate(['/authentication']);
+    });
+  }
+
+  closesigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.close();
   }
 }

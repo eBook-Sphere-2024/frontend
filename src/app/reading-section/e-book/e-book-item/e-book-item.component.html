@@ -5,6 +5,7 @@
     <div class="detail-box">
         <h5>{{ eBook.title }}</h5>
         <h6>By {{eBook.author.username}}</h6>
+        <h6 *ngIf="userProfile">{{eBook.highestProgess}}</h6>
         <p>{{ eBook.description }}</p>
         <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
     </div>

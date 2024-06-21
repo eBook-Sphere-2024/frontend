@@ -83,7 +83,7 @@ export class UserServices {
   resetPasswordByToken(data: any, uidb64: string, token: string) {
     let options = this.getStandardOptions();
     let body = data
-    return this.http.post<User>('http://127.0.0.1:8000/api/password-reset-confirm/'+uidb64+'/'+token+'/', body, options).pipe(
+    return this.http.post<User>('http://127.0.0.1:8000/api/password-reset-confirm/' + uidb64 + '/' + token + '/', body, options).pipe(
     );
   }
   get_createdBooks(id: string) {
@@ -115,26 +115,32 @@ export class UserServices {
   AddToFavorites(data: any) {
     let options = this.getStandardOptions();
     let body = data;
-    return this.http.post('http://127.0.0.1:8000/api/FavoriteBooks/',body, options).pipe(
+    return this.http.post('http://127.0.0.1:8000/api/FavoriteBooks/', body, options).pipe(
       catchError(error => this.handleError(error, 'AddToFavorites'))
     );
   }
   RemoveFromFavorites(data: any) {
     let options = {
       ...this.getStandardOptions(),
-      body: data 
+      body: data
     };
     return this.http.delete('http://127.0.0.1:8000/api/FavoriteBooks/', options).pipe(
       catchError(error => this.handleError(error, 'RemoveFromFavorites'))
     );
   }
-  getReaderAnalysis(){
+  getReaderAnalysis() {
     let options = this.getStandardOptions();
     return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
       catchError(error => this.handleError(error, 'getReaderAnalysis'))
     );
   }
-  updateReaderAnalysis(user_id: number, ebook_id: string, dataPost: any,dataPatch: any) {
+  getSpecificReaderAnalysis(user_id: string, ebook_id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get<any>('http://127.0.0.1:8000/api/SpecificReaderAnalysis/?user_id=' + user_id + '&ebook_id=' + ebook_id).pipe(
+      catchError(error => this.handleError(error, 'SpecificReaderAnalysis'))
+    );
+  }
+  updateReaderAnalysis(user_id: number, ebook_id: string, dataPost: any, dataPatch: any) {
     let options = this.getStandardOptions();
 
     return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
@@ -143,7 +149,7 @@ export class UserServices {
         if (existingAnalysis) {
           console.log("raeder id: ", existingAnalysis);
           // If exists, update it using PATCH
-          return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id='+ existingAnalysis, dataPatch, options).pipe(
+          return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id=' + existingAnalysis, dataPatch, options).pipe(
             catchError(error => this.handleError(error, 'updateReaderAnalysis (patch)'))
           );
         } else {

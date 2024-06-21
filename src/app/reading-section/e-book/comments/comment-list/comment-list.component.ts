@@ -4,6 +4,8 @@ import { Comment } from '../../../../../shared/models/Comment';
 import { UserServices } from '../../../../User/user.service';
 import { User } from '../../../../../shared/models/User';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-comment-list',
@@ -15,12 +17,12 @@ export class CommentListComponent implements OnInit {
   comments: Comment[] = [];
   userProfile!: User;
   rating: number = 0;
-
+  rated: number = 0;
   commentForm = new FormGroup({
     formMessage: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
-  constructor(private eBookService: EBookService, private userService: UserServices) { }
+  constructor(private eBookService: EBookService, private userService: UserServices, private router: Router) { }
 
   ngOnInit() {
     this.getComments();
@@ -74,13 +76,25 @@ export class CommentListComponent implements OnInit {
   addRatingEventListeners() {
     const stars = document.querySelectorAll('.rating .star') as NodeListOf<HTMLElement>;
     stars.forEach((star, index) => {
+      star.addEventListener('mouseover', () => {
+        this.setRating(index + 1, "hover");
+      })
+      star.addEventListener('mouseout', () => {
+
+        this.setRating(this.rated, "hover");
+      })
       star.addEventListener('click', () => {
-        this.setRating(index + 1);
+        if (this.userProfile) {
+          this.setRating(index + 1, "click");
+          this.rated = index + 1;
+        } else {
+          this.opensigninDialog();
+        }
       });
     });
   }
 
-  setRating(rating: number) {
+  setRating(rating: number, action: string) {
     this.rating = rating;
     const ratingInput = document.getElementById('ratingValue') as HTMLInputElement;
     ratingInput.value = rating.toString();
@@ -93,8 +107,9 @@ export class CommentListComponent implements OnInit {
         star.classList.remove('selected');
       }
     });
-
-    this.addRate();
+    if (action === "click") {
+      this.addRate();
+    }
   }
   addRate() {
     let token = sessionStorage.getItem('Token');
@@ -108,5 +123,19 @@ export class CommentListComponent implements OnInit {
         }
       );
     }
+  }
+
+  opensigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.showModal();
+    const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
+    okButton.addEventListener('click', () => {
+      this.router.navigate(['/authentication']);
+    });
+  }
+
+  closesigninDialog(): void {
+    const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.close();
   }
 }
