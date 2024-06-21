@@ -145,11 +145,12 @@ export class UserServices {
 
     return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
       switchMap((analyses: any[]) => {
-        const existingAnalysis = analyses.find(analysis => analysis.user === user_id && analysis.ebook === ebook_id);
+        const existingAnalysis = analyses.find(analysis => analysis.user == user_id && analysis.ebook == ebook_id);
+        console.log("existingAnalysis: ",existingAnalysis);
         if (existingAnalysis) {
           console.log("raeder id: ", existingAnalysis);
           // If exists, update it using PATCH
-          return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id=' + existingAnalysis, dataPatch, options).pipe(
+          return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id=' + existingAnalysis.id, dataPatch, options).pipe(
             catchError(error => this.handleError(error, 'updateReaderAnalysis (patch)'))
           );
         } else {
@@ -160,6 +161,12 @@ export class UserServices {
         }
       }),
       catchError(error => this.handleError(error, 'updateReaderAnalysis (get)'))
+    );
+  }
+  BooksAnalysisNumbers(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get<any>('http://127.0.0.1:8000/api/BookAnalyticsNumbers/?author_id=' + id,options).pipe(
+      catchError(error => this.handleError(error, 'BooksAnalysisNumbers'))
     );
   }
   private handleError(error: HttpErrorResponse, context: string) {

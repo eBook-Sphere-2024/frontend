@@ -38,6 +38,7 @@ export class FavoriteListComponent implements OnInit {
                         this.userService.getSpecificReaderAnalysis(this.userProfile.id.toString(), ebook.id.toString()).subscribe(
                           (analysis: any) => {
                             ebook.highestProgess = analysis.highest_progress;
+                            ebook.totalPages = analysis.totalPages;
                             this.eBooks.push(ebook);
                           },
                           (error) => {
@@ -83,5 +84,17 @@ export class FavoriteListComponent implements OnInit {
         console.error('Error removing from favorites:', error);
       }
     );
+  }
+  calculateProgress(eBook: any) {
+    let progress = (eBook.highestProgess / eBook.totalPages) * 100;
+    return parseInt(progress.toFixed(0), 10);
+  }
+  getProgressColor(progress: any) { 
+    if(progress > 99) {
+    return 'limegreen';
+  }else if (progress > 0) {
+      return 'orange';
+    }else
+    return '#eeefef';
   }
 }

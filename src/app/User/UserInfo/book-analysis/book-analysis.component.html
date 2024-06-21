@@ -1,0 +1,47 @@
+<section>
+<main class="main-container">
+    <div class="main-title">
+      <h2 class="font-weight-bold Dashboard">DASHBOARD</h2>
+    </div>
+
+    <div class="main-cards">
+      <div class="card">
+        <div class="card-inner">
+          <p class="text-primaryy">Your Books</p>
+          <i class="fa-solid fa-book fa-2x" style="color: #cc3c43;"></i>
+        </div>
+        <span class="text-primaryy font-weight-bold">{{Numbers.eBooks}}</span>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <p class="text-primaryy">Readers</p>
+          <i class="fa-solid fa-user fa-2x" style="color:orange"></i>
+        </div>
+        <span class="text-primaryy font-weight-bold">{{Numbers.Readers}}</span>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <p class="text-primaryy">Comments</p>
+          <i class="fa-solid fa-comments fa-2x" style="color: #367952;"></i>
+        </div>
+        <span class="text-primaryy font-weight-bold">{{Numbers.comments}}</span>
+      </div>
+    </div>
+
+    <div class="charts">
+
+      <div class="charts-card">
+        <p class="chart-title">Comments Analysis</p>
+        <div id="bar-chart"></div>
+      </div>      
+
+      <div class="charts-card">
+        <p class="chart-title">Readers Analysis</p>
+        <div id="area-chart"></div>
+      </div>
+
+    </div>
+  </main>
+</section>
