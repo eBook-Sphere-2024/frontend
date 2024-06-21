@@ -18,11 +18,15 @@ export class ReaderComponent implements OnInit,OnDestroy {
   totalPages: number = 0;
   currentPage: number = 1;
   highest_progress: number=1;
+  private timer: any;
   constructor(private route: ActivatedRoute, private ebookService: EBookService, private events: EventService,private userService:UserServices) {
     this.ebookId = this.route.snapshot.paramMap.get('contentId');
     this.loadEbookContent();
   }
   ngOnDestroy(): void {
+    if(this.currentPage>this.highest_progress)
+      this.highest_progress=this.currentPage;
+
     let dataPatch={
       "currentPgae": this.currentPage,
       "highest_progress": this.highest_progress,
@@ -42,13 +46,22 @@ export class ReaderComponent implements OnInit,OnDestroy {
       },
       (error:any)=>console.log(error)
     )
-    console.log("done")
+    console.log("done");
+    // Clear the timer
+    if (this.timer) {
+      console.log("Timer: ", this.timer);
+      clearInterval(this.timer);
+      console.log('Timer stopped');
+    }
   }
 
   ngOnInit(): void {
     this.events.listen('pdfVieweruser', (data: User) => {
       this.user = data;
     });
+    this.timer = setInterval(() => {
+      console.log('Timer is running');
+    }, 1000);
   }
 
   loadEbookContent(): void {
@@ -64,6 +77,7 @@ export class ReaderComponent implements OnInit,OnDestroy {
         }
       );
     }
+
   }
   onPagesLoaded(event: any): void {
       this.totalPages = event.pagesCount;

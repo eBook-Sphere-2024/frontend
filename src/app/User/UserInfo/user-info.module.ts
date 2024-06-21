@@ -7,7 +7,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
-
+import { BookAnalysisComponent } from './book-analysis/book-analysis.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -16,12 +17,14 @@ import { FavoriteListComponent } from './favorite-list/favorite-list.component';
     ProfileComponent,
     CreatedBooksComponent,
     ChangePasswordComponent,
-    FavoriteListComponent
+    FavoriteListComponent,
+    BookAnalysisComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgApexchartsModule,
   ],
   exports:[
     UserInfoComponent

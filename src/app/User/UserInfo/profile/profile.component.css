@@ -1,7 +1,6 @@
 
 
 section {
-
     margin-top: 140px;
     border-radius: 10px;
     box-sizing: border-box;
@@ -101,3 +100,15 @@ section h1.dark-mode {
     font-family: 'Roboto', sans-serif;
     font-style: italic;
 }
+.alert {
+    margin-top: 15px;
+  }.alert .sucess{
+    color: rgb(94 196 149) !important;
+    font-size: large;
+  }.alert .fail{
+    color: rgb(192, 47, 47) !important;
+    font-size: large;
+  }
+  .alert small i{
+    margin-right: 5px;
+  }

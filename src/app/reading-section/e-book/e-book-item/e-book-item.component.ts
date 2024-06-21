@@ -23,8 +23,10 @@ export class EBookItemComponent implements OnInit {
           this.userService.getSpecificReaderAnalysis(this.userProfile.id.toString(), this.eBook.id.toString()).subscribe(
             (analysisData: any) => {
               this.eBook.highestProgess = analysisData.highest_progress;
+              this.eBook.totalPages = analysisData.totalPages;
             },
             (error) => {
+              console.error('Error fetching user profile:', error);
             }
           );
         },
@@ -34,7 +36,18 @@ export class EBookItemComponent implements OnInit {
       );
     }
   }
-
+  calculateProgress(eBook: any) {
+    let progress = (eBook.highestProgess / eBook.totalPages) * 100;
+    return parseInt(progress.toFixed(0), 10);
+  }
+  getProgressColor(progress: any) { 
+    if(progress > 99) {
+    return 'limegreen';
+  }else if (progress > 0) {
+      return 'orange';
+    }else
+    return '#eeefef';
+  }
 }
 
 
