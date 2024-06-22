@@ -168,6 +168,12 @@ export class UserServices {
       catchError(error => this.handleError(error, 'BooksAnalysisNumbers'))
     );
   }
+  ContactMail(data: any) {
+    let options = this.getStandardOptions();
+    let body = data
+    return this.http.post('http://127.0.0.1:8000/api/contact/', body, options).pipe(
+    );
+  }
   private handleError(error: HttpErrorResponse, context: string) {
     console.error(`Error encountered in ${context}:`, error['error']);
     if (error.status === 0) {

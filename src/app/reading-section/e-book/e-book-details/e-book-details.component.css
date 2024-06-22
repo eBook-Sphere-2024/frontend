@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 :root {
-    --Moderate-blue: #6bb7be;
+    --Moderate-blue: hsl(230, 62%, 56%);;
     --Soft-Red: hsl(358, 79%, 66%);
     --Light-grayish-blue: hsl(239, 57%, 85%);
     --Pale-red: hsl(357, 100%, 86%);
@@ -38,7 +38,7 @@ body {
 }
 
 .btn span {
-    color: #6bb7be;
+    color: hsl(230, 62%, 56%);;
     font-weight: 600;
 }
 
@@ -105,13 +105,13 @@ body {
 }
 
 .book_info::-webkit-scrollbar-thumb {
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     border-radius: 8px;
 }
 
 .name {
     font-weight: 550;
-    color: #6bb7be;
+    color: hsl(230, 62%, 56%);;
 }
 
 .icons {
@@ -123,7 +123,7 @@ body {
 
 .icons .fa-solid {
     margin-bottom: 0.5rem;
-    color: #069ba8
+    color: hsl(230, 62%, 56%);
 }
 
 .icons .fa-solid:hover {
@@ -219,7 +219,7 @@ body {
 .favourite i {
     font-size: 30px;
     margin-left: 6px;
-    color: #069ba8;
+    color: hsl(230, 62%, 56%);;
 }
 
 .read:hover {
@@ -275,7 +275,7 @@ body {
 }
 
 .button-containerr button:last-child {
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     color: #fff;
 }
 

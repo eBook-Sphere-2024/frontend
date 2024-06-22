@@ -6,7 +6,7 @@
 
 .comments .header {
     margin-left: 200px;
-    color: #6bb7be;
+    color: hsl(230, 62%, 56%);;
     margin-bottom: 1.5rem;
 }
 
@@ -255,7 +255,7 @@
 }
 
 .bu-primary {
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     color: #fff;
     border: none;
     padding: .75rem 1.5rem;
@@ -279,7 +279,7 @@
 
 .rating-title {
     margin-left: 200px;
-    color: #6bb7be;
+    color: hsl(230, 62%, 56%);;
     margin-bottom: 1.7rem;
 }
 
@@ -366,7 +366,7 @@
 }
 
 .button-containerr button:last-child {
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     color: #fff;
 }
 

@@ -42,7 +42,7 @@
 .section-dropdown {
   position: absolute;
   padding: 5px;
-  background-color: #6bb7be;
+  background-color: hsl(230, 62%, 56%);;
   top: 70px;
   left: 0;
   width: 100%;

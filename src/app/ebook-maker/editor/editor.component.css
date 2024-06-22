@@ -52,7 +52,7 @@ div.rightButtons {
     height: 250px;
     width: 900px;
     margin-left: 20%;
-    color: #4e888e;
+    color: hsl(230, 62%, 56%);
 }
 
 /* Styles for button container */
@@ -75,18 +75,18 @@ div.rightButtons {
     margin: 10px;
     cursor: pointer;
     padding: 10px 30px;
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     color: #ffffff;
     font-weight: bold;
     border-radius: 0;
-    border: 1px solid #6bb7be;
+    border: 1px solid hsl(230, 62%, 56%);;
     height: 50px;
 }
 
 /* Hover effect */
 .bu:hover {
     background-color: #ffffff;
-    color: #6bb7be;
+    color: hsl(230, 62%, 56%);;
 }
 
 #publishDialog,
@@ -114,7 +114,7 @@ div.rightButtons {
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5em;
-    color: cadetblue;
+    color: hsl(230, 62%, 56%);
 }
 
 .form-container {
@@ -175,12 +175,12 @@ div.rightButtons {
 }
 
 .button-containerr button:last-child {
-    background-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
     color: #fff;
 }
 
 .button-containerr button:last-child:hover {
-    background-color: #4e888e;
+    background-color: hsl(230, 62%, 56%);
 }
 
 #ebookNameDialog {
@@ -204,5 +204,5 @@ div.rightButtons {
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5em;
-    color: cadetblue;
+    color: hsl(230, 62%, 56%);
 }

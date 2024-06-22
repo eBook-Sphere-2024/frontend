@@ -19,6 +19,7 @@ import { TemplatesComponent } from './ebook-maker/templates/templates.component'
 import { FavoriteListComponent } from './User/UserInfo/favorite-list/favorite-list.component';
 import { ReaderComponent } from './reading-section/e-book/reader/reader.component';
 import { BookAnalysisComponent } from './User/UserInfo/book-analysis/book-analysis.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'reading', component: ReadingSectionComponent },
@@ -44,6 +45,8 @@ const routes: Routes = [
   { path: 'maker/editor', component: EditorComponent },
   { path: 'maker/templates', component: TemplatesComponent },
   { path: 'read/:contentId', component: ReaderComponent },
+  { path: 'Home', component: HomeComponent },
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 
