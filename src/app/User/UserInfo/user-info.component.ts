@@ -20,7 +20,6 @@ export class UserInfoComponent implements OnInit {
   }
   ngOnInit(): void {
     let token = sessionStorage.getItem('Token');
-    console.log(token);
     if (token) {
       this.userService.userProfile(token).subscribe(
         (data: any) => {
@@ -36,7 +35,6 @@ export class UserInfoComponent implements OnInit {
               console.error('Error fetching user profile:', error);
             }
           )
-          console.log(this.userProfile);
         },
         (error) => {
           // Handle error if any

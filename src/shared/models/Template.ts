@@ -3,6 +3,7 @@ export class Template {
         public id: number,
         public name: string,
         public content: string,
-        public cover: string
-    ) {}
+        public cover: string,
+        public previewurl: string
+    ) { }
 }

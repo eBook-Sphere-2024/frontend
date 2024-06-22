@@ -1,3 +1,7 @@
+/* Existing styles */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 /* Additional styles */
 .this-user::after {
     font-weight: 400;
@@ -11,9 +15,7 @@
     border-radius: 2px;
 }
 
-/* Existing styles */
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
 
 .container {
     border-radius: 8px;

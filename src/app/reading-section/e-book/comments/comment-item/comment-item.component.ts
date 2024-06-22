@@ -5,6 +5,7 @@ import { UserServices } from '../../../../User/user.service';
 import { User } from '../../../../../shared/models/User';
 import { eBookItem } from '../../../../../shared/models/eBookItem';
 import { Router } from '@angular/router';
+import { EventService } from '../../../../../shared/services/EventService';
 
 @Component({
   selector: 'app-comment-item',
@@ -19,7 +20,7 @@ export class CommentItemComponent implements OnInit {
   isEditing: boolean = false;
   isAddingReply: boolean = false;
 
-  constructor(private eBookService: EBookService, private userService: UserServices, private router: Router) { }
+  constructor(private events: EventService, private eBookService: EBookService, private userService: UserServices, private router: Router) { }
 
   ngOnInit(): void {
     this.getReplies();
@@ -138,6 +139,7 @@ export class CommentItemComponent implements OnInit {
     dialog.showModal();
     const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
     okButton.addEventListener('click', () => {
+      this.events.emit('openSigninDialog', '/reading/ebooks/' + this.comment.ebook.id);
       this.router.navigate(['/authentication']);
     });
   }

@@ -1,3 +1,22 @@
 <img src="{{template.cover}}" alt="Cover" class="featured__img" />
 <h2 class="title">{{template.name}}</h2>
-<button class="button" (click)="$event.preventDefault();editTemplate()">Choose</button>
+<div class="button-container">
+    <button class="button" (click)="$event.preventDefault();editTemplate()">Choose</button>
+    <button class="button" (click)="$event.preventDefault();previewTemplate()">Preview</button>
+</div>
+<dialog id="signinDialog">
+    <h2>Please Sign In first</h2>
+    <div class="button-containerr">
+        <button class="cancel" (click)="closesigninDialog()">Cancel</button>
+        <button class="ok">login</button>
+    </div>
+</dialog>
+
+
+<!-- Preview Dialog -->
+<dialog id="previewDialog">
+    <div>
+        <iframe id="previewIframe" width="540" height="480" allow="autoplay"></iframe>
+        <button class="button" (click)="closePreviewDialog()">Close</button>
+    </div>
+</dialog>

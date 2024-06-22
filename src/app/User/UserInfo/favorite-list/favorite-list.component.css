@@ -1,34 +1,41 @@
-.blog_section{
-    width: 65%;
-    margin-left: 25%;
-    margin-bottom: 3%;
-    margin-top: 5%;
-}.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-  }
-  
-  .col-md-6 {
-    position: relative;
-    flex: 0 0 calc(33.333% - 30px); /* Adjust the margin as needed */
-    width: calc(33.333% - 30px); /* Adjust the margin as needed */
-    min-height: 550px;
-  }
-  
-  
-  .col-lg-4 {
-    flex: 0 0 33.33333333%;
-  }
-  
-  .mx-auto {
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
-*, ::after, ::before {
+.blog_section {
+  width: 65%;
+  margin-left: 25%;
+  margin-bottom: 3%;
+  margin-top: 5%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  position: relative;
+  flex: 0 0 calc(33.333% - 30px);
+  /* Adjust the margin as needed */
+  width: calc(33.333% - 30px);
+  /* Adjust the margin as needed */
+  min-height: 550px;
+}
+
+
+.col-lg-4 {
+  flex: 0 0 33.33333333%;
+}
+
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -36,10 +43,11 @@
   margin-right: auto !important;
   margin-left: auto !important;
 }
- @media (min-width: 768px) {
+
+@media (min-width: 768px) {
   .col-md-6 {
-      flex: 0 0 auto;
-      width: 50%;
+    flex: 0 0 auto;
+    width: 50%;
   }
 }
 
@@ -60,7 +68,7 @@
   vertical-align: middle;
   border-style: none;
   object-fit: cover;
-  object-position:top;
+  object-position: top;
 }
 
 .detail-box {
@@ -76,6 +84,7 @@
   font-weight: bold;
   font-size: 1.35rem;
 }
+
 .detail-box p {
   font-size: 15px;
   color: #444;
@@ -97,19 +106,24 @@
   -webkit-transition: all .2s;
   transition: all .2s;
   text-decoration: none;
-}.remove{
-    margin-left: 130px;
+}
+
+.remove {
+  margin-left: 130px;
 }
 
 .detail-box a:hover {
   background-color: #ffffff;
   color: #6bb7be;
 }
-h6{
+
+h6 {
   color: #4f6365;
   font-style: italic;
   font-size: 20px;
-}.progress {
+}
+
+.progress {
   width: 90%;
   margin-bottom: 10px;
   height: 10px;
@@ -126,9 +140,10 @@ h6{
   font-weight: bold;
   margin-left: 5px;
 }
+
 .progress-bar {
   height: 100%;
   border-radius: 5px;
-  background-color: #6bb7be; 
+  background-color: #6bb7be;
   transition: width 0.3s ease-in-out;
 }
