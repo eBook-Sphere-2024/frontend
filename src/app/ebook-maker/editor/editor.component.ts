@@ -40,6 +40,7 @@ export class EditorComponent implements OnInit {
   selectedCategories: Category[] = [];
   previousUrl: string = '';
   ebooksavedTitle: string = '';
+  alertMessage: string = '';
   private docBlobTemp: Promise<Blob> = Promise.resolve(new Blob());
 
   constructor(private docxToEpubService: DocxToEpubService, private converterService: DocxToOdtConverterService, private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
@@ -79,7 +80,7 @@ export class EditorComponent implements OnInit {
       },
       (error: any) => {
         console.error('Error loading template:', error);
-        alert(error.message);
+        console.log(error.message);
       }
     );
     this.isOpenEbook = true;
@@ -91,7 +92,7 @@ export class EditorComponent implements OnInit {
         this.categories = data;
       },
       (error: any) => {
-        alert(error.message);
+        console.log(error.message);
       }
     );
 
@@ -105,11 +106,8 @@ export class EditorComponent implements OnInit {
     }
   }
   createEbook() {
-    if (this.userProfile) {
-      this.router.navigate(['/maker/templates']);
-    } else {
-      this.opensigninDialog();
-    }
+    this.router.navigate(['/maker/templates']);
+
   }
   public onFileOpenClick(): void {
     // Open file picker.
@@ -170,7 +168,8 @@ export class EditorComponent implements OnInit {
       await writable.write(content);
       await writable.close();
       this.fileHandle = fileHandle;
-      alert('Document saved successfully.');
+      this.alertMessage = 'Document saved successfully.';
+      this.alertDialog();
 
     } catch (err) {
       console.error('Error writing file.', err);
@@ -182,7 +181,8 @@ export class EditorComponent implements OnInit {
       const writable = await this.fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
-      alert('Document updated successfully.');
+      this.alertMessage = 'Document updated successfully.';
+      this.alertDialog();
     } catch (err) {
       console.error('Error updating file.', err);
     }
@@ -204,7 +204,8 @@ export class EditorComponent implements OnInit {
           this.ebooksavedTitle = input.value.trim();
           resolve(this.ebooksavedTitle);
         } else {
-          alert('Please enter ebook title');
+          this.alertMessage = 'Please enter ebook title.';
+          this.alertDialog();
           reject('No title entered');
         }
         dialog.close();
@@ -242,7 +243,8 @@ export class EditorComponent implements OnInit {
         if (this.dirHandle) {
           await this.createFile(this.dirHandle, this.editorObj.documentEditor.documentName + '.sfdt', content);
         } else {
-          alert('No directory selected.');
+          this.alertMessage = 'No directory selected.';
+          this.alertDialog();
         }
       }
     };
@@ -374,16 +376,19 @@ export class EditorComponent implements OnInit {
       }
     });
 
-    if (this.selectedCategories.length === 0) {
-      alert('Please select at least one category.');
-      return;
-    }
     if (this.ebookTitle == '') {
-      alert('Please enter ebook title');
+      this.alertMessage = 'Please enter ebook title.';
+      this.alertDialog();
       return;
     }
     if (this.description == '') {
-      alert('Please enter description');
+      this.alertMessage = 'Please enter description.';
+      this.alertDialog();
+      return;
+    }
+    if (this.selectedCategories.length === 0) {
+      this.alertMessage = 'Please select at least one category.';
+      this.alertDialog();
       return;
     }
     this.closePublishDialog();
@@ -434,10 +439,11 @@ export class EditorComponent implements OnInit {
     // Call service to publish document
     this.ebookMakerService.publish(pdfBlob, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
       (_res: any) => {
-        alert('Document published successfully and it will be reviewed by our team.');
+        this.alertMessage = 'Document published successfully and it will be reviewed by our team.';
+        this.alertDialog();
       },
       (error: any) => {
-        alert('Error publishing document: ' + error.message);
+        console.error('Error publishing document:', error.message);
       }
     );
   }
@@ -453,12 +459,22 @@ export class EditorComponent implements OnInit {
     dialog.showModal();
     const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
     okButton.addEventListener('click', () => {
+      this.events.emit('openSigninDialog', '/maker/editor');
       this.router.navigate(['/authentication']);
     });
   }
 
   closesigninDialog(): void {
     const dialog = document.getElementById('signinDialog') as HTMLDialogElement;
+    dialog.close();
+  }
+  alertDialog(): void {
+    const dialog = document.getElementById('alertDialog') as HTMLDialogElement;
+    dialog.showModal();
+  }
+
+  closeAlertDialog(): void {
+    const dialog = document.getElementById('alertDialog') as HTMLDialogElement;
     dialog.close();
   }
 }

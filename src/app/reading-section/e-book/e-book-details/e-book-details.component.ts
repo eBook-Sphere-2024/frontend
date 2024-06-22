@@ -89,6 +89,14 @@ export class EBookDetailsComponent implements OnInit {
   readBook() {
     if (this.userProfile) {
       this.events.emit('pdfVieweruser', this.userProfile);
+      this.userService.getSpecificReaderAnalysis(this.userProfile.id.toString(), this.eBookItem.id.toString()).subscribe(
+        (data: any) => {
+          this.events.emit('currentPage', data.currentPgae);
+        },
+        (error) => {
+          console.error('Error fetching user profile:', error);
+        }
+      )
       this.Router.navigate(['/read', this.eBookItem.id]);
     }
     else {
@@ -153,6 +161,7 @@ export class EBookDetailsComponent implements OnInit {
     dialog.showModal();
     const okButton = dialog.querySelector('.ok') as HTMLButtonElement;
     okButton.addEventListener('click', () => {
+      this.events.emit('openSigninDialog', '/reading/ebooks/' + this.eBookItem.id);
       this.Router.navigate(['/authentication']);
     });
   }
