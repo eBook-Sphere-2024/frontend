@@ -12,11 +12,16 @@ import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { EbookMakerModule } from './ebook-maker/ebook-maker.module';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     ButtonModule,
     DropDownButtonModule,
     EbookMakerModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration(), ToolbarService, PrintService, WordExportService

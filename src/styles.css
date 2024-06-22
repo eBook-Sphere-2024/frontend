@@ -20,6 +20,6 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #6bb7be;
+  background-color: hsl(230, 62%, 56%);;
   border-radius: 8px;
 }

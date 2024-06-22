@@ -39,8 +39,8 @@ section h1.dark-mode {
     margin-top: 25px;
     cursor: pointer;
     color: #fff;
-    background-color: #6bb7be;
-    border-color: #6bb7be;
+    background-color: hsl(230, 62%, 56%);;
+    border-color: hsl(230, 62%, 56%);;
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -94,9 +94,9 @@ section h1.dark-mode {
     max-width: 50%;
 }input[type="text"],input[type="email"],input[type="password"] {
     border: none;
-    border-bottom: 2px #63abb2 solid;
+    border-bottom: 2px hsl(230, 62%, 56%) solid;
 }label{
-    color: #63abb2;
+    color: hsl(230, 62%, 56%);
     font-family: 'Roboto', sans-serif;
     font-style: italic;
 }

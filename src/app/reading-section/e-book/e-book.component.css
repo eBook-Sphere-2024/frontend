@@ -14,7 +14,7 @@ margin-bottom: 3%;
 }
 
 .dark-light:checked ~ .filter-part .for-dropdown{
-background-color: #6bb7be;
+background-color: hsl(230, 62%, 56%);;
 color: #ffeba7;
 box-shadow: 0 12px 35px 0 rgba(16,39,112,.25);
 }
@@ -65,11 +65,11 @@ background-color: #102770;
 font-size: 22px;
 }
 .dark-light:checked ~ .filter-part .section-dropdown .for-dropdown-sub{
-color: #6bb7be;
+color: hsl(230, 62%, 56%);;
 }
 .dark-light:checked ~ .filter-part .section-dropdown .for-dropdown-sub:hover{
 color: #fff;
-background-color: #6bb7be;
+background-color: hsl(230, 62%, 56%);;
 }
 .blog_section{
   margin-bottom: 3%;

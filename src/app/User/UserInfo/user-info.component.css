@@ -20,8 +20,8 @@ nav {
     width: 270px;
     height: 90%;
     min-height: 350px;
-    color: white;
-    background: #63abb2;
+    color: hsl(230, 62%, 56%);
+    background: hsl(229, 82%, 87%);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 10px;
     transition: ease-in 0.3s;
@@ -70,7 +70,7 @@ nav .avatar {
     align-items: center;
     width: 95%;
     padding: 5px 5px;
-    color: white;
+    color: hsl(230, 62%, 56%);
     text-decoration: none;
     font-size: 23px;
     transition: ease-in 0.2s;
@@ -79,7 +79,7 @@ nav .avatar {
 }
 
 .sidebar-menu li a:hover {
-    color: #2f5154;
+    color: hsl(230deg 74.81% 69.36%);
     border: 1px solid white;
 }
 
@@ -98,7 +98,7 @@ nav .avatar {
     width: 40px;
     height: 40px;
     font-size: 18px;
-    background: #6bb7be;
+    background: hsl(230, 62%, 56%);;
     border-radius: 0 7px 7px 0;
     border: none;
     cursor: pointer;
