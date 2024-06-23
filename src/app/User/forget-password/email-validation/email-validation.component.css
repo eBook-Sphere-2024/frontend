@@ -50,7 +50,7 @@ section{
 }
 
 .email-validation .btnn:hover {
-    background-color: #305356;
+    background-color:hsl(230, 49%, 42%);
 }
 h4{
     color: rgb(139, 139, 139);

@@ -52,6 +52,7 @@ export class EBookFilterComponent {
       // Filter eBooks by category
       this.eBookService.filter_eBooks_by_category(value).subscribe(
         (data: any) => {
+          console.log(data);
           this.filter = data;
           this.eventService.emit('filter', this.filter);
         },

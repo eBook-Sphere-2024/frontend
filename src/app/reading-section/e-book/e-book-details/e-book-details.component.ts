@@ -131,6 +131,10 @@ export class EBookDetailsComponent implements OnInit {
 
   }
   favourite() {
+    if (!this.userProfile) {
+      this.opensigninDialog();
+      return;
+    }
     let data = {
       user_id: this.userProfile.id,
       ebook_id: this.eBookItem.id

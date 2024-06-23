@@ -1,8 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swiper from 'swiper';
 import 'swiper/css/bundle';
 import { UserServices } from '../User/user.service';
+import { EventService } from '../../shared/services/EventService';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +22,9 @@ export class HomeComponent implements AfterViewInit {
   ContactData: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private userService: UserServices
+    private userService: UserServices,
+    private events: EventService,
+    private router: Router,
   ) {
       /*=============== SEARCH ===============*/
 
@@ -85,5 +89,9 @@ export class HomeComponent implements AfterViewInit {
         
       }
     );
+  }
+  openEditor() {
+    this.events.emit('openEditor', true);
+    this.router.navigateByUrl('/maker/editor');
   }
 }

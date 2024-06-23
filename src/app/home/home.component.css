@@ -134,6 +134,7 @@ p{
   /*=============== BUTTON ===============*/
   .button {
     display: inline-block;
+    margin-right: 30px;
     background-color: hsl(230, 62%, 56%);
     color: hsl(0, 0%, 100%);
     font-weight:600;
@@ -151,7 +152,7 @@ p{
   }
   
   .about__data {
-    padding-top: 130px;
+    padding-top: 60px;
     text-align: center;
   }
   

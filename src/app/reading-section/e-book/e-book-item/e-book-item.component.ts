@@ -38,7 +38,8 @@ export class EBookItemComponent implements OnInit {
   }
   calculateProgress(eBook: any) {
     let progress = (eBook.highestProgess / eBook.totalPages) * 100;
-    return parseInt(progress.toFixed(0), 10);
+    progress = progress ? progress : 0;
+    return progress.toFixed(0) ? progress.toFixed(0) : '0';
   }
   getProgressColor(progress: any) {
     if (progress > 99) {

@@ -162,9 +162,9 @@ export class UserServices {
       catchError(error => this.handleError(error, 'updateReaderAnalysis (get)'))
     );
   }
-  BooksAnalysisNumbers(id: string) {
+  BooksAnalysisNumbers(user_id:string,book_id: string) {
     let options = this.getStandardOptions();
-    return this.http.get<any>('http://127.0.0.1:8000/api/BookAnalyticsNumbers/?author_id=' + id, options).pipe(
+    return this.http.get<any>('http://127.0.0.1:8000/api/BookAnalyticsNumbers/?author_id='+user_id+'&book_id='+book_id, options).pipe(
       catchError(error => this.handleError(error, 'BooksAnalysisNumbers'))
     );
   }

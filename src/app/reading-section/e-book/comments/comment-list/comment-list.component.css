@@ -339,7 +339,7 @@
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5em;
-    color: cadetblue;
+    color: hsl(230, 62%, 56%);
 }
 
 .button-containerr {
@@ -365,11 +365,12 @@
     background-color: #e0e0e0;
 }
 
+
 .button-containerr button:last-child {
     background-color: hsl(230, 62%, 56%);;
     color: #fff;
 }
 
 .button-containerr button:last-child:hover {
-    background-color: #4e888e;
+    background-color:  hsl(230, 50%, 32%);
 }

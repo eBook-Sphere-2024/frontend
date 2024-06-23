@@ -5,8 +5,8 @@
     <div class="detail-box">
         <h5>{{ eBook.title }}</h5>
         <h6>By {{eBook.author.username}}</h6>
-        <p *ngIf="userProfile && calculateProgress(eBook)>0" class="progressTXT" >{{calculateProgress(eBook)}}%</p>
-        <p *ngIf="userProfile && calculateProgress(eBook)>0" class="progress">
+        <p *ngIf="userProfile" class="progressTXT" >{{calculateProgress(eBook)}}%</p>
+        <p *ngIf="userProfile" class="progress">
             <span *ngIf="userProfile" class="progress-bar" [style.width]="calculateProgress(eBook) + '%'"
             [style.backgroundColor]="getProgressColor(calculateProgress(eBook))"
             ></span>
