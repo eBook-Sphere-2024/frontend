@@ -12,6 +12,7 @@ export class UserInfoComponent implements OnInit {
   @ViewChild('nav') nav!: ElementRef;
   @ViewChild('toggleBtn') toggleBtn!: ElementRef;
   @ViewChild('content') content!: ElementRef;
+  showDialog: boolean = false;
 
   constructor(private userService: UserServices) { }
   toggleVisibility() {
@@ -54,12 +55,13 @@ export class UserInfoComponent implements OnInit {
   uploadFile(fileInput: HTMLInputElement): void {
     if (fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
-
+      this.showDialog = true;
       this.userService.uploadAvatar(this.userProfile.id, file).subscribe(
         (response: any) => {
           console.log('Avatar uploaded successfully:', response);
           // Update the user profile avatar with the new one
           this.userProfile.avatar = response.avatarUrl; // Adjust according to your response structure
+          this.showDialog = false;
           window.location.reload();
         },
         (error: any) => {

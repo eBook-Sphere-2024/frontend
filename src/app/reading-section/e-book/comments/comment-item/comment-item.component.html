@@ -9,7 +9,8 @@
             (click)="toggleEditComment()">
             <i class="fa-solid fa-pen"></i>&nbsp;{{ isEditing ? 'Save' : 'Edit' }}
         </a>
-        <a class="reply control-icon" (click)="addReplyComment()">
+        <a class="reply control-icon" (click)="addReplyComment()"
+            *ngIf="!userProfile|| userProfile && comment.user.username !== userProfile.username">
             <i class="fa-solid fa-reply"></i>&nbsp;Reply
         </a>
     </div>

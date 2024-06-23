@@ -96,7 +96,6 @@ export class CommentItemComponent implements OnInit {
   }
 
   saveComment(): void {
-    console.log(this.comment);
     this.eBookService.edit_comment(this.comment).subscribe(
       () => {
         //window.location.reload();

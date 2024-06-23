@@ -40,13 +40,13 @@ export class EBookItemComponent implements OnInit {
     let progress = (eBook.highestProgess / eBook.totalPages) * 100;
     return parseInt(progress.toFixed(0), 10);
   }
-  getProgressColor(progress: any) { 
-    if(progress > 99) {
-    return 'limegreen';
-  }else if (progress > 0) {
+  getProgressColor(progress: any) {
+    if (progress > 99) {
+      return 'limegreen';
+    } else if (progress > 0) {
       return 'orange';
-    }else
-    return '#eeefef';
+    } else
+      return '#eeefef';
   }
 }
 

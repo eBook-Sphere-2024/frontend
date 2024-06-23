@@ -75,18 +75,21 @@ div.rightButtons {
     margin: 10px;
     cursor: pointer;
     padding: 10px 30px;
-    background-color: hsl(230, 62%, 56%);;
+    background-color: hsl(230, 62%, 56%);
+    ;
     color: #ffffff;
     font-weight: bold;
     border-radius: 0;
-    border: 1px solid hsl(230, 62%, 56%);;
+    border: 1px solid hsl(230, 62%, 56%);
+    ;
     height: 50px;
 }
 
 /* Hover effect */
 .bu:hover {
     background-color: #ffffff;
-    color: hsl(230, 62%, 56%);;
+    color: hsl(230, 62%, 56%);
+    ;
 }
 
 #publishDialog,
@@ -175,7 +178,8 @@ div.rightButtons {
 }
 
 .button-containerr button:last-child {
-    background-color: hsl(230, 62%, 56%);;
+    background-color: hsl(230, 62%, 56%);
+    ;
     color: #fff;
 }
 
@@ -204,5 +208,27 @@ div.rightButtons {
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5em;
+    color: hsl(230, 62%, 56%);
+}
+
+
+/* Dialog spinner */
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 37%;
+    width: 25%;
+    height: 25%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.circle {
     color: hsl(230, 62%, 56%);
 }

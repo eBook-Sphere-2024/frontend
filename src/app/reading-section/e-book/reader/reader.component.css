@@ -1,5 +1,26 @@
-section{
+section {
     height: 200vh;
     margin-top: 58px;
     margin-bottom: 2px;
+}
+
+/* Dialog spinner */
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 37%;
+    width: 25%;
+    height: 25%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.575);
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.circle {
+    color: hsl(230, 62%, 56%);
 }
