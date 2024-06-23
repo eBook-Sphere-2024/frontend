@@ -41,6 +41,7 @@ export class EditorComponent implements OnInit {
   previousUrl: string = '';
   ebooksavedTitle: string = '';
   alertMessage: string = '';
+  showDialog: boolean = false; // Control variable for showing the dialog
   private docBlobTemp: Promise<Blob> = Promise.resolve(new Blob());
 
   constructor(private docxToEpubService: DocxToEpubService, private converterService: DocxToOdtConverterService, private locationStrategy: LocationStrategy, private userService: UserServices, private ebookService: EBookService, private router: Router, private events: EventService, private ebookMakerService: EbookMakerService) {
@@ -65,6 +66,7 @@ export class EditorComponent implements OnInit {
   public toolbarItems = ['Undo', 'Redo', 'Separator', 'Image', 'Table', 'Hyperlink', 'Bookmark', 'TableOfContents', 'Separator', 'Header', 'Footer', 'PageSetup', 'PageNumber', 'Break', 'Separator', 'Find', 'Separator', 'Comments', 'TrackChanges', 'Separator', 'LocalClipboard', 'RestrictEditing', 'Separator', 'FormFields', 'UpdateFields']
 
   Opentemplate() {
+    this.showDialog = true; // Show dialog when loading content
     this.ebookMakerService.getTemplateContent(this.template.content).subscribe(
       (data: Blob) => {
         const reader = new FileReader();
@@ -77,6 +79,8 @@ export class EditorComponent implements OnInit {
           }
         };
         reader.readAsText(data);
+
+        this.showDialog = false; // Hide dialog when content is loaded
       },
       (error: any) => {
         console.error('Error loading template:', error);
@@ -112,7 +116,9 @@ export class EditorComponent implements OnInit {
   public onFileOpenClick(): void {
     // Open file picker.
     if (this.userProfile) {
+
       (document.getElementById('open_sfdt') as HTMLElement).click();
+
     } else {
       this.opensigninDialog();
     }
@@ -120,6 +126,7 @@ export class EditorComponent implements OnInit {
   }
 
   public onFileChange(e: any): void {
+    this.showDialog = true; // Show dialog when loading contents
     if (e.target.files[0]) {
       // Get the selected file.
       let file = e.target.files[0];
@@ -130,12 +137,13 @@ export class EditorComponent implements OnInit {
           this.isOpenEbook = true;
           // Open the sfdt document in Document Editor.
           this.editorObj.documentEditor.open(contents);
-
+          this.showDialog = false; // Hide dialog when content is loaded
         };
         this.isOpenEbook = true;
         // Read the input file.
         fileReader.readAsText(file);
         this.editorObj.documentEditor.documentName = file.name.substr(0, file.name.lastIndexOf('.'));
+
       }
     }
   }
@@ -163,11 +171,15 @@ export class EditorComponent implements OnInit {
       if (!this.ebooksavedTitle) {
         return;
       }
+
+      this.showDialog = true; // Show dialog when loading contents
+
       const fileHandle = await dirHandle.getFileHandle(this.ebooksavedTitle + '.sfdt', { create: true });
       const writable = await fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
       this.fileHandle = fileHandle;
+      this.showDialog = false; // Hide dialog when content is loaded
       this.alertMessage = 'Document saved successfully.';
       this.alertDialog();
 
@@ -178,9 +190,11 @@ export class EditorComponent implements OnInit {
 
   async updateFile(content: string) {
     try {
+      this.showDialog = true; // Show dialog when loading contents
       const writable = await this.fileHandle.createWritable();
       await writable.write(content);
       await writable.close();
+      this.showDialog = false; // Hide dialog when content is loaded
       this.alertMessage = 'Document updated successfully.';
       this.alertDialog();
     } catch (err) {
@@ -286,6 +300,7 @@ export class EditorComponent implements OnInit {
         return;
       }
     }
+
     if (event.item.properties.id === 'docx') {
       this.editorObj.documentEditor.save(this.ebooksavedTitle, 'Docx');
     } else if (event.item.properties.id === 'txt') {
@@ -297,6 +312,7 @@ export class EditorComponent implements OnInit {
     } else if (event.item.properties.id === 'odt') {
       this.onSaveOdt(this.ebooksavedTitle);
     }
+
   }
   public onExportAsPDF(filename: string) {
     let obj = this;
@@ -338,6 +354,7 @@ export class EditorComponent implements OnInit {
           loadedPage++;
           if (loadedPage == count) {
             pdfdocument.save(filename + '.pdf');
+
           }
         };
       }, 500);
@@ -397,6 +414,7 @@ export class EditorComponent implements OnInit {
   }
 
   async publish(entry: any) {
+    this.showDialog = true; // Show dialog when loading content
     const pageCount: number = this.editorObj.documentEditor.pageCount;
     this.editorObj.documentEditor.documentEditorSettings.printDevicePixelRatio = 3;
     const images: HTMLImageElement[] = [];
@@ -439,6 +457,7 @@ export class EditorComponent implements OnInit {
     // Call service to publish document
     this.ebookMakerService.publish(pdfBlob, this.ebookTitle, this.userProfile.id.toString(), this.description, this.selectedCategories).subscribe(
       (_res: any) => {
+        this.showDialog = false; // Hide dialog when content is loaded
         this.alertMessage = 'Document published successfully and it will be reviewed by our team.';
         this.alertDialog();
       },

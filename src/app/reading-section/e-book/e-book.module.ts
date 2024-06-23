@@ -13,6 +13,7 @@ import { CommentsModule } from './comments/comments.module';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ReaderComponent } from './reader/reader.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     RouterModule,
     BannerModule,
     CommentsModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     EBookComponent,
