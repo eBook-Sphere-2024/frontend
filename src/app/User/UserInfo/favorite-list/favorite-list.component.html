@@ -9,7 +9,6 @@
                     <div class="detail-box">
                         <h5>{{ eBook.title }}</h5>
                         <h6>{{ eBook.author.username }}</h6>
-                        <ng-container *ngIf="calculateProgress(eBook) > 0">
                             <p class="progressTXT">{{ calculateProgress(eBook) }}%</p>
                             <p class="progress">
                                 <span class="progress-bar"
@@ -17,7 +16,6 @@
                                       [style.backgroundColor]="getProgressColor(calculateProgress(eBook))">
                                 </span>
                             </p>
-                        </ng-container>
                         <p>{{ eBook.description }}</p>
                         <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
                         <a (click)="removeFavorite(eBook)" class="remove">Remove</a>

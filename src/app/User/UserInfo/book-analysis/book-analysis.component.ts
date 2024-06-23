@@ -10,7 +10,7 @@ import { UserServices } from '../../user.service';
   styleUrls: ['./book-analysis.component.css']
 })
 export class BookAnalysisComponent implements OnInit, AfterViewInit {
-  commentsAnalysis: number[] = [];
+  commentsAnalysis: number[] = [0, 0]; // Initialize with zeros
   BookAnalysis: number[] = [];
   barChart: ApexCharts | null = null;
   areaChart: ApexCharts | null = null;
@@ -19,26 +19,6 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private bookService: EBookService, private userService: UserServices) {}
 
   ngOnInit() {
-    const token = sessionStorage.getItem('Token');
-    if (token) {
-      this.userService.userProfile(token).subscribe(
-        (userData: any) => {
-          this.userService.BooksAnalysisNumbers(userData.id).subscribe(
-            (data: any) => {
-              console.log('Fetched Numbers:', data);
-              this.Numbers = data;
-            },
-            (error) => {
-              console.error('Error fetching book analysis Numbers:', error);
-            }
-          );
-        },
-        (error) => {
-          console.error('Error fetching user profile:', error);
-        }
-      );
-    }
-
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       if (id) {
@@ -50,11 +30,13 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
           },
           (error) => {
             console.error('Error fetching comment analysis:', error);
+            this.commentsAnalysis = [0, 0]; // Set to zeros on error
+            this.initializeBarChart(); // Initialize the bar chart with zeros
           }
         );
 
         this.bookService.geteBookAnalysis(id).subscribe(
-          (data: any) => {
+          (data: any) => {          
             console.log('Fetched Book data:', data);
             this.BookAnalysis = data.map((item: any) => {
               const progress = (item.highest_progress / item.totalPages) * 100;
@@ -67,6 +49,28 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
             console.error('Error fetching book analysis:', error);
           }
         );
+
+        const token = sessionStorage.getItem('Token');
+        if (token) {
+          this.userService.userProfile(token).subscribe(
+            (userData: any) => {
+              console.log('User Data:', userData.id);
+              console.log('Book ID:', id);
+              this.userService.BooksAnalysisNumbers(userData.id.toString(), id).subscribe(
+                (data: any) => {
+                  console.log('Fetched Numbers:', data);
+                  this.Numbers = data;
+                },
+                (error) => {
+                  console.error('Error fetching book analysis Numbers:', error);
+                }
+              );
+            },
+            (error) => {
+              console.error('Error fetching user profile:', error);
+            }
+          );
+        }
       } else {
         console.error('Invalid book ID');
       }

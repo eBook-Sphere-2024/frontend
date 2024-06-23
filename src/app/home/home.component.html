@@ -8,12 +8,10 @@
         </h1>
   
         <p class="home__description">
-          Find the best e-books from your favorite writers, explore hundreds
-          of books with all possible categories, take advantage of the 50%
-          discount and much more.
+          Welcome to Ebook Maker, your go-to platform for discovering, reading, and publishing books online. Explore a diverse library, download your favorites, and track your reading progress effortlessly. Create your profile, save your favorite books, and join our community of readers and authors. Start your next reading adventure with Ebook Maker today.
         </p>
-  
-        <a href="#" class="button">Explore Now</a>
+        <a [routerLink]="['/reading']" class="button">Read Books</a>
+        <a (click)="$event.preventDefault(); openEditor()" class="button">eBook Maker</a>
       </div>
   
       <div class="home__images">
@@ -37,7 +35,7 @@
     </div>
   </section>
   <!--==================== ABOUT ====================-->
-<section class="about section" id="about">
+<section class="about section" id="aboutUs">
     <div class="about__container container grid2">
         <div class="about__images">
             <img
@@ -52,17 +50,16 @@
             />
           </div>
       <div class="about__data">
-        <h2 class="about__title section__title">Up To 50% Discound</h2>
+        <h2 class="about__title section__title">ABOUT US</h2>
         <p class="about__description">
-          Take advantage of the discount days we have for you, buy books from
-          your favorite writers, the more you buy, the more discounts we have
-          for you.
+          At Ebook Maker, we believe in the power of stories to inspire, educate, and entertain. Our mission is to create a dynamic platform where readers and authors can come together to share their love for books. We offer a comprehensive suite of features, from a robust search engine and easy download options to detailed book analysis and personalized reading progress tracking. Our community-centric approach allows users to build profiles, curate favorite book lists, and publish their own works, making literature accessible and engaging for everyone. Join us in celebrating the written word and become a part of our growing family of book enthusiasts.
         </p>
-        <a href="#" class="button">Shop Now</a>
+        <a [routerLink]="['/reading']" class="button">Read Books</a>
+        <a (click)="$event.preventDefault(); openEditor()" class="button">eBook Maker</a>
       </div>
     </div>
   </section>
-  <section class="ftco-section">
+  <section class="ftco-section" id="contactUs">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-5">
@@ -129,7 +126,7 @@
                                             </div>
                                         </div>
                                         <div class="alert">
-                                            <small *ngIf="sendSuccefully" class="sucess"><i class="fa-solid fa-square-check"></i>Password changed
+                                            <small *ngIf="sendSuccefully" class="sucess"><i class="fa-solid fa-square-check"></i>Massage sent
                                               successfully!</small>
                                             <small *ngIf="sendFail" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ failMessage }}</small>
                                           </div>

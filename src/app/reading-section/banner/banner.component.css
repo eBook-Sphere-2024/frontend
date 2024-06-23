@@ -53,14 +53,14 @@
 }
 
 #section-1 .more-info i {
-  color: #22b3c1;
+  color: hsl(230, 62%, 56%);
   font-size: 24px;
   width: 60px;
   height: 60px;
   display: inline-block;
   text-align: center;
   line-height: 58px;
-  border: 1px solid #22b3c1;
+  border: 1px solid hsl(230, 62%, 56%);
   border-radius: 50%;
   float: left;
   margin-right: 20px;
@@ -69,7 +69,7 @@
 #section-1 .more-info h4 {
   text-align: left;
   font-size: 20px;
-  color: #22b3c1;
+  color: hsl(230, 62%, 56%);
   font-weight: 700;
   line-height: 28px;
 }
@@ -86,8 +86,8 @@
 }
 
 #section-1 .main-button a:hover {
-  background-color: #22b3c1;
-  border-color: #22b3c1;
+  background-color: hsl(230, 62%, 56%);
+  border-color: hsl(230, 62%, 56%);
   color: #fff;
   opacity: 0.8;
 }
@@ -119,8 +119,8 @@
 }
 
 #section-1 .content-slider .slider .banner .banner-inner-wrapper .learn-more-button a:hover {
-  color: #22b3c1;
-  border-color: #22b3c1;
+  color: hsl(230, 62%, 56%);
+  border-color: hsl(230, 62%, 56%);
   transition: 0.3s;
 }
 
@@ -194,7 +194,7 @@
   width: inherit;
   height: inherit;
   margin-left: -100%;
-  background: #22b3c1;
+  background: hsl(230, 62%, 56%);
 }
 
 #section-1 .content-slider nav .controls label span.text {
@@ -206,7 +206,7 @@
 }
 
 #section-1 .content-slider nav .controls label:hover {
-  color: #22b3c1;
+  color: hsl(230, 62%, 56%);
 }
 
 #section-1 .content-slider #banner1:checked~.slider #top-banner-1,
@@ -263,7 +263,7 @@
 
 .call-to-action .border-button a:hover {
   background-color: #fff;
-  color: #22b3c1;
+  color: hsl(230, 62%, 56%);
 }
 
 .page-heading .border-button a {
@@ -272,7 +272,7 @@
 }
 
 .page-heading .border-button a:hover {
-  border-color: #22b3c1;
+  border-color: hsl(230, 62%, 56%);
 }
 
 .border-button a {
@@ -302,5 +302,5 @@
   font-size: 20px;
   font-weight: 400;
   font-style: italic;
-  color: #22b3c1;
+  color: hsl(230, 62%, 56%);
 }
