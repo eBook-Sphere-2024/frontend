@@ -1,4 +1,4 @@
-<body>
+<div class="parent-container">
   <nav #nav *ngIf="userProfile">
     <button type="button" id="toggle-btn" (click)="toggleVisibility()" #toggleBtn>
       <i class="fa fa-bars"></i>
@@ -22,7 +22,12 @@
   <section #content>
     <router-outlet></router-outlet>
   </section>
-  <div class="dialog" *ngIf="showDialog">
-    <div class="spinner-border circle"></div>
+  <div class="overlay" *ngIf="showDialog">
+    <div class="dialog">
+      <div>
+        <h2>Please wait...</h2>
+      </div>
+      <div class="spinner-border circle"></div>
+    </div>
   </div>
-</body>
+</div>
