@@ -1,19 +1,22 @@
 <main>
-<section class="home section" id="home">
+  <section class="home section" id="home">
     <div class="home_container container grid">
       <div class="home__data">
         <h1 class="home__title">
           Browse & <br />
           Select E-Books
         </h1>
-  
+
         <p class="home__description">
-          Welcome to Ebook Maker, your go-to platform for discovering, reading, and publishing books online. Explore a diverse library, download your favorites, and track your reading progress effortlessly. Create your profile, save your favorite books, and join our community of readers and authors. Start your next reading adventure with Ebook Maker today.
+          Welcome to Ebook Sphere, your go-to platform for discovering, reading, and publishing books online. Explore a
+          diverse library, download your favorites, and track your reading progress effortlessly. Create your profile,
+          save your favorite books, and join our community of readers and authors. Start your next reading adventure
+          with Ebook Maker today.
         </p>
         <a [routerLink]="['/reading']" class="button">Read Books</a>
         <a (click)="$event.preventDefault(); openEditor()" class="button">eBook Maker</a>
       </div>
-  
+
       <div class="home__images">
         <div class="home__swiper swiper">
           <div class="swiper-wrapper">
@@ -35,24 +38,22 @@
     </div>
   </section>
   <!--==================== ABOUT ====================-->
-<section class="about section" id="aboutUs">
+  <section class="about section" id="aboutUs">
     <div class="about__container container grid2">
-        <div class="about__images">
-            <img
-              src="assets/images/discount-book-1.png"
-              alt="discound book image"
-              class="about__img-1"
-            />
-            <img
-              src="assets/images/discount-book-2.png"
-              alt="discound book image"
-              class="about__img-2"
-            />
-          </div>
+      <div class="about__images">
+        <img src="assets/images/discount-book-1.png" alt="discound book image" class="about__img-1" />
+        <img src="assets/images/discount-book-2.png" alt="discound book image" class="about__img-2" />
+      </div>
       <div class="about__data">
         <h2 class="about__title section__title">ABOUT US</h2>
         <p class="about__description">
-          At Ebook Maker, we believe in the power of stories to inspire, educate, and entertain. Our mission is to create a dynamic platform where readers and authors can come together to share their love for books. We offer a comprehensive suite of features, from a robust search engine and easy download options to detailed book analysis and personalized reading progress tracking. Our community-centric approach allows users to build profiles, curate favorite book lists, and publish their own works, making literature accessible and engaging for everyone. Join us in celebrating the written word and become a part of our growing family of book enthusiasts.
+          At Ebook Sphere, we believe in the power of stories to inspire, educate, and entertain. Our mission is to
+          create a dynamic platform where readers and authors can come together to share their love for books. We offer
+          a comprehensive suite of features, from a robust search engine and easy download options to detailed book
+          analysis and personalized reading progress tracking. Our community-centric approach allows users to build
+          profiles, curate favorite book lists, and publish their own works, making literature accessible and engaging
+          for everyone. Join us in celebrating the written word and become a part of our growing family of book
+          enthusiasts.
         </p>
         <a [routerLink]="['/reading']" class="button">Read Books</a>
         <a (click)="$event.preventDefault(); openEditor()" class="button">eBook Maker</a>
@@ -61,87 +62,100 @@
   </section>
   <section class="ftco-section" id="contactUs">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <h2 class="heading-section">Contact Us</h2>
-            </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Contact Us</h2>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                    <div class="row no-gutters mb-5">
-                        <div class="col-md-7">
-                            <div class="contact-wrap w-100 p-md-5 p-4">
-                                <div id="form-message-warning" class="mb-4"></div> 
-                                <form [formGroup]="ContactData" (ngSubmit)="sendMail()" id="contactForm" name="contactForm" class="contactForm">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="label" for="name">Full Name</label>
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Name" formControlName="name">
-                                                <div *ngIf="ContactData.get('name')?.invalid && (ContactData.get('name')?.touched || ContactData.get('name')?.dirty)">
-                                                    <small class="text-danger" *ngIf="ContactData.get('name')?.hasError('required')">Full Name is
-                                                        required</small>
-                                                    <small class="text-danger" *ngIf="ContactData.get('name')?.hasError('pattern')">Full Name must be only
-                                                        characters</small>
-                                                </div>
-                                            </div>
-                                                
-                                        </div>
-                                        <div class="col-md-6"> 
-                                            <div class="form-group">
-                                                <label class="label" for="email">Email Address</label>
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" formControlName="email">
-                                                <div *ngIf="ContactData.get('email')?.invalid && (ContactData.get('email')?.touched || ContactData.get('email')?.dirty)">
-                                                    <small class="text-danger" *ngIf="ContactData.get('email')?.hasError('required')">Email is
-                                                        required</small>
-                                                    <small class="text-danger" *ngIf="ContactData.get('email')?.hasError('email')">Email is invalid</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="label" for="subject">Subject</label>
-                                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" formControlName="subject">
-                                                <div *ngIf="ContactData.get('subject')?.invalid && (ContactData.get('subject')?.touched || ContactData.get('subject')?.dirty)">
-                                                    <small class="text-danger" *ngIf="ContactData.get('subject')?.hasError('required')">Subject is
-                                                        required</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="label" for="#">Message</label>
-                                                <textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message" formControlName="message"></textarea>
-                                                <div *ngIf="ContactData.get('message')?.invalid && (ContactData.get('message')?.touched || ContactData.get('message')?.dirty)">
-                                                    <small class="text-danger" *ngIf="ContactData.get('message')?.hasError('required')">Message is
-                                                        required</small>
-                                                        <small class="text-danger" *ngIf="ContactData.get('message')?.hasError('minlength')">Message must be at least 10 characters</small>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <input type="submit" value="Send Message" class="btn btn-primary">
-                                                <div class="submitting"></div>
-                                            </div>
-                                        </div>
-                                        <div class="alert">
-                                            <small *ngIf="sendSuccefully" class="sucess"><i class="fa-solid fa-square-check"></i>Massage sent
-                                              successfully!</small>
-                                            <small *ngIf="sendFail" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ failMessage }}</small>
-                                          </div>
-                                    </div>
-                                </form>
-                            </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="row no-gutters mb-5">
+            <div class="col-md-7">
+              <div class="contact-wrap w-100 p-md-5 p-4">
+                <div id="form-message-warning" class="mb-4"></div>
+                <form [formGroup]="ContactData" (ngSubmit)="sendMail()" id="contactForm" name="contactForm"
+                  class="contactForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="name">Full Name</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name"
+                          formControlName="name">
+                        <div
+                          *ngIf="ContactData.get('name')?.invalid && (ContactData.get('name')?.touched || ContactData.get('name')?.dirty)">
+                          <small class="text-danger" *ngIf="ContactData.get('name')?.hasError('required')">Full Name is
+                            required</small>
+                          <small class="text-danger" *ngIf="ContactData.get('name')?.hasError('pattern')">Full Name must
+                            be only
+                            characters</small>
                         </div>
-                        <div class="col-md-5 d-flex align-items-stretch">
-                            <div id="map">
-                  </div>
+                      </div>
+
                     </div>
-                    
-                </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="label" for="email">Email Address</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email"
+                          formControlName="email">
+                        <div
+                          *ngIf="ContactData.get('email')?.invalid && (ContactData.get('email')?.touched || ContactData.get('email')?.dirty)">
+                          <small class="text-danger" *ngIf="ContactData.get('email')?.hasError('required')">Email is
+                            required</small>
+                          <small class="text-danger" *ngIf="ContactData.get('email')?.hasError('email')">Email is
+                            invalid</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="subject">Subject</label>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                          formControlName="subject">
+                        <div
+                          *ngIf="ContactData.get('subject')?.invalid && (ContactData.get('subject')?.touched || ContactData.get('subject')?.dirty)">
+                          <small class="text-danger" *ngIf="ContactData.get('subject')?.hasError('required')">Subject is
+                            required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="label" for="#">Message</label>
+                        <textarea name="message" class="form-control" id="message" cols="30" rows="4"
+                          placeholder="Message" formControlName="message"></textarea>
+                        <div
+                          *ngIf="ContactData.get('message')?.invalid && (ContactData.get('message')?.touched || ContactData.get('message')?.dirty)">
+                          <small class="text-danger" *ngIf="ContactData.get('message')?.hasError('required')">Message is
+                            required</small>
+                          <small class="text-danger" *ngIf="ContactData.get('message')?.hasError('minlength')">Message
+                            must be at least 10 characters</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="submit" value="Send Message" class="btn btn-primary">
+                        <div class="submitting"></div>
+                      </div>
+                    </div>
+                    <div class="alert">
+                      <small *ngIf="sendSuccefully" class="sucess"><i class="fa-solid fa-square-check"></i>Massage sent
+                        successfully!</small>
+                      <small *ngIf="sendFail" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ failMessage
+                        }}</small>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
+            <div class="col-md-5 d-flex align-items-stretch">
+              <div id="map">
+              </div>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
-</section>
+  </section>
 </main>

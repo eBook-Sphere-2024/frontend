@@ -16,6 +16,7 @@ export class EBookDetailsComponent implements OnInit {
   eBookItem!: eBookItem;
   userProfile!: User;
   isFavourite: boolean = false;
+  showDialog: boolean = false; // Control variable for showing the dialog
   stars = [1, 2, 3, 4, 5];
   constructor(private route: ActivatedRoute, private eBookService: EBookService, private Router: Router, private userService: UserServices, private events: EventService) { }
 
@@ -106,6 +107,7 @@ export class EBookDetailsComponent implements OnInit {
 
   download() {
     if (this.userProfile) {
+      this.showDialog = true; // Show dialog when loading contents
       // Assuming the fileId is already fetched and stored in eBookItem.content
       this.eBookService.download_eBook(this.eBookItem.content).subscribe(
         (data: any) => {
@@ -120,11 +122,13 @@ export class EBookDetailsComponent implements OnInit {
 
           // Programmatically click the link to initiate the download
           link.click();
+          this.showDialog = false; // Hide dialog when contents are downloaded
         },
         (error: any) => {
           console.error('Error downloading eBook:', error);
         }
       );
+
     } else {
       this.opensigninDialog();
     }

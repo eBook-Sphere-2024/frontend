@@ -1,10 +1,17 @@
-<section>
-    <ngx-extended-pdf-viewer [src]="pdfSrc" [(page)]="currentPage" [showDrawEditor]="false" [showStampEditor]="false"
-        [showTextEditor]="false" [showOpenFileButton]="false" [showPrintButton]="false" [showPropertiesButton]="false"
-        [showDownloadButton]="false" [showHighlightEditor]="false" (pageChange)="onPageChange($event)"
-        (pagesLoaded)="onPagesLoaded($event)"></ngx-extended-pdf-viewer>
-</section>
+<div class="parent-container">
+    <section>
+        <ngx-extended-pdf-viewer [src]="pdfSrc" [(page)]="currentPage" [showDrawEditor]="false"
+            [showStampEditor]="false" [showTextEditor]="false" [showOpenFileButton]="false" [showPrintButton]="false"
+            [showPropertiesButton]="false" [showDownloadButton]="false" [showHighlightEditor]="false"
+            (pageChange)="onPageChange($event)" (pagesLoaded)="onPagesLoaded($event)"></ngx-extended-pdf-viewer>
+    </section>
 
-<div class="dialog" *ngIf="showDialog">
-    <div class="spinner-border circle"></div>
+    <div class="overlay" *ngIf="showDialog">
+        <div class="dialog">
+            <div>
+                <h2>Please wait...</h2>
+            </div>
+            <div class="spinner-border circle"></div>
+        </div>
+    </div>
 </div>

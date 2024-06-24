@@ -108,7 +108,7 @@ div.rightButtons {
 
 #publishDialog h2,
 #signinDialog h2,
-#alertDialog h2 ,
+#alertDialog h2,
 .dialog h2 {
     font-family: cursive;
     font-style: italic;
@@ -217,6 +217,25 @@ div.rightButtons {
 
 
 /* Dialog spinner */
+.parent-container {
+    position: relative;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(121, 121, 121, 0.5);
+    /* Semi-transparent background */
+    z-index: 9998;
+    /* Ensure it's on top of other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .dialog {
     position: fixed;
     top: 50%;
@@ -231,6 +250,19 @@ div.rightButtons {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    flex-direction: column;
+}
+
+.dialog h2 {
+    font-family: cursive;
+    font-style: italic;
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    color: cadetblue;
 }
 
 .circle {

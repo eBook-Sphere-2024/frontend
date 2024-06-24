@@ -1,22 +1,22 @@
 <section class="blog_section">
     <div class="container">
         <div class="row">
-            <div *ngFor="let eBook of eBooks" >
-            <div class="col-md-6 col-lg-4 mx-auto" *ngIf="eBook.is_reviewed">
-                <div class="box" >
-                    <div class="img-box">
-                        <img [src]="eBook.cover" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>{{ eBook.title }}</h5>
-                        <h6>By You</h6>
-                        <p>{{ eBook.description }}</p>
-                        <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
-                        <a [routerLink]="['/User/BookAnalysis', eBook.id]" style="margin-left: 150px;">Dashboard</a>
+            <div *ngFor="let eBook of eBooks">
+                <div class="col-md-6 col-lg-4 mx-auto" *ngIf="eBook.is_reviewed">
+                    <div class="box">
+                        <div class="img-box">
+                            <img [src]="eBook.cover" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h5>{{ eBook.title }}</h5>
+                            <h6>By You</h6>
+                            <p>{{ eBook.description }}</p>
+                            <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
+                            <a [routerLink]="['/User/BookAnalysis', eBook.id]" style="margin-left: 150px;">Dashboard</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-  </section>
+</section>
