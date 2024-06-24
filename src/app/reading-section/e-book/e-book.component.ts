@@ -27,7 +27,7 @@ export class EBookComponent implements OnInit {
       if (!this.filterReceived) { // Load books only if no search results
         this.loadBooks();
       }
-    }, 30);
+    }, 500);
   }
 
   private loadBooks(): void {

@@ -174,9 +174,9 @@ nav .avatar {
     margin-bottom: 20px;
     text-align: center;
     font-size: 1.5em;
-    color: cadetblue;
+    color: hsl(230, 62%, 56%);
 }
 
 .circle {
-    color: cadetblue;
+    color: hsl(230, 62%, 56%);
 }

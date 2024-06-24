@@ -19,4 +19,12 @@ export class EventService {
             }
         });
     }
+
+  emitNavigation(url: string) {
+    this.emit('navigation', url);
+  }
+
+  onNavigation(callback: (url: string) => void) {
+    this.listen('navigation', callback);
+  }
 }

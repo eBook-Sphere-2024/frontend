@@ -1,3 +1,4 @@
+// nav.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from '../../shared/services/EventService';
@@ -54,6 +55,12 @@ export class NavComponent implements OnInit {
     }
   }
 
+  navigate(url: string, fragment: string = '') {
+    this.router.navigate([url], { fragment: fragment }).then(() => {
+      this.events.emitNavigation(url);
+    });
+  }
+
   openEditor() {
     this.events.emit('openEditor', true);
     this.router.navigateByUrl('/maker/editor');
@@ -83,41 +90,42 @@ export class NavComponent implements OnInit {
 
     switch (item.toLowerCase()) {
       case 'contact us':
-        this.router.navigate(['/Home'], { fragment: 'contactUs' });
+        this.navigate('/Home', 'contactUs');
         break;
       case 'about us':
-        this.router.navigate(['/Home'], { fragment: 'aboutUs' });
+        this.navigate('/Home', 'aboutUs');
         break;
       case 'home':
-        this.router.navigate(['/Home']);
+        this.navigate('/Home');
         break;
-      case 'Search for a book':
-        this.router.navigate(['/reading']);
+      case 'search for a book':
+        this.navigate('/reading');
         break;
       case 'related book':
-        this.router.navigate(['/reading']);
+        this.navigate('/reading');
         break;
       case 'books':
-        this.router.navigate(['/reading']);
+        this.navigate('/reading');
         break;
       case 'read books':
-        this.router.navigate(['/reading']);
+        this.navigate('/reading');
         break;
       case 'ebook maker':
-        this.router.navigate(['/maker/editor']);
+        this.navigate('/maker/editor');
         break;
       case 'templates':
-        this.router.navigate(['/maker/templates']);
+        this.navigate('/maker/templates');
         break;
       case 'sign in':
-        this.router.navigate(['/authentication']);
+        this.navigate('/authentication');
         break;
       case 'sign up':
-        this.router.navigate(['/authentication']);
+        this.navigate('/authentication');
         break;
       default:
         break;
     }
+
     let searchClose = document.getElementById('search-close');
     if (searchClose) {
       searchClose.click();
