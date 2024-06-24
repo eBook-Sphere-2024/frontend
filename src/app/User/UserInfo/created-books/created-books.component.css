@@ -2,6 +2,7 @@
 
 .blog_section {
   width: 65%;
+  height: auto;
   margin-left: 25%;
   margin-bottom: 3%;
   margin-top: 5%;
@@ -32,7 +33,6 @@
   margin-right: auto !important;
   margin-left: auto !important;
 }
-
 
 *,
 ::after,
@@ -109,6 +109,10 @@
   text-decoration: none;
 }
 
+.remove {
+  margin-left: 130px;
+}
+
 .detail-box a:hover {
   background-color: #ffffff;
   color: hsl(230, 62%, 56%);;
@@ -118,4 +122,29 @@ h6 {
   color: #4f6365;
   font-style: italic;
   font-size: 20px;
+}
+
+.progress {
+  width: 90%;
+  margin-bottom: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #eeefef;
+  position: relative;
+}
+
+.progressTXT {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #444545;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 5px;
+  background-color: hsl(230, 62%, 56%);;
+  transition: width 0.3s ease-in-out;
 }

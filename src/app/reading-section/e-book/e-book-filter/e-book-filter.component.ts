@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,OnInit} from '@angular/core';
 import { EBookService } from '../e-book.service';
 import { Category } from '../../../../shared/models/Category';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -9,7 +9,7 @@ import { EventService } from '../../../../shared/services/EventService';
   templateUrl: './e-book-filter.component.html',
   styleUrls: ['./e-book-filter.component.css']
 })
-export class EBookFilterComponent {
+export class EBookFilterComponent implements OnInit {
   listFilter: string = '0';
   filter: any;
 
@@ -35,7 +35,6 @@ export class EBookFilterComponent {
       }
     });
   }
-
   updateFilter(value: any) {
     if (value === '0') {
       // Handle the "All" category case
