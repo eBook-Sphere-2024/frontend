@@ -7,38 +7,38 @@
     <div class="nav__menu">
       <ul class="nav__list">
         <li class="nav__item">
-          <a (click)="navigate('/Home')" class="nav__link active-link">
+          <a (click)="navigate('/Home')" class="nav__link active-link" id="home">
             <i class="ri-home-line"></i>
             <span>Home</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a (click)="navigate('/maker/editor')" class="nav__link">
+          <a (click)="navigate('/maker/editor')" class="nav__link" id="maker">
             <i class="ri-book-3-line"></i>
             <span>Maker</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a (click)="navigate('/reading')" class="nav__link">
+          <a (click)="navigate('/reading')" class="nav__link" id="reading">
             <i class="ri-price-tag-3-line"></i>
             <span>Reading</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a (click)="navigate('/Home', 'contactUs')" class="nav__link">
+          <a (click)="navigate('/Home', 'contactUs')" class="nav__link" id="contact">
             <i class="ri-bookmark-line"></i>
             <span>Contact Us</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a class="nav__link">
+          <a class="nav__link" id="user">
             <span>User</span>
           </a>
-          <ul class="dropdown">
+          <ul class="dropdown" >
             <li><a (click)="navigate('/User/profile')" *ngIf="userProfile">Profile</a></li>
             <li><a (click)="logout()" *ngIf="userProfile">Logout</a></li>
             <li><a (click)="browseTo();navigate('/authentication')" *ngIf="!userProfile">Sign in</a></li>
