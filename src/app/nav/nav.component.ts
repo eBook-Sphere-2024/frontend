@@ -68,7 +68,31 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   navigate(url: string, fragment: string = '') {
-    this.router.navigate([url], { fragment: fragment }).then(() => {
+    let home = document.getElementById('home');
+    let maker = document.getElementById('maker');
+    let reading = document.getElementById('reading');
+    let contact = document.getElementById('contact');
+    let user = document.getElementById('user');
+    //remove active class from all elementa they have same class .nav__link
+    const navItems = document.querySelectorAll('.nav__link');
+    navItems.forEach(item => {
+      item.classList.remove('active-link');
+    });
+    //add active class to current element
+    if (url === '/Home' && fragment === 'contactUs') {
+      contact?.classList.add('active-link');
+    }else if (url === '/Home') {
+      home?.classList.add('active-link');
+    } else if (url === '/maker/editor') {
+      maker?.classList.add('active-link');
+    } else if (url === '/reading') {
+      reading?.classList.add('active-link');
+    } else if (url === '/User/profile' || url === '/authentication') {
+      user?.classList.add('active-link');
+    }else{
+      
+    }
+    this.router.navigate([url], { fragment }).then(() => {
       this.events.emitNavigation(url);
     });
   }
@@ -144,6 +168,7 @@ export class NavComponent implements OnInit, OnDestroy {
     }
     this.searchQuery = '';
   }
+
   browseTo() {
     try {
       const currentUrl = this.router.url;

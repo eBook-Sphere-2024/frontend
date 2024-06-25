@@ -33,8 +33,12 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let changePassword = document.getElementById('changePassword');
     let token = sessionStorage.getItem('Token');
     if (token) {
+      if(changePassword) {
+        changePassword.style.display = 'block';
+      }
       this.userService.userProfile(token).subscribe(
         (data: any) => {
           this.userProfile = data;
@@ -57,6 +61,11 @@ export class ChangePasswordComponent implements OnInit {
           console.error('Error fetching user profile:', error);
         }
       );
+    }else{
+      console.log('Token not found in session storage');
+      if(changePassword) {
+        changePassword.style.display = 'none';
+      }
     }
   }
   ChangePassword() {
