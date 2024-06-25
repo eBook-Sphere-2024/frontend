@@ -29,31 +29,45 @@
     margin-top: 3%;
 }
 
-        
-.divider {		
-    display: table; 
-    font-size: 24px; 
-    text-align: center; 
-    width: 75%; 						/* divider width */
-    margin: 40px auto;					/* spacing above/below */
-    margin-top: 75px;	
+
+.divider {
+    display: table;
+    font-size: 24px;
+    text-align: center;
+    width: 75%;
+    /* divider width */
+    margin: 40px auto;
+    /* spacing above/below */
+    margin-top: 75px;
 }
-.divider span { display: table-cell; position: relative; }
-.divider span:first-child, .divider span:last-child {
+
+.divider span {
+    display: table-cell;
+    position: relative;
+}
+
+.divider span:first-child,
+.divider span:last-child {
     width: 50%;
-    top: 13px;							/* adjust vertical align */
-    -moz-background-size: 100% 2px; 	/* line width */
-    background-size: 100% 2px; 			/* line width */
+    top: 13px;
+    /* adjust vertical align */
+    -moz-background-size: 100% 2px;
+    /* line width */
+    background-size: 100% 2px;
+    /* line width */
     background-position: 0 0, 0 100%;
     background-repeat: no-repeat;
 }
-.divider span:first-child {				/* color changes in here */
+
+.divider span:first-child {
+    /* color changes in here */
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000));
     background-image: -webkit-linear-gradient(180deg, transparent, #000);
     background-image: -moz-linear-gradient(180deg, transparent, #000);
     background-image: -o-linear-gradient(180deg, transparent, #000);
     background-image: linear-gradient(90deg, transparent, #000);
 }
+
 .divider span:nth-child(2) {
     color: #7a7a7a;
     padding: 0px 5px;
@@ -62,10 +76,20 @@
     font-style: italic;
     font-family: math;
 }
-.divider span:last-child {				/* color changes in here */
+
+.divider span:last-child {
+    /* color changes in here */
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
     background-image: -webkit-linear-gradient(180deg, #000, transparent);
     background-image: -moz-linear-gradient(180deg, #000, transparent);
     background-image: -o-linear-gradient(180deg, #000, transparent);
     background-image: linear-gradient(90deg, #000, transparent);
+}
+
+/* Dialog spinner */
+
+
+.circle {
+    color: hsl(230, 62%, 56%);
+    margin-left: 50%;
 }
