@@ -6,7 +6,7 @@
                 <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of directsearchresults">
                     <app-e-book-item [eBook]="eBook"></app-e-book-item>
                 </div>
-                <div class="divider" *ngIf="indirectsearchresults.length>0"><span></span><span>Books related to
+                <div class="divider"><span></span><span>Books related to
                         "{{query}}"</span><span></span></div>
                 <div class="col-md-6 col-lg-4 mx-auto" *ngFor="let eBook of indirectsearchresults">
                     <app-e-book-item [eBook]="eBook"></app-e-book-item>
@@ -14,8 +14,12 @@
             </ng-container>
             <ng-template #noresults>
                 <!-- Render content if there are no search results -->
-                <img src="../../../../assets/images/noResult.jpg" alt="No results" style="width: 800px;height: 800px;margin-left: 20%;padding-top: 50px;">
+                <img src="../../../../assets/images/noResult.jpg" alt="No results"
+                    style="width: 800px;height: 800px;margin-left: 20%;padding-top: 50px;">
             </ng-template>
         </div>
+    </div>
+    <div *ngIf="showDialog">
+        <div class="spinner-border circle"></div>
     </div>
 </section>

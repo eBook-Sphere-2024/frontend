@@ -1,6 +1,6 @@
-// nav.component.ts
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter, Subscription } from 'rxjs';
 import { EventService } from '../../shared/services/EventService';
 import { User } from '../../shared/models/User';
 import { UserServices } from '../User/user.service';
@@ -10,7 +10,7 @@ import { UserServices } from '../User/user.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
   userProfile!: User | null;
   searchItems: string[] = [
     'Contact Us',
@@ -27,15 +27,27 @@ export class NavComponent implements OnInit {
   ];
   filteredItems: string[] = [];
   searchQuery: string = '';
+  routerSubscription!: Subscription;
 
   constructor(
     private events: EventService,
     private router: Router,
     private userService: UserServices
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.checkUserProfile();
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.checkUserProfile();
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   checkUserProfile(): void {
@@ -131,5 +143,17 @@ export class NavComponent implements OnInit {
       searchClose.click();
     }
     this.searchQuery = '';
+  }
+  browseTo() {
+    try {
+      const currentUrl = this.router.url;
+      console.log("Original URL:", currentUrl);
+      const url = new URL(currentUrl, window.location.origin);
+      const pathWithoutHash = url.pathname + url.search;
+      console.log("Cleaned URL:", pathWithoutHash);
+      this.events.emit("openSigninDialog", pathWithoutHash);
+    } catch (error) {
+      console.error("Error capturing URL or emitting event:", error);
+    }
   }
 }

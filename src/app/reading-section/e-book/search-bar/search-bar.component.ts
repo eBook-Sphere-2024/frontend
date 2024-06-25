@@ -12,6 +12,7 @@ export class SearchBarComponent implements OnInit {
   directsearchresults: eBookItem[] = [];
   indirectsearchresults: eBookItem[] = [];
   query: string = "";
+  showDialog: boolean = true;
 
   constructor(
     private eBookService: EBookService,
@@ -39,6 +40,7 @@ export class SearchBarComponent implements OnInit {
                 this.indirectsearchresults.push(indirectBook);
               }
             }
+            this.showDialog = false;
             console.log("indirect", this.indirectsearchresults);
             console.log("indirect length", this.indirectsearchresults.length);
           },
