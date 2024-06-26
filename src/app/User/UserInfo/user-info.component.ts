@@ -20,7 +20,7 @@ export class UserInfoComponent implements OnInit {
     private userService: UserServices,
     private events: EventService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const token = sessionStorage.getItem('Token');
@@ -81,5 +81,10 @@ export class UserInfoComponent implements OnInit {
         }
       );
     }
+  }
+  goToSign() {
+    const currentUrl = this.router.url;
+    this.events.emit("openSigninDialog", currentUrl);
+    this.router.navigate(['/authentication']);
   }
 }
