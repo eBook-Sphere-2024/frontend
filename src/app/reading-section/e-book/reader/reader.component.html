@@ -14,4 +14,12 @@
             <div class="spinner-border circle"></div>
         </div>
     </div>
+    <div class="overlay" *ngIf="showSignDialog">
+        <div class="dialog">
+            <h2>Please Sign In first</h2>
+            <div class="button-containerr">
+                <button class="ok" (click)="goToSign()">Sign in</button>
+            </div>
+        </div>
+    </div>
 </div>
