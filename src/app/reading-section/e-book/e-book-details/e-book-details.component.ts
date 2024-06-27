@@ -38,6 +38,7 @@ export class EBookDetailsComponent implements OnInit {
             )
           },
           (error: any) => {
+            this.Router.navigate(['**']);
             console.error('Error fetching eBook details:', error);
           }
         );

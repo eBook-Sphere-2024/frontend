@@ -1,7 +1,7 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EBookService } from '../e-book.service';
 import { Category } from '../../../../shared/models/Category';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EventService } from '../../../../shared/services/EventService';
 
 @Component({
@@ -15,7 +15,7 @@ export class EBookFilterComponent implements OnInit {
 
   categories: Category[] = [];
 
-  constructor(private eBookService: EBookService, private route: ActivatedRoute, private eventService: EventService) {
+  constructor(private eBookService: EBookService, private route: ActivatedRoute, private eventService: EventService, private router: Router) {
   }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class EBookFilterComponent implements OnInit {
         this.categories = data;
       },
       (error: any) => {
-        alert(error.message);
+        this.router.navigate(['**'])
       }
     );
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -44,7 +44,7 @@ export class EBookFilterComponent implements OnInit {
           this.eventService.emit('filter', this.filter);
         },
         (error: any) => {
-          alert(error.message);
+          this.router.navigate(['**'])
         }
       );
     } else {
@@ -56,7 +56,7 @@ export class EBookFilterComponent implements OnInit {
           this.eventService.emit('filter', this.filter);
         },
         (error: any) => {
-          alert(error.message);
+          this.router.navigate(['**'])
         }
       );
     }
