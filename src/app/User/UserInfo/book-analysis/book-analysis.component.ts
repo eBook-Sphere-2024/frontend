@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import ApexCharts from 'apexcharts';
 import { EBookService } from '../../../reading-section/e-book/e-book.service';
 import { UserServices } from '../../user.service';
@@ -16,12 +16,20 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
   areaChart: ApexCharts | null = null;
   Numbers: any;
 
-  constructor(private route: ActivatedRoute, private bookService: EBookService, private userService: UserServices) {}
+  constructor(private route: ActivatedRoute, private bookService: EBookService, private userService: UserServices, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       if (id) {
+        this.bookService.getBookById(id).subscribe(
+          (data: any) => {
+
+          }, (error) => {
+
+            this.router.navigate(['**']);
+          }
+        )
         this.bookService.getCommentAnalysis(id).subscribe(
           (data: any) => {
             console.log('Fetched data:', data);
@@ -36,7 +44,7 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
         );
 
         this.bookService.geteBookAnalysis(id).subscribe(
-          (data: any) => {          
+          (data: any) => {
             console.log('Fetched Book data:', data);
             this.BookAnalysis = data.map((item: any) => {
               const progress = (item.highest_progress / item.totalPages) * 100;

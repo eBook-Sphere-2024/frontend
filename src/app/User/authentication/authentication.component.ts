@@ -59,7 +59,7 @@ export class AuthenticationComponent {
         response => {
           console.log('Registration successful:', response);
           sessionStorage.setItem('Token', JSON.stringify(response));
-          if (this.browseBack == '') {
+          if (this.browseBack == '' || this.browseBack == '/**') {
             this.router.navigate(['/User/profile']);
           } else {
             this.router.navigate([this.browseBack]);
@@ -78,7 +78,7 @@ export class AuthenticationComponent {
         response => {
           console.log('Login successful:', response);
           sessionStorage.setItem('Token', JSON.stringify(response));
-          if (this.browseBack == '') {
+          if (this.browseBack == '' || this.browseBack == '/**') {
             this.router.navigate(['/User/profile']);
           } else {
             this.router.navigate([this.browseBack]);
