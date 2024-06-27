@@ -19,7 +19,7 @@
                 <small *ngIf="validationError!==''" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ validationError }}</small>
             </div>
             <div class="form-group">
-                <button type="submit" class="btnn">Send</button>
+                <button type="submit" class="btnn" [disabled]="emailValidationForm.invalid">Send</button>
             </div>
         </div>
     </div>

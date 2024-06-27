@@ -47,7 +47,7 @@
         <small class="text-danger" *ngIf="userData.get('email')?.hasError('email')">Email is invalid</small>
       </div>
     </div>
-    <button type="submit" class="btnn">Save Changes</button>
+    <button type="submit" class="btnn" [disabled]="userData.invalid">Save Changes</button>
     <div class="alert">
       <small *ngIf="changeSuccefully" class="sucess"><i class="fa-solid fa-square-check"></i>Password changed
         successfully!</small>
