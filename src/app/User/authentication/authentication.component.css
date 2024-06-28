@@ -214,4 +214,17 @@ form small{
 }
 .title{
     margin-bottom: 20px;
-}
+}.alert {
+    margin-top: 15px;
+  }
+  .alert .fail {
+    color: rgb(192, 47, 47) !important;
+    font-size: large;
+  }
+  small{
+    display: block;
+  }
+  .alert small i {
+    margin-right: 5px;
+  }
+  
