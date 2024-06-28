@@ -83,7 +83,7 @@ export class CommentItemComponent implements OnInit {
     );
   }
   onContentChange(event: any): void {
-    const newTextContent = event.target.textContent.trim(); // Trim any leading or trailing whitespace
+    const newTextContent = event.target.textContent; // Trim any leading or trailing whitespace
     if (newTextContent.length > 4) {
       this.comment.content = newTextContent;
     }
