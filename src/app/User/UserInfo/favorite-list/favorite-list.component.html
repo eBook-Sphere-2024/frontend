@@ -9,19 +9,21 @@
                     <div class="detail-box">
                         <h5>{{ eBook.title }}</h5>
                         <h6>{{ eBook.author.username }}</h6>
-                            <p class="progressTXT">{{ calculateProgress(eBook) }}%</p>
-                            <p class="progress">
-                                <span class="progress-bar"
-                                      [style.width]="calculateProgress(eBook) + '%'"
-                                      [style.backgroundColor]="getProgressColor(calculateProgress(eBook))">
-                                </span>
-                            </p>
+                        <p class="progressTXT">{{ calculateProgress(eBook) }}%</p>
+                        <p class="progress">
+                            <span class="progress-bar" [style.width]="calculateProgress(eBook) + '%'"
+                                [style.backgroundColor]="getProgressColor(calculateProgress(eBook))">
+                            </span>
+                        </p>
                         <p>{{ eBook.description }}</p>
                         <a [routerLink]="['/reading/ebooks', eBook.id]">Read More</a>
                         <a (click)="removeFavorite(eBook)" class="remove">Remove</a>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-md-6 col-lg-6 not-found" *ngIf="eBooks.length == 0">
+            <p>No eBooks Found</p>
         </div>
     </div>
 </section>

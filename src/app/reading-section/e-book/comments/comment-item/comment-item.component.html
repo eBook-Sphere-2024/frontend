@@ -23,7 +23,7 @@
     </div>
     <p class="c-text">
         <span class="reply-to"></span>
-        <span class="c-body" [attr.contenteditable]="isEditing" (input)="onContentChange($event)">
+        <span class="c-body" [attr.contenteditable]="isEditing" (blur)="onContentChange($event)">
             {{ comment.content }}
         </span>
     </p>

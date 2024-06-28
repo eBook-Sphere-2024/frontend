@@ -100,10 +100,12 @@
 .detail-box a {
   display: inline-block;
   padding: 10px 30px;
-  background-color: hsl(230, 62%, 56%);;
+  background-color: hsl(230, 62%, 56%);
+  ;
   color: #ffffff;
   border-radius: 0;
-  border: 1px solid hsl(230, 62%, 56%);;
+  border: 1px solid hsl(230, 62%, 56%);
+  ;
   -webkit-transition: all .2s;
   transition: all .2s;
   text-decoration: none;
@@ -115,7 +117,8 @@
 
 .detail-box a:hover {
   background-color: #ffffff;
-  color: hsl(230, 62%, 56%);;
+  color: hsl(230, 62%, 56%);
+  ;
 }
 
 h6 {
@@ -145,6 +148,15 @@ h6 {
 .progress-bar {
   height: 100%;
   border-radius: 5px;
-  background-color: hsl(230, 62%, 56%);;
+  background-color: hsl(230, 62%, 56%);
+  ;
   transition: width 0.3s ease-in-out;
+}
+
+.not-found {
+  width: 100%;
+  color: hsl(230, 62%, 56%);
+  font-size: xx-large;
+  text-align: center;
+  padding-top: 30%;
 }
