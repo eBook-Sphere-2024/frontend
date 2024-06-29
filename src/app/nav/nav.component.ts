@@ -81,7 +81,7 @@ export class NavComponent implements OnInit, OnDestroy {
     //add active class to current element
     if (url === '/Home' && fragment === 'contactUs') {
       contact?.classList.add('active-link');
-    }else if (url === '/Home') {
+    } else if (url === '/Home') {
       home?.classList.add('active-link');
     } else if (url === '/maker/editor') {
       maker?.classList.add('active-link');
@@ -89,8 +89,8 @@ export class NavComponent implements OnInit, OnDestroy {
       reading?.classList.add('active-link');
     } else if (url === '/User/profile' || url === '/authentication') {
       user?.classList.add('active-link');
-    }else{
-      
+    } else {
+
     }
     this.router.navigate([url], { fragment }).then(() => {
       this.events.emitNavigation(url);
@@ -176,6 +176,8 @@ export class NavComponent implements OnInit, OnDestroy {
       const url = new URL(currentUrl, window.location.origin);
       const pathWithoutHash = url.pathname + url.search;
       console.log("Cleaned URL:", pathWithoutHash);
+      if (pathWithoutHash.includes('/resetPassword'))
+        return
       this.events.emit("openSigninDialog", pathWithoutHash);
     } catch (error) {
       console.error("Error capturing URL or emitting event:", error);

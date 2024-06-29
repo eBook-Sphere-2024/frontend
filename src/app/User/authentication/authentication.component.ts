@@ -58,7 +58,7 @@ export class AuthenticationComponent {
   registerUser() {
     this.usernameFail = '';
     this.sendFail = false;
-    
+
     console.log(this.userData.value);
     this.userService.post_register(this.userData.value)
       .subscribe(
@@ -75,7 +75,7 @@ export class AuthenticationComponent {
           console.log(error);
           if (error.status == 400 && error.error.non_field_errors[0] == 'Username already exists')
             this.usernameFail = 'Username already exists'
-          else{
+          else {
             console.log(error.error.non_field_errors[0]);
             this.sendFail = true;
             this.failMessage = error.error.non_field_errors[0];
