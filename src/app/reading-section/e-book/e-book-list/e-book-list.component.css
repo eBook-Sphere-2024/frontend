@@ -1,24 +1,77 @@
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  position: relative;
+  flex: 0 0 calc(33.333% - 30px);
+  /* Adjust the margin as needed */
+  width: calc(33.333% - 30px);
+  /* Adjust the margin as needed */
+  min-height: 550px;
+}
+
+
+.col-lg-4 {
+  flex: 0 0 33.33333333%;
+}
+
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+
+/*Media Queries*/
+/* Small Devices (Portrait Phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .row {
+    margin-right: -10px;
+    margin-left: -10px;
   }
-  
+
   .col-md-6 {
-    position: relative;
-    flex: 0 0 calc(33.333% - 30px); /* Adjust the margin as needed */
-    width: calc(33.333% - 30px); /* Adjust the margin as needed */
-    min-height: 550px;
+    flex: 0 0 100%;
+    /* Full width on small screens */
+    width: 100%;
+    min-height: auto;
+    /* Adjust as needed */
+    margin-bottom: 20px;
+    /* Add some space between columns */
   }
-  
-  
+
   .col-lg-4 {
-    flex: 0 0 33.33333333%;
+    flex: 0 0 100%;
+    /* Full width on small screens */
   }
-  
+
   .mx-auto {
     margin-right: auto !important;
     margin-left: auto !important;
   }
-  
+}
+
+/* Medium Devices (Tablets, 576px and up) */
+@media (min-width: 576px) {
+  .col-md-6 {
+    flex: 0 0 calc(50% - 20px);
+    /* Two columns per row */
+    width: calc(50% - 20px);
+    min-height: 550px;
+    /* Adjust as needed */
+    margin-bottom: 20px;
+    /* Add some space between columns */
+  }
+}
+
+/* Large Devices (Desktops, 992px and up) */
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 calc(33.333% - 30px);
+    /* Three columns per row */
+    width: calc(33.333% - 30px);
+  }
+}

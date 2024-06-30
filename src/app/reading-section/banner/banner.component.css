@@ -279,8 +279,8 @@
   text-decoration: none;
   font-size: 14px;
   color: #fff;
-  background-color: hsl(230, 62%, 56%);;
-  border: 1px solid hsl(230, 62%, 56%);;
+  background-color: hsl(230, 62%, 56%);
+  border: 1px solid hsl(230, 62%, 56%);
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -294,7 +294,7 @@
 
 .border-button a:hover {
   background-color: transparent;
-  color: hsl(230, 62%, 56%);;
+  color: hsl(230, 62%, 56%);
 }
 
 .try::placeholder {
