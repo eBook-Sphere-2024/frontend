@@ -66,10 +66,12 @@
 .detail-box a {
   display: inline-block;
   padding: 10px 30px;
-  background-color: hsl(230, 62%, 56%);;
+  background-color: hsl(230, 62%, 56%);
+  ;
   color: #ffffff;
   border-radius: 0;
-  border: 1px solid hsl(230, 62%, 56%);;
+  border: 1px solid hsl(230, 62%, 56%);
+  ;
   -webkit-transition: all .2s;
   transition: all .2s;
   text-decoration: none;
@@ -77,14 +79,17 @@
 
 .detail-box a:hover {
   background-color: #ffffff;
-  color: hsl(230, 62%, 56%);;
+  color: hsl(230, 62%, 56%);
+  ;
 }
 
 h6 {
   color: #4f6365;
   font-style: italic;
   font-size: 20px;
-}.progress {
+}
+
+.progress {
   width: 90%;
   margin-bottom: 10px;
   height: 10px;
@@ -105,6 +110,48 @@ h6 {
 .progress-bar {
   height: 100%;
   border-radius: 5px;
-  background-color: hsl(230, 62%, 56%);; /* Default color */
+  background-color: hsl(230, 62%, 56%);
+  ;
+  /* Default color */
   transition: width 0.3s ease-in-out;
+}
+
+@media (max-width: 767.98px) {
+  .detail-box {
+    padding: 15px;
+  }
+
+  .detail-box h5 {
+    font-size: 1.2rem;
+  }
+
+  .detail-box p {
+    font-size: 14px;
+  }
+
+  .detail-box a {
+    padding: 8px 20px;
+  }
+
+  h6 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .box {
+    margin-top: 30px;
+  }
+
+  .img-box img {
+    max-height: 250px;
+  }
+
+  .progressTXT {
+    font-size: 18px;
+  }
+
+  h6 {
+    font-size: 16px;
+  }
 }
