@@ -30,3 +30,134 @@ h2{
 }.card:hover{
     transform: translateY(-20px);
 }
+/* Media Query for Extra Small Devices (Mobile Phones) */
+@media (max-width: 359.98px) {
+  .card_container {
+    width: 160%;
+    margin-left: 0;
+    gap: 15px;
+  }
+  
+  .card {
+    width: calc(100% - 40px);
+  }
+
+  h2 {
+    font-size: large;
+    margin-top: 70px;
+    margin-left: 10%;
+  }
+
+  section {
+    margin-top: 40px;
+  }
+}
+
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {
+  .card_container {
+    width: 100%;
+    margin-left: 0;
+    gap: 20px;
+  }
+
+  .card {
+    width: calc(100% - 40px);
+  }
+
+  h2 {
+    font-size: x-large;
+  }
+
+  section {
+    margin-top: 50px;
+  }
+}
+
+/* Media Query for Small Devices (Mobile Phones) */
+@media (max-width: 575.98px) {
+  .card_container {
+    width: 160%;
+    margin-left: 13%;
+    gap: 20px;
+  }
+
+  .card {
+    width: calc(100% - 40px);
+  }
+
+  h2 {
+    font-size: 50px;
+    margin-top: 80px;
+    margin-left: 60%;
+  }
+
+  section {
+    margin-top: 50px;
+  }
+}
+
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card_container {
+    width: 180%;
+    margin-left: 5%;
+    gap: 25px;
+  }
+
+  .card {
+    width: calc(50% - 40px);
+  }
+
+  h2 {
+    font-size: 70px;
+    margin-top: 80px;
+    margin-left: 70%;
+  }
+
+  section {
+    margin-top: 60px;
+  }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card_container {
+    width: 111%;
+    margin-left: 0;
+  }
+
+  .card {
+    width: calc(33.333% - 40px);
+  }
+
+  h2 {
+    font-size: xx-large;
+    font-size: 50px;
+    margin-left: 13%;
+  }
+
+  section {
+    margin-top: 70px;
+  }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card_container {
+    width: calc(100% / 1);
+    margin-left: 0;
+  }
+
+  .card {
+    width: calc(25% - 40px);
+  }
+
+  h2 {
+    font-size: xxx-large;
+  }
+
+  section {
+    margin-top: 80px;
+  }
+}
