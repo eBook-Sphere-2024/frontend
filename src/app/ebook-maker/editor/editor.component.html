@@ -7,7 +7,7 @@
                 <input id="open_sfdt" #open_sfdt style="position:fixed; left:-100em" type="file"
                     (change)="onFileChange($event)" accept=".sfdt" />
 
-                <button ejs-button (click)="onFileOpenClick()" class="bu">Open an existing eBook</button>
+                <button ejs-button (click)="onFileOpenClick()" class="bu button">Open an existing eBook</button>
                 <button class="button bu" (click)="$event.preventDefault();createEbook()">CREATE A NEW EBOOK</button>
             </div>
         </div>
