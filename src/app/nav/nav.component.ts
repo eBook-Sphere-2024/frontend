@@ -38,8 +38,53 @@ export class NavComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.checkUserProfile();
     this.routerSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        let url = event.url;
+        console.log('URL changed:', url);
+
+        // Extract the portion after 'http://localhost:4200/'
+        const baseUrl = 'http://localhost:4200/';
+        if (url.startsWith(baseUrl)) {
+          url = url.substring(baseUrl.length);
+        }
+
+        // Find the position of '#' and trim the URL if '#' exists
+        const hashIndex = url.indexOf('#');
+        let fragment = '';
+        if (hashIndex !== -1) {
+          fragment = url.substring(hashIndex + 1);
+          url = url.substring(0, hashIndex);
+        }
+
+        console.log('Extracted URL:', url); // Output: Home or relevant part
+        console.log('Fragment:', fragment); // Output: contactUs or relevant part
+
+        let home = document.getElementById('home');
+        let maker = document.getElementById('maker');
+        let reading = document.getElementById('reading');
+        let contact = document.getElementById('contact');
+        let user = document.getElementById('user');
+
+        // Remove active class from all elements with the same class .nav__link
+        const navItems = document.querySelectorAll('.nav__link');
+        navItems.forEach(item => {
+          item.classList.remove('active-link');
+        });
+
+        // Add active class to current element based on the URL
+        if (url.startsWith('/Home') && fragment === 'contactUs') {
+          contact?.classList.add('active-link');
+        } else if (url.startsWith('/Home')) {
+          home?.classList.add('active-link');
+        } else if (url.startsWith('/maker')) {
+          maker?.classList.add('active-link');
+        } else if (url.startsWith('/read') || url.startsWith('/search')) {
+          reading?.classList.add('active-link');
+        } else if (url.startsWith('/User') || url.startsWith('/authentication')) {
+          user?.classList.add('active-link');
+        }
+
         this.checkUserProfile();
       });
   }

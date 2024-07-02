@@ -26,26 +26,26 @@ export class HomeComponent implements AfterViewInit {
     private events: EventService,
     private router: Router,
   ) {
-      /*=============== SEARCH ===============*/
+    /*=============== SEARCH ===============*/
 
-  /*===== SEARCH SHOW =====*/
-  // Validate if constant exists
-  if (this.searchButton) {
-  this.searchButton.addEventListener("click", () => {
-    this.searchContent?.classList.add("show-search");
-  });
-  }
+    /*===== SEARCH SHOW =====*/
+    // Validate if constant exists
+    if (this.searchButton) {
+      this.searchButton.addEventListener("click", () => {
+        this.searchContent?.classList.add("show-search");
+      });
+    }
 
-  /*===== SEARCH CLOSE =====*/
-  // Validate if constant exists
-  if (this.searchClose) {
-  this.searchClose.addEventListener("click", () => {
-    this.searchContent?.classList.remove("show-search");
-  });
-  }
+    /*===== SEARCH CLOSE =====*/
+    // Validate if constant exists
+    if (this.searchClose) {
+      this.searchClose.addEventListener("click", () => {
+        this.searchContent?.classList.remove("show-search");
+      });
+    }
 
-    this.ContactData = this.fb.group({ 
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]], 
+    this.ContactData = this.fb.group({
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', [Validators.required]],
       message: ['', [Validators.required, Validators.minLength(10)]],
@@ -73,7 +73,7 @@ export class HomeComponent implements AfterViewInit {
     });
     console.log('Swiper initialized:', swiperHome);
   }
-  sendMail(){
+  sendMail() {
     this.userService.ContactMail(this.ContactData.value).subscribe(
       (data: any) => {
         console.log(data);
@@ -81,12 +81,12 @@ export class HomeComponent implements AfterViewInit {
         this.sendSuccefully = true;
         this.failMessage = '';
       },
-      (error: any)=> {
+      (error: any) => {
         console.log(error);
         this.sendSuccefully = false;
         this.sendFail = true;
         this.failMessage = error.error.email[0];
-        
+
       }
     );
   }
