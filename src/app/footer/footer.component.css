@@ -81,8 +81,6 @@ img {
     padding-block: 4rem 6rem;
     font-family: "Montserrat", sans-serif;
     font-size: 0.938rem;
-    z-index: 100;
-    width: 100%;
   }
   
   .footer__container {
@@ -276,6 +274,7 @@ img {
   }
 
   .footer {
+    width: 180%;
     padding: 3rem 1rem; /* Adjusted padding */
   }
 
@@ -329,7 +328,7 @@ img {
   }
 
   .footer {
-    width: 110%;
+    width: 190%;
     padding: 4rem 6rem; /* Original padding */
   }
 
@@ -357,97 +356,141 @@ img {
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
   .container {
-    margin-inline: 3rem; /* Increased margin */
+    max-width: calc(100% - 1rem);
+    margin-inline: 0.5rem; /* Increased margin */
   }
 
   .grid {
-    gap: 2rem; /* Increased gap */
+    grid-template-columns: 0.8fr 0.5fr;
+    gap: 1.5rem;
   }
 
   .section {
-    padding: 6rem 3rem; /* Adjusted padding */
+    padding: 5rem 2rem; /* Adjusted padding */
   }
 
   .section__title {
-    font-size: 2rem; /* Larger font size */
-  }
-
-  .footer {
-    width: 120%;
-    padding: 1rem; /* Adjusted padding */
-  }
-
-  .footer__container {
-    row-gap: 4rem; /* Increased gap */
-  }
-
-  .footer__data {
-    gap: 4rem; /* Increased gap */
-  }
-
-  .footer__title {
-    font-size: 1.25rem; /* Larger font size */
+    font-size: 1.5rem; /* Original font size */
     margin-bottom: 2rem;
   }
 
+  .footer {
+    width: 110%;
+    padding: 2rem; /* Original padding */
+  }
+
+  .footer__data {
+    gap: 3rem; /* Original gap */
+  }
+
+  .footer__title {
+    font-size: 1rem; /* Original font size */
+    margin-bottom: 1.25rem;
+  }
+
   .footer__links {
-    row-gap: 1rem; /* Original gap */
+    row-gap: 0.5rem; /* Original gap */
   }
 
   .footer__social {
-    column-gap: 2rem; /* Increased gap */
+    column-gap: 1.25rem; /* Original gap */
   }
 
   .footer__copy {
-    font-size: 0.875rem; /* Larger font size */
+    font-size: 0.813rem; /* Original font size */
   }
 }
 
 /* Media Query for Extra Extra Large Devices (Very Large Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .container {
-    margin-inline: 8rem; /* Increased margin */
+    max-width: calc(100% - 1rem);
+    margin-inline: 0.5rem; /* Increased margin */
   }
 
   .grid {
-    gap: 4rem; /* Increased gap */
+    grid-template-columns: 1.7fr 1fr; /* Two column layout */
+    gap: 2rem; /* Increased gap */
   }
 
   .section {
-    padding: 8rem 5rem; /* Adjusted padding */
+    padding: 4rem; /* Adjusted padding */
   }
 
   .section__title {
-    font-size: 3rem; /* Larger font size */
+    font-size: 1.5rem; /* Original font size */
+    margin-bottom: 2rem;
   }
 
   .footer {
-    width: 205%;
-    padding: 7rem 12rem; /* Adjusted padding */
-  }
-
-  .footer__container {
-    row-gap: 6rem; /* Increased gap */
+    /* width: 110%; */
+    padding: 4rem 6rem; /* Original padding */
   }
 
   .footer__data {
-    gap: 6rem; /* Increased gap */
+    gap: 3rem; /* Original gap */
   }
 
   .footer__title {
-    font-size: 1.75rem; /* Larger font size */
-    margin-bottom: 4rem;
+    font-size: 1rem; /* Original font size */
+    margin-bottom: 1.25rem;
   }
 
   .footer__links {
-    row-gap: 2rem; /* Increased gap */
+    row-gap: 0.5rem; /* Original gap */
   }
 
   .footer__social {
-    column-gap: 4rem; /* Increased gap */
+    column-gap: 1.25rem; /* Original gap */
   }
 
   .footer__copy {
-    font-size: 1.125rem; /* Larger font size */
+    font-size: 0.813rem; /* Original font size */
+  }
+}
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: calc(100% - 1rem);
+    margin-inline: 0.5rem; /* Increased margin */
+  }
+
+  .grid {
+    grid-template-columns: 1.7fr 1fr; /* Two column layout */
+    gap: 2rem; /* Increased gap */
+  }
+
+  .section {
+    padding: 4rem; /* Adjusted padding */
+  }
+
+  .section__title {
+    font-size: 1.5rem; /* Original font size */
+    margin-bottom: 2rem;
+  }
+
+  .footer {
+    padding: 4rem 6rem; /* Original padding */
+  }
+
+  .footer__data {
+    gap: 3rem; /* Original gap */
+  }
+
+  .footer__title {
+    font-size: 1rem; /* Original font size */
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__links {
+    row-gap: 0.5rem; /* Original gap */
+  }
+
+  .footer__social {
+    column-gap: 1.25rem; /* Original gap */
+  }
+
+  .footer__copy {
+    font-size: 0.813rem; /* Original font size */
   }
 }

@@ -2,14 +2,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@500&family=Montserrat:wght@400;500;600&display=swap");
 
 /*=============== BASE ===============*/
-main {
+.back {
   font-family: "Montserrat", sans-serif;
   font-size: 0.938rem;
   background-color: hsl(230, 100%, 96%);
   color: hsl(230, 16%, 45%);
   transition: background-color 0.4s;
 }
-
 input,
 button {
   font-family: "Montserrat", sans-serif;
@@ -63,10 +62,9 @@ img {
   gap: 12rem;
   grid-template-columns: 0.7fr 1fr;
 }
-
 .section {
   padding-block: 5rem 1rem;
-  margin-bottom: 100px;
+  padding-bottom: 100px;
 }
 
 p {
@@ -189,7 +187,9 @@ p {
   font-weight: 700;
   color: #333;
 }
-
+.contactForm div, .contactForm label{
+  background-color: #fff;
+}
 .ftco-section .text-center {
   text-align: center;
 }
@@ -266,7 +266,6 @@ p {
   display: none;
   color: #28a745;
 }
-
 .ftco-section #map {
   width: 100%;
   height: 100%;
@@ -275,6 +274,14 @@ p {
 }
 /* Media Query for Extra Small Devices (Mobile Phones) */
 @media (max-width: 359.98px) {
+  .back{
+    margin-top: 40px;
+    width: 180%;
+  }
+  #map{
+    margin-top: 15px;
+    height: 400px;
+  }
   .container {
     max-width: calc(100% - 2rem); /* Adjust for smaller margins */
     margin-inline: 1rem;
@@ -311,6 +318,9 @@ p {
 
 /* Media Query for Small Devices (Mobile Phones) */
 @media (min-width: 360px) and (max-width: 575.98px) {
+  .back{
+    width: 180%;
+  }
   .container {
     max-width: calc(100% - 2rem); /* Adjust for smaller margins */
     margin-inline: 2rem; /* Increased margin */
@@ -351,6 +361,9 @@ p {
 }
 /* Media Query for Small Devices (Mobile Phones) */
 @media (max-width: 575.98px) {
+  .back{
+    width: 180%;
+  }
   .container {
     max-width: calc(100% - 2rem); /* Adjust for smaller margins */
     margin-inline: 1rem;
@@ -387,10 +400,17 @@ p {
 
 /* Media Query for Medium Devices (Tablets) */
 @media (min-width: 576px) and (max-width: 767.98px) {
+  .back{
+    padding-left: 10%;
+    width: 190%;
+  }
   .container {
     margin-inline: 2rem; /* Increased margin */
   }
-
+  #map{
+    margin-top: 30px;
+    height: 600px;
+  }
   .grid,
   .grid2 {
     grid-template-columns: 0.7fr 1fr; /* Two column layout */
@@ -408,7 +428,9 @@ p {
   .ftco-section .heading-section {
     font-size: 1.5rem; /* Original font size */
   }
-
+.ftco-section{
+  width: 95%;
+}
   .about__img-1,
   .about__img-2 {
     width: 250px; /* Adjusted image width */
@@ -421,103 +443,127 @@ p {
 }
 
 /* Media Query for Large Devices (Desktops) */
-@media (min-width: 992px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .back {
+    width: 110%;
+  }
+  
   .container {
-    margin-inline: 3rem; /* Increased margin */
+    max-width: 95%;
+    margin-inline: auto; /* Center the container */
   }
 
   .grid,
   .grid2 {
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 1.5rem; /* Adjust gap */
+  }
+
+  .section {
+    padding: 4rem 1.5rem; /* Adjusted padding */
+    margin-bottom: 60px; /* Adjust margin */
+  }
+
+  .section__title,
+  .home__title,
+  .about__title,
+  .ftco-section .heading-section {
+    font-size: 1.5rem; /* Original font size */
+  }
+  
+  .ftco-section {
+    width: 100%;
+  }
+
+  .about__img-1,
+  .about__img-2 {
+    width: 220px; /* Adjusted image width */
+  }
+
+  .home__img,
+  .home__article {
+    width: 180px; /* Adjusted image and article width */
+  }
+}
+
+
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .container {
+    margin-inline: 2rem; /* Increased margin */
+  }
+  .grid,
+  .grid2 {
+    grid-template-columns: 0.7fr 1fr; /* Two column layout */
     gap: 2rem; /* Increased gap */
   }
 
   .section {
-    padding: 6rem 3rem; /* Adjusted padding */
-    margin-bottom: 100px; /* Original margin */
+    padding: 5rem 2rem; /* Adjusted padding */
+    margin-bottom: 80px; /* Reduced margin */
   }
 
   .section__title,
   .home__title,
   .about__title,
   .ftco-section .heading-section {
-    font-size: 2rem; /* Larger font size */
+    font-size: 1.5rem; /* Original font size */
   }
-
+.ftco-section{
+  width: 95%;
+}
   .about__img-1,
   .about__img-2 {
-    width: 300px; /* Original image width */
+    width: 250px; /* Adjusted image width */
   }
-
+  .about__data{
+    width: 80%;
+    margin-left: 55px;
+  }
   .home__img,
   .home__article {
-    width: 228px; /* Original image and article width */
+    width: 200px; /* Adjusted image and article width */
   }
 }
-
-/* Media Query for Extra Large Devices (Large Desktops) */
-@media (min-width: 1200px) {
-  .container {
-    margin-inline: 5rem; /* Increased margin */
+@media (min-width: 1200px){
+  .back{
+    margin-top: 50px;
+    padding-left: 5%;
   }
-
-  .grid,
-  .grid2 {
+  .container {
+    margin-inline: 2rem; /* Increased margin */
+  }
+  .grid{
+    grid-template-columns: 0.7fr 1fr; /* Two column layout */
     gap: 3rem; /* Increased gap */
   }
-
-  .section {
-    padding: 7rem 4rem; /* Adjusted padding */
-    margin-bottom: 120px; /* Increased margin */
-  }
-
-  .section__title,
-  .home__title,
-  .about__title,
-  .ftco-section .heading-section {
-    font-size: 2.5rem; /* Larger font size */
-  }
-
-  .about__img-1,
-  .about__img-2 {
-    width: 350px; /* Increased image width */
-  }
-
-  .home__img,
-  .home__article {
-    width: 250px; /* Increased image and article width */
-  }
-}
-
-/* Media Query for Extra Extra Large Devices (Very Large Desktops) */
-@media (min-width: 1600px) {
-  .container {
-    margin-inline: 8rem; /* Increased margin */
-  }
-
-  .grid,
   .grid2 {
-    gap: 4rem; /* Increased gap */
+    grid-template-columns: 0.7fr 1fr; /* Two column layout */
+    gap: 12rem; /* Increased gap */
   }
-
+  
   .section {
-    padding: 8rem 5rem; /* Adjusted padding */
-    margin-bottom: 150px; /* Increased margin */
+    padding: 5rem 2rem; /* Adjusted padding */
+    margin-bottom: 80px; /* Reduced margin */
   }
 
   .section__title,
   .home__title,
   .about__title,
   .ftco-section .heading-section {
-    font-size: 3rem; /* Larger font size */
+    font-size: 1.5rem; /* Original font size */
   }
-
+.ftco-section{
+  width: 95%;
+}
   .about__img-1,
   .about__img-2 {
-    width: 400px; /* Increased image width */
+    width: 250px; /* Adjusted image width */
   }
 
   .home__img,
   .home__article {
-    width: 300px; /* Increased image and article width */
+    width: 300px; /* Adjusted image and article width */
+    text-align: left;
   }
 }
