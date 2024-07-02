@@ -26,52 +26,36 @@
 
 
 /*Media Queries*/
-/* Small Devices (Portrait Phones, less than 576px) */
-@media (max-width: 575.98px) {
+@media (max-width: 359.98px) {
   .row {
-    margin-right: -10px;
-    margin-left: -10px;
-  }
-
-  .col-md-6 {
-    flex: 0 0 100%;
-    /* Full width on small screens */
-    width: 100%;
-    min-height: auto;
-    /* Adjust as needed */
-    margin-bottom: 20px;
-    /* Add some space between columns */
+    display: flex;
+    flex-direction: column;
   }
 
   .col-lg-4 {
-    flex: 0 0 100%;
-    /* Full width on small screens */
-  }
-
-  .mx-auto {
-    margin-right: auto !important;
-    margin-left: auto !important;
+    flex: 0 0 60%;
   }
 }
 
-/* Medium Devices (Tablets, 576px and up) */
-@media (min-width: 576px) {
-  .col-md-6 {
-    flex: 0 0 calc(50% - 20px);
-    /* Two columns per row */
-    width: calc(50% - 20px);
-    min-height: 550px;
-    /* Adjust as needed */
-    margin-bottom: 20px;
-    /* Add some space between columns */
-  }
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {}
+
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  /* Adjust styles as needed for this range */
 }
 
-/* Large Devices (Desktops, 992px and up) */
-@media (min-width: 992px) {
-  .col-lg-4 {
-    flex: 0 0 calc(33.333% - 30px);
-    /* Three columns per row */
-    width: calc(33.333% - 30px);
-  }
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  /* Adjust styles as needed for this range */
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* Adjust styles as needed for this range */
+}
+
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+  /* Adjust styles as needed for this range */
 }

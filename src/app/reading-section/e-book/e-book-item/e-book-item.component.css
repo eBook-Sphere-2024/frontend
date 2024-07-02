@@ -116,9 +116,14 @@ h6 {
   transition: width 0.3s ease-in-out;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 359.98px) {
+  .box {
+    width: 250px;
+  }
+
   .detail-box {
     padding: 15px;
+
   }
 
   .detail-box h5 {
@@ -138,20 +143,4 @@ h6 {
   }
 }
 
-@media (max-width: 575.98px) {
-  .box {
-    margin-top: 30px;
-  }
-
-  .img-box img {
-    max-height: 250px;
-  }
-
-  .progressTXT {
-    font-size: 18px;
-  }
-
-  h6 {
-    font-size: 16px;
-  }
-}
+@media (min-width: 360px) and (max-width: 575.98px) {}
