@@ -42,7 +42,7 @@
 #section-1 .more-info {
   margin-top: 60px;
   background-color: #fff;
-  padding: 30px 60px;
+  /* padding: 30px 60px; */
   border-radius: 61px;
   position: absolute;
   width: 80%;
@@ -303,4 +303,147 @@
   font-weight: 400;
   font-style: italic;
   color: hsl(230, 62%, 56%);
+}
+/* Media Query for very Small Devices */
+@media (max-width: 359.98px) {
+  #section-1 {
+    width: 180%;
+}
+#search{
+  width: 340%;
+}#search::placeholder{
+  font-size: 15px;
+}.more-info i{
+  margin-left: 200%;
+}.more-info{
+  padding: 20px;
+  justify-content: space-between;
+}
+.controls span{
+  width: 100%;
+}.controls label{
+  width: 100%;
+}
+}
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {
+  #section-1 {
+    width: 180%;
+}
+#search{
+  width: 340%;
+}#search::placeholder{
+  font-size: 15px;
+}.more-info i{
+  margin-left: 300%;
+}.more-info{
+  padding: 20px;
+  justify-content: space-between;
+}
+.controls span{
+  width: 100%;
+}.controls label{
+  width: 100%;
+}
+}
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  #section-1 {
+    width: 165%;
+}#section-1 .content-slider{
+  width: 107.7%;
+}
+#search{
+  width: 100%;
+}#search::placeholder{
+  font-size: 15px;
+}.more-info i{
+  margin-left:78%;
+}.more-info{
+  padding: 20px;
+  justify-content: space-between;
+}
+.controls span{
+  width: 100%;
+}.controls label{
+  width: 100%;
+}
+}/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  #section-1 {
+    width: 100%;
+  }#section-1 .content-slider{
+    width: 105%;
+  }
+  #search {
+    width: 100%;
+  }
+  #search::placeholder {
+    font-size: 18px;
+  }
+  .more-info i {
+    margin-left: 50%;
+  }
+  .more-info {
+    padding: 30px;
+    justify-content: space-around;
+  }
+  .controls span {
+    width: 100%;
+  }
+  .controls label {
+    width: 24%;
+  }
+}
+
+/* Media Query for Extra Large Devices */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  #section-1 {
+    width: 120%;
+  }
+  #search {
+    width: 100%;
+  }
+  #search::placeholder {
+    font-size: 20px;
+  }
+  .more-info i {
+    margin-left: 25%;
+  }
+  .more-info {
+    padding: 40px;
+    justify-content: space-between;
+  }
+  .controls span {
+    width: 100%;
+  }
+  .controls label {
+    width: 22%;
+  }
+}
+
+/* Media Query for Extra Extra Large Devices */
+@media (min-width: 1200px) {
+  #section-1 {
+    width: 100%;
+  }
+  #search {
+    width: 100%;
+  }
+  #search::placeholder {
+    font-size: 20px;
+  }
+  .more-info i {
+    margin-left: 10%;
+  }
+  .more-info {
+    padding: 30px 80px;
+    justify-content: space-between;
+  }
+  .controls span {
+    width: 100%;
+  }
+  .controls label {
+    width: 20%;
+  }
 }

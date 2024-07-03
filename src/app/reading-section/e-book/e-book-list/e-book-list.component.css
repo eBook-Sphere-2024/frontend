@@ -38,24 +38,40 @@
 }
 
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
-@media (min-width: 360px) and (max-width: 575.98px) {}
+@media (min-width: 360px) and (max-width: 575.98px) {
+  .row {
+      width: 188%;
+      margin-left: -2%;
+      display: flex;
+  }
+
+  .col-lg-4 {
+    flex: 0 0 60%;
+  }
+}
 
 /* Media Query for Medium Devices (Tablets) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  /* Adjust styles as needed for this range */
+  .row {
+    width: 200%;
+    margin-left: 5%;
+    display: flex;
+}
 }
 
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  /* Adjust styles as needed for this range */
+  .row {
+    width: 115%;
+    display: flex;
+}
 }
 
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  /* Adjust styles as needed for this range */
+  .row {
+    width: 100%;
+    margin-left: 5%;
+    display: flex;
 }
-
-/* Media Query for Extra Large Devices (Large Desktops) */
-@media (min-width: 1200px) {
-  /* Adjust styles as needed for this range */
 }
