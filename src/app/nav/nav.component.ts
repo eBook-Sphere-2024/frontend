@@ -41,8 +41,6 @@ export class NavComponent implements OnInit, OnDestroy {
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
         let url = event.url;
-        console.log('URL changed:', url);
-
         // Extract the portion after 'http://localhost:4200/'
         const baseUrl = 'http://localhost:4200/';
         if (url.startsWith(baseUrl)) {
@@ -56,10 +54,6 @@ export class NavComponent implements OnInit, OnDestroy {
           fragment = url.substring(hashIndex + 1);
           url = url.substring(0, hashIndex);
         }
-
-        console.log('Extracted URL:', url); // Output: Home or relevant part
-        console.log('Fragment:', fragment); // Output: contactUs or relevant part
-
         let home = document.getElementById('home');
         let maker = document.getElementById('maker');
         let reading = document.getElementById('reading');
@@ -103,7 +97,6 @@ export class NavComponent implements OnInit, OnDestroy {
           this.userProfile = data;
         },
         (error: any) => {
-          console.log(error.message);
           this.userProfile = null;
         }
       );
@@ -217,10 +210,8 @@ export class NavComponent implements OnInit, OnDestroy {
   browseTo() {
     try {
       const currentUrl = this.router.url;
-      console.log("Original URL:", currentUrl);
       const url = new URL(currentUrl, window.location.origin);
       const pathWithoutHash = url.pathname + url.search;
-      console.log("Cleaned URL:", pathWithoutHash);
       if (pathWithoutHash.includes('/resetPassword'))
         return
       this.events.emit("openSigninDialog", pathWithoutHash);

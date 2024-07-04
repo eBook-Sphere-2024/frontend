@@ -33,7 +33,6 @@ export class DocxToEpubService {
     const result = await mammoth.convertToHtml({ arrayBuffer });
     const html = result.value; // The generated HTML
     const messages = result.messages; // Any messages, such as warnings during conversion
-    console.log(messages);
     return html;
   }
 

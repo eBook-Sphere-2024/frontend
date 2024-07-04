@@ -46,13 +46,7 @@ export class ReaderComponent implements OnInit, OnDestroy {
       };
 
       this.userService.updateReaderAnalysis(this.user.id, this.ebookId!, dataPost, dataPatch).subscribe(
-        (data: any) => {
-          console.log(data);
-        },
-        (error: any) => console.log(error)
-      );
-
-      console.log("done");
+      )
     }
   }
 
@@ -78,18 +72,13 @@ export class ReaderComponent implements OnInit, OnDestroy {
                 (res: any) => {
                   const blob = new Blob([res], { type: 'application/pdf' });
                   this.pdfSrc = URL.createObjectURL(blob);
-                  console.log(this.pdfSrc);
                   this.showDialog = false; // Hide dialog when content is loaded
                 },
                 (error: any) => {
                   this.router.navigate(['**'])
-                  console.log(error);
                 }
               );
             }
-          },
-          (error: any) => {
-            console.log(error.message);
           }
         );
       } else {
@@ -103,12 +92,10 @@ export class ReaderComponent implements OnInit, OnDestroy {
           (res: any) => {
             const blob = new Blob([res], { type: 'application/pdf' });
             this.pdfSrc = URL.createObjectURL(blob);
-            console.log(this.pdfSrc);
             this.showDialog = false; // Hide dialog when content is loaded
           },
           (error: any) => {
             this.router.navigate(['**'])
-            console.log(error);
           }
         );
       }
@@ -121,12 +108,6 @@ export class ReaderComponent implements OnInit, OnDestroy {
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    console.log('ebookId', this.ebookId);
-    console.log('User ', this.user);
-    console.log('Current Page:', this.currentPage);
-    console.log('Highest Progress: ', this.highest_progress);
-    console.log('Total pages: ', this.totalPages);
-
     if (this.currentPage > this.highest_progress) {
       this.highest_progress = this.currentPage;
     }

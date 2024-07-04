@@ -8,9 +8,7 @@
 .col-md-6 {
     position: relative;
     flex: 0 0 calc(33.333% - 30px);
-    /* Adjust the margin as needed */
     width: calc(33.333% - 30px);
-    /* Adjust the margin as needed */
     min-height: 550px;
 }
 
@@ -35,9 +33,7 @@
     font-size: 24px;
     text-align: center;
     width: 75%;
-    /* divider width */
     margin: 40px auto;
-    /* spacing above/below */
     margin-top: 75px;
 }
 
@@ -50,17 +46,13 @@
 .divider span:last-child {
     width: 50%;
     top: 13px;
-    /* adjust vertical align */
     -moz-background-size: 100% 2px;
-    /* line width */
     background-size: 100% 2px;
-    /* line width */
     background-position: 0 0, 0 100%;
     background-repeat: no-repeat;
 }
 
 .divider span:first-child {
-    /* color changes in here */
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000));
     background-image: -webkit-linear-gradient(180deg, transparent, #000);
     background-image: -moz-linear-gradient(180deg, transparent, #000);
@@ -78,7 +70,6 @@
 }
 
 .divider span:last-child {
-    /* color changes in here */
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
     background-image: -webkit-linear-gradient(180deg, #000, transparent);
     background-image: -moz-linear-gradient(180deg, #000, transparent);
@@ -87,8 +78,6 @@
 }
 
 /* Dialog spinner */
-
-
 .circle {
     color: hsl(230, 62%, 56%);
     margin-left: 50%;
@@ -149,7 +138,6 @@
   @media (min-width: 992px) and (max-width: 1199.98px) {
     .row {
       width: 100%;
-      margin-left: 5%;
       display: flex;
   }
   }

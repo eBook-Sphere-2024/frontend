@@ -1,80 +1,79 @@
-<body>
-    <div class="parent-container">
-        <app-banner></app-banner>
-        <section class="ebookDetail">
-            <div class="container" style="background-color: transparent">
-                <button type="button" class="btn" (click)="$event.preventDefault();goBack()">
-                    <span><i class="fa-solid fa-arrow-left"></i>Go Back</span>
-                </button>
-                <div class="book_detail_content grid" *ngIf="eBookItem">
-                    <div class="book_img">
-                        <img src="{{eBookItem.cover}}" alt="">
+<div class="containerBox">
+<app-banner></app-banner>
+<div class="parent-container">
+    <section class="ebookDetail">
+        <div class="container" style="background-color: transparent">
+            <button type="button" class="btn" (click)="$event.preventDefault();goBack()">
+                <span><i class="fa-solid fa-arrow-left"></i>Go Back</span>
+            </button>
+            <div class="book_detail_content grid" *ngIf="eBookItem">
+                <div class="book_img">
+                    <img src="{{eBookItem.cover}}" alt="">
+                </div>
+                <div class="book_info">
+                    <div class="items title name">
+                        <span>{{eBookItem.title}}</span>
                     </div>
-                    <div class="book_info">
-                        <div class="items title name">
-                            <span>{{eBookItem.title}}</span>
+                    <div class="items description">
+                        <span>{{eBookItem.description}}</span>
+                    </div>
+                    <div class="items ratingBook">
+                        <span class="name">Rate: </span>
+                        <input type="number" name="ratingBook" hidden [value]="eBookItem.rate">
+                        <i *ngFor="let star of stars; let i = index" class="fa fa-star star"
+                            [ngClass]="{'active': i < eBookItem.rate}"></i>
+                    </div>
+                    <div class="items auther">
+                        <span class="name">Auther:</span>
+                        <span class="val">{{eBookItem.author.first_name}} {{eBookItem.author.last_name}}</span>
+                    </div>
+                    <div class="items date">
+                        <span class="name">Published Date:</span>
+                        <span class="val">{{eBookItem.publication_date}}</span>
+                    </div>
+                    <div class="items categories">
+                        <span class="name">Categories:</span>
+                        <span>
+                            <a [routerLink]="['/reading/ebooks/category/', category.id]" class="val"
+                                *ngFor="let category of eBookItem.categories">{{category.name}}</a>
+                        </span>
+                    </div>
+                    <div class="icons">
+                        <div class="download">
+                            <label for="fileInput">
+                                <i class="fa-solid fa-download fa-2x" (click)="download()"> </i>
+                                <div>Download</div>
+                            </label>
                         </div>
-                        <div class="items description">
-                            <span>{{eBookItem.description}}</span>
+                        <div class="read" (click)="readBook()">
+                            <i class="fa-solid fa-glasses fa-2x"></i>
+                            <div>Read</div>
                         </div>
-                        <div class="items ratingBook">
-                            <span class="name">Rate: </span>
-                            <input type="number" name="ratingBook" hidden [value]="eBookItem.rate">
-                            <i *ngFor="let star of stars; let i = index" class="fa fa-star star"
-                                [ngClass]="{'active': i < eBookItem.rate}"></i>
-                        </div>
-                        <div class="items auther">
-                            <span class="name">Auther:</span>
-                            <span class="val">{{eBookItem.author.first_name}} {{eBookItem.author.last_name}}</span>
-                        </div>
-                        <div class="items date">
-                            <span class="name">Published Date:</span>
-                            <span class="val">{{eBookItem.publication_date}}</span>
-                        </div>
-                        <div class="items categories">
-                            <span class="name">Categories:</span>
-                            <span>
-                                <a [routerLink]="['/reading/ebooks/category/', category.id]" class="val"
-                                    *ngFor="let category of eBookItem.categories">{{category.name}}</a>
-                            </span>
-                        </div>
-                        <div class="icons">
-                            <div class="download">
-                                <label for="fileInput">
-                                    <i class="fa-solid fa-download fa-2x" (click)="download()"> </i>
-                                    <div>Download</div>
-                                </label>
-                            </div>
-                            <div class="read" (click)="readBook()">
-                                <i class="fa-solid fa-glasses fa-2x"></i>
-                                <div>Read</div>
-                            </div>
-                            <div class="favourite" (click)="favourite()">
-                                <div *ngIf="isFavourite"><i class="fa-solid fa-heart"></i></div>
-                                <div *ngIf="!isFavourite"><i class="fa-regular fa-heart"></i></div>
-                                <div>Favorite</div>
-                            </div>
+                        <div class="favourite" (click)="favourite()">
+                            <div *ngIf="isFavourite"><i class="fa-solid fa-heart"></i></div>
+                            <div *ngIf="!isFavourite"><i class="fa-regular fa-heart"></i></div>
+                            <div>Favorite</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <app-comment-list *ngIf="eBookItem" [eBook]="eBookItem"></app-comment-list>
-
-        <dialog id="signinDialog">
-            <h2>Please Sign In first</h2>
-            <div class="button-containerr">
-                <button class="cancel" (click)="closesigninDialog()">Cancel</button>
-                <button class="ok">Sign in</button>
-            </div>
-        </dialog>
-        <div class="overlay" *ngIf="showDialog">
-            <div class="dialog">
-                <div>
-                    <h2>Please wait a moment...</h2>
-                </div>
-                <div class="spinner-border circle"></div>
             </div>
         </div>
+    </section>
+    <app-comment-list *ngIf="eBookItem" [eBook]="eBookItem"></app-comment-list>
+    <dialog id="signinDialog">
+        <h2>Please Sign In first</h2>
+        <div class="button-containerr">
+            <button class="cancel" (click)="closesigninDialog()">Cancel</button>
+            <button class="ok">Sign in</button>
+        </div>
+    </dialog>
+    <div class="overlay" *ngIf="showDialog">
+        <div class="dialog">
+            <div>
+                <h2>Please wait a moment...</h2>
+            </div>
+            <div class="spinner-border circle"></div>
+        </div>
     </div>
-</body>
+</div>
+</div>

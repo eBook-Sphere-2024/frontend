@@ -104,8 +104,6 @@ h6 {
   height: 100%;
   border-radius: 5px;
   background-color: hsl(230, 62%, 56%);
-  ;
-  /* Default color */
   transition: width 0.3s ease-in-out;
 }
 

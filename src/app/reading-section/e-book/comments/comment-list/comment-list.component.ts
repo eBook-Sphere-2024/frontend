@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.css']  // Fixed typo here
+  styleUrls: ['./comment-list.component.css'] 
 })
 export class CommentListComponent implements OnInit {
   @Input() eBook: any;
@@ -116,7 +116,6 @@ export class CommentListComponent implements OnInit {
     if (token) {
       this.eBookService.rate_ebook(this.eBook.id.toString(), this.userProfile.id.toString(), this.rating).subscribe(
         (data: any) => {
-          console.log(data);
         },
         (error: any) => {
           alert(error.message);

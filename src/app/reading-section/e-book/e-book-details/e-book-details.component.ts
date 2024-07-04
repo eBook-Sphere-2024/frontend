@@ -16,7 +16,7 @@ export class EBookDetailsComponent implements OnInit {
   eBookItem!: eBookItem;
   userProfile!: User;
   isFavourite: boolean = false;
-  showDialog: boolean = false; // Control variable for showing the dialog
+  showDialog: boolean = false;
   stars = [1, 2, 3, 4, 5];
   constructor(private route: ActivatedRoute, private eBookService: EBookService, private Router: Router, private userService: UserServices, private events: EventService) { }
 
@@ -29,7 +29,6 @@ export class EBookDetailsComponent implements OnInit {
             this.eBookItem = event;
             this.eBookService.getBookRating(id).subscribe(
               (event: any) => {
-                console.log(event);
                 this.eBookItem.rate = event;
               },
               (error: any) => {
@@ -45,7 +44,6 @@ export class EBookDetailsComponent implements OnInit {
       }
     });
     let token = sessionStorage.getItem('Token');
-    console.log("token", token);
     if (token) {
       this.userService.userProfile(token).subscribe(
         (data: any) => {
@@ -59,7 +57,6 @@ export class EBookDetailsComponent implements OnInit {
                     for (let i = 0; i < data.length; i++) {
                       if (data[i].ebook == this.eBookItem.id) {
                         this.isFavourite = true;
-                        console.log(this.isFavourite);
                         break;
                       }
                     }

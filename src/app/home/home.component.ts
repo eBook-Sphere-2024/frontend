@@ -54,7 +54,6 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('Initializing Swiper');
     const swiperHome = new Swiper('.home__swiper', {
       loop: true,
       spaceBetween: -24,
@@ -71,18 +70,15 @@ export class HomeComponent implements AfterViewInit {
         },
       },
     });
-    console.log('Swiper initialized:', swiperHome);
   }
   sendMail() {
     this.userService.ContactMail(this.ContactData.value).subscribe(
       (data: any) => {
-        console.log(data);
         this.sendFail = false;
         this.sendSuccefully = true;
         this.failMessage = '';
       },
       (error: any) => {
-        console.log(error);
         this.sendSuccefully = false;
         this.sendFail = true;
         this.failMessage = error.error.email[0];

@@ -72,7 +72,6 @@ export class ProfileComponent implements OnInit {
         this.username_fail = '';
       },
       error => {
-        console.log(error);
         if (error.status == 400 && error.error.message == 'Username already exists') {
           this.username_fail = 'Username already exists'
           this.failMessage = 'Username already exists';

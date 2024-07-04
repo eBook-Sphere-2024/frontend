@@ -50,9 +50,6 @@ nav .avatar {
 }
 
 .sidebar-menu {
-    /* display: flex;
-    flex-wrap: wrap;
-    flex-direction: column; */
     justify-content: space-around;
     height: 39%;
     width: 100%;
@@ -126,6 +123,17 @@ nav .avatar {
     padding: 5px;
     border-radius: 50%;
 }
+#remove-icon{
+    position: absolute;
+    bottom: 10px;
+    right: 7px;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(0 0 0 / 0%);
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 70%;
+}
 
 /* Dialog spinner */
 .parent-container {
@@ -139,9 +147,7 @@ nav .avatar {
     right: 0;
     bottom: 0;
     background: rgba(121, 121, 121, 0.5);
-    /* Semi-transparent background */
     z-index: 9998;
-    /* Ensure it's on top of other elements */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -248,4 +254,71 @@ nav .avatar {
 
 .button-containerr button:last-child:hover {
     background-color: hsl(230, 50%, 32%);
+}
+/* Media Query for very Small Devices (extra small) */
+@media (max-width: 359.98px) {
+
+
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {
+
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+
+}
+
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+    .dialog{
+        width: 50%;
+    }
+}
+
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    #signinDialog {
+        width: 70%;
+        margin-top: 100px;
+    }
+
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    #signinDialog {
+        width: 60%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    #signinDialog {
+        width: 50%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    #signinDialog {
+        width: 40%;
+        margin-top: 100px;
+    }
+
 }

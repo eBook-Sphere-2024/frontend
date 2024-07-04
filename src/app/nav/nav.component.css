@@ -232,21 +232,21 @@ img {
 /* Media Query for Extra Small Devices (Portrait Phones) */
 @media (max-width: 359.98px) {
   .container {
-    max-width: calc(100% - 2rem); /* Adjust for smaller margins */
+    max-width: calc(100% - 2rem);
     margin-inline: 1rem;
   }
 
   .grid {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 1rem; /* Reduced gap */
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
   }
 
   .section {
-    padding: 3rem 1rem; /* Adjusted padding */
+    padding: 3rem 1rem;
   }
 
   .section__title {
-    font-size: 1.25rem; /* Smaller font size */
+    font-size: 1.25rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -254,20 +254,20 @@ img {
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
   .container {
-    margin-inline: 2rem; /* Increased margin */
+    margin-inline: 2rem; 
   }
 
   .grid {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 1rem; /* Reduced gap */
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
   }
 
   .section {
-    padding: 3rem 1.5rem; /* Adjusted padding */
+    padding: 3rem 1.5rem;
   }
 
   .section__title {
-    font-size: 1.25rem; /* Smaller font size */
+    font-size: 1.25rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -280,16 +280,16 @@ img {
   }
 
   .grid {
-    grid-template-columns: 1fr; /* Single column layout */
-    gap: 1rem; /* Reduced gap */
+    grid-template-columns: 1fr; 
+    gap: 1rem; 
   }
 
   .section {
-    padding: 3rem 1rem; /* Adjusted padding */
+    padding: 3rem 1rem;
   }
 
   .section__title {
-    font-size: 1.25rem; /* Smaller font size */
+    font-size: 1.25rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -298,20 +298,20 @@ img {
 @media (min-width: 576px) and (max-width: 767.98px) {
   .container {
     max-width: calc(100% - 1rem);
-    margin-inline: 0.5rem; /* Increased margin */
+    margin-inline: 0.5rem; 
   }
 
   .grid {
-    grid-template-columns: 0.7fr 1fr; /* Two column layout */
-    gap: 2rem; /* Increased gap */
+    grid-template-columns: 0.7fr 1fr; 
+    gap: 2rem; 
   }
 
   .section {
-    padding: 5rem 2rem; /* Adjusted padding */
+    padding: 5rem 2rem;
   }
 
   .section__title {
-    font-size: 1.5rem; /* Original font size */
+    font-size: 1.5rem; 
     margin-bottom: 2rem;
   }
 }
@@ -320,37 +320,37 @@ img {
 @media (min-width: 768px) and (max-width: 991.98px) {
   .container {
     max-width: calc(100% - 1rem);
-    margin-inline: 0.5rem; /* Increased margin */
+    margin-inline: 0.5rem; 
   }
 
   .grid {
-    gap: 2rem; /* Increased gap */
+    gap: 2rem; 
   }
 
   .section {
-    padding: 6rem 3rem; /* Adjusted padding */
+    padding: 6rem 3rem;
   }
 
   .section__title {
-    font-size: 2rem; /* Larger font size */
+    font-size: 2rem; 
   }
 }
 
 /* Media Query for Extra Large Devices (Large Desktops) */
 @media (min-width: 1200px) {
   .container {
-    margin-inline: 5rem; /* Increased margin */
+    margin-inline: 5rem; 
   }
 
   .grid {
-    gap: 3rem; /* Increased gap */
+    gap: 3rem; 
   }
 
   .section {
-    padding: 7rem 4rem; /* Adjusted padding */
+    padding: 7rem 4rem;
   }
 
   .section__title {
-    font-size: 2.5rem; /* Larger font size */
+    font-size: 2.5rem; 
   }
 }

@@ -68,3 +68,32 @@ h4{
   .alertt small i{
     margin-right: 5px;
   }
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+.email-validation{
+    width: 150%;
+        margin-top: 30%;
+        margin-right: 5%;
+        margin-left: 15%;
+}
+}
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .email-validation{
+        width: 150%;
+        margin-top: 20%;
+    }
+}/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .email-validation{
+        width: 85%;
+        margin-left: 15%;
+    }
+}
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .email-validation{
+        width: 75%;
+        margin-left: 15%;
+    }
+}

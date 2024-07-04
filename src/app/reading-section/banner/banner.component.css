@@ -42,7 +42,6 @@
 #section-1 .more-info {
   margin-top: 60px;
   background-color: #fff;
-  /* padding: 30px 60px; */
   border-radius: 61px;
   position: absolute;
   width: 80%;
@@ -399,7 +398,7 @@
 /* Media Query for Extra Large Devices */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   #section-1 {
-    width: 120%;
+    width: 100%;
   }
   #search {
     width: 100%;

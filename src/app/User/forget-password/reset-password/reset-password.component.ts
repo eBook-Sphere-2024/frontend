@@ -33,24 +33,17 @@ export class ResetPasswordComponent {
   onSubmit() {
     const uidb64 = this.route.snapshot.params['uidb64'];
     const token = this.route.snapshot.params['token'];
-    console.log("uidb64: ",uidb64);
-    console.log("token: ",token);
-    console.log(this.userPassword.get('new_password')?.value);
-    console.log(this.userPassword.get('confirm_password')?.value);
     let body = {
       "new_password": this.userPassword.get('new_password')?.value,
       "confirm_password": this.userPassword.get('confirm_password')?.value,
       "token": token,
       "uidb64": uidb64
     }
-    console.log(body);
     this.userService.resetPasswordByToken(body, uidb64, token).subscribe(
       (data: any) => {
-        console.log(data.message);
         this.validationSuccess = data.message;
       },
       (error) => {
-        console.log(error);
         if(error.error[0] === 'Invalid token or user ID.'){
             this.validationError = "Link is invalid or expired. Please try again.";
         }

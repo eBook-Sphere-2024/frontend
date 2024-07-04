@@ -227,4 +227,38 @@ form small{
   .alert small i {
     margin-right: 5px;
   }
-  
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    body{
+        width: 170%;
+        margin-left: 5%;
+        margin-bottom: 10%;
+        margin-top: 5%;
+    }
+}
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    body{
+        width: 196%;
+        margin-left: -5%;
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+}/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    body{
+        width: 97%;
+        margin-left: 5%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+}
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    body{
+        width: 95%;
+        margin-left: 5%;
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+}

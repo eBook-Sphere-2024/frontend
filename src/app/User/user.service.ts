@@ -145,9 +145,7 @@ export class UserServices {
     return this.http.get<any>('http://127.0.0.1:8000/api/ReaderAnalysis/').pipe(
       switchMap((analyses: any[]) => {
         const existingAnalysis = analyses.find(analysis => analysis.user == user_id && analysis.ebook == ebook_id);
-        console.log("existingAnalysis: ", existingAnalysis);
         if (existingAnalysis) {
-          console.log("raeder id: ", existingAnalysis);
           // If exists, update it using PATCH
           return this.http.patch('http://127.0.0.1:8000/api/ReaderAnalysis/?id=' + existingAnalysis.id, dataPatch, options).pipe(
             catchError(error => this.handleError(error, 'updateReaderAnalysis (patch)'))

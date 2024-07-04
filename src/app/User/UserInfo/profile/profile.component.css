@@ -144,3 +144,73 @@ label {
 .alert small i {
     margin-right: 5px;
 }
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    section {
+        margin-top: 50%;
+        margin-left: 10%;
+        width: 153%;
+        margin-bottom: 30px;
+        padding: 20px;
+        left: 0;
+        box-shadow: 5px 5px 7px 7px rgb(204 195 195);
+    }
+
+    form {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    section {
+        margin-top: 25%;
+        margin-left: 49%;
+        width: 135%;
+        margin-bottom: 30px;
+        padding: 20px;
+        left: 0; 
+        box-shadow: 5px 5px 7px 7px rgb(204 195 195);
+    }
+
+    form {
+        width: 100%;
+        padding: 25px;
+    }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    section {
+        margin-top: 20%;
+        margin-left: 36%;
+        width: 71%;
+        margin-bottom: 30px;
+        padding: 20px;
+        left: 0;
+        box-shadow: 5px 5px 7px 7px rgb(204 195 195);
+    }
+
+    form {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    section {
+        margin-top: 14%;
+        margin-bottom: 100px;
+        padding: 30px;
+        width: 68%;
+        left: 29.5%;
+        box-shadow: 5px 5px 7px 7px rgb(204 195 195);
+    }
+
+    form {
+        width: 100%;
+        padding: 30px;
+    }
+}

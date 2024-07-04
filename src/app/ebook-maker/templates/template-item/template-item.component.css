@@ -24,8 +24,6 @@ h2 {
     display: flex;
     justify-content: space-evenly;
 }
-
-/*Sign in Dialog*/
 #signinDialog {
     width: 400px;
     padding: 20px;
@@ -85,4 +83,68 @@ h2 {
 #previewDialog {
     width: 600px;
     height: 600px;
+}
+/* Media Query for very Small Devices (extra small) */
+@media (max-width: 359.98px) {
+
+
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {
+
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+
+}
+
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+    #signinDialog {
+        width: 70%;
+        margin-top: 100px;
+    }
+
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+    #signinDialog {
+        width: 60%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    #signinDialog {
+        width: 50%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    #signinDialog {
+        width: 40%;
+        margin-top: 100px;
+    }
+
 }

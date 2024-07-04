@@ -32,7 +32,6 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
         )
         this.bookService.getCommentAnalysis(id).subscribe(
           (data: any) => {
-            console.log('Fetched data:', data);
             this.commentsAnalysis = [data.positive_precision, data.negative_precision];
             this.initializeBarChart(); // Initialize the bar chart after data is fetched
           },
@@ -45,12 +44,10 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
 
         this.bookService.geteBookAnalysis(id).subscribe(
           (data: any) => {
-            console.log('Fetched Book data:', data);
             this.BookAnalysis = data.map((item: any) => {
               const progress = (item.highest_progress / item.totalPages) * 100;
               return parseInt(progress.toFixed(0), 10); // Convert the string to number
             });
-            console.log('Book Analysis:', this.BookAnalysis);
             this.initializeAreaChart(); // Initialize the area chart after data is fetched
           },
           (error) => {
@@ -62,11 +59,8 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
         if (token) {
           this.userService.userProfile(token).subscribe(
             (userData: any) => {
-              console.log('User Data:', userData.id);
-              console.log('Book ID:', id);
               this.userService.BooksAnalysisNumbers(userData.id.toString(), id).subscribe(
                 (data: any) => {
-                  console.log('Fetched Numbers:', data);
                   this.Numbers = data;
                 },
                 (error) => {
@@ -187,7 +181,6 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
 
   updateBarChart() {
     if (this.barChart) {
-      console.log('Updating bar chart with data:', this.commentsAnalysis);
       this.barChart.updateSeries([
         {
           data: this.commentsAnalysis,
@@ -198,7 +191,6 @@ export class BookAnalysisComponent implements OnInit, AfterViewInit {
 
   updateAreaChart() {
     if (this.areaChart) {
-      console.log('Updating area chart with data:', this.BookAnalysis);
       this.areaChart.updateSeries([
         {
           name: 'Reader Progress',

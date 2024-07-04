@@ -75,7 +75,6 @@ export class EditorComponent implements OnInit {
             this.editorObj.documentEditor.open(reader.result as string);
             this.editorObj.documentEditor.documentName = this.template.name;
           } else {
-            // console.error('DocumentEditorContainerComponent is not initialized.');
           }
         };
         reader.readAsText(data);
@@ -84,7 +83,6 @@ export class EditorComponent implements OnInit {
       },
       (error: any) => {
         console.error('Error loading template:', error);
-        console.log(error.message);
       }
     );
     this.isOpenEbook = true;
@@ -96,7 +94,6 @@ export class EditorComponent implements OnInit {
         this.categories = data;
       },
       (error: any) => {
-        console.log(error.message);
       }
     );
 
@@ -213,7 +210,6 @@ export class EditorComponent implements OnInit {
 
       // Function to handle the OK button click event
       const handleOkClick = () => {
-        console.log(input.value.trim());
         if (input.value.trim() !== '') {
           this.ebooksavedTitle = input.value.trim();
           resolve(this.ebooksavedTitle);

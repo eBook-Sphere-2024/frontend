@@ -76,7 +76,6 @@ export class FavoriteListComponent implements OnInit {
 
     this.userService.RemoveFromFavorites(data).subscribe(
       (data: any) => {
-        console.log(data);
         window.location.reload();
       },
       (error: any) => {

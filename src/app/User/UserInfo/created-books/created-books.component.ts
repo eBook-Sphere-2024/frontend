@@ -16,7 +16,6 @@ export class CreatedBooksComponent implements OnInit {
 
   ngOnInit(): void {
     let token = sessionStorage.getItem('Token');
-    console.log(token);
     if (token) {
       this.userService.userProfile(token).subscribe(
         (data: any) => {
@@ -24,12 +23,9 @@ export class CreatedBooksComponent implements OnInit {
           this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
             (data: any) => {
               this.userProfile.avatar = data.profile_image;
-              console.log(this.userProfile);
-              console.log("ID: ",this.userProfile.id);
               this.userService.get_createdBooks(this.userProfile.id.toString()).subscribe(
                 (data: any) => {
                   this.eBooks = data;
-                  console.log(this.eBooks);
                 },
                 (error) => {
                   console.error('Error fetching created books:', error);
