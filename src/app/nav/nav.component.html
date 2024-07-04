@@ -13,7 +13,7 @@
         </li>
 
         <li class="nav__item">
-          <a (click)="navigate('/maker/editor')" class="nav__link" id="maker">
+          <a (click)="openEditor()" class="nav__link" id="maker">
             <span>Maker</span>
           </a>
         </li>
@@ -34,7 +34,7 @@
           <a class="nav__link" id="user">
             <span>User</span>
           </a>
-          <ul class="dropdown" >
+          <ul class="dropdown">
             <li><a (click)="navigate('/User/profile')" *ngIf="userProfile">Profile</a></li>
             <li><a (click)="logout()" *ngIf="userProfile">Logout</a></li>
             <li><a (click)="browseTo();navigate('/authentication')" *ngIf="!userProfile">Sign in</a></li>
