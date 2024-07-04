@@ -46,7 +46,6 @@ export class EBookService {
       "ebook": id,
       "rate": rating
     }
-    console.log(body)
     return this.http.put('http://127.0.0.1:8000/api/rate/', body, options).pipe(
       catchError(error => this.handleError(error, 'rate_ebook'))
     );
@@ -135,7 +134,6 @@ export class EBookService {
     const body = {
       "fileId": fileId
     }
-    console.log(body)
     return this.http.post('http://127.0.0.1:8000/api/download/', body, options).pipe(
       catchError(error => this.handleError(error, 'download_eBook'))
     );

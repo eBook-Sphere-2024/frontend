@@ -22,8 +22,6 @@ p {
 }
 
 button {
-    /* make it inline center */
-
     background-color: #3f51b5;
     color: white;
     border: none;
@@ -54,8 +52,6 @@ div.rightButtons {
     margin-left: 20%;
     color: hsl(230, 62%, 56%);
 }
-
-/* Styles for button container */
 .button-container {
     display: flex;
     justify-content: center;
@@ -64,8 +60,6 @@ div.rightButtons {
     margin-top: 4%;
     justify-content: space-evenly;
 }
-
-/* Styles for buttons */
 .bu {
     text-align: center;
     text-decoration: none;
@@ -84,8 +78,6 @@ div.rightButtons {
     ;
     height: 50px;
 }
-
-/* Hover effect */
 .bu:hover {
     background-color: #ffffff;
     color: hsl(230, 62%, 56%);
@@ -214,9 +206,6 @@ div.rightButtons {
     font-size: 1.5em;
     color: hsl(230, 62%, 56%);
 }
-
-
-/* Dialog spinner */
 .parent-container {
     position: relative;
 }
@@ -228,9 +217,7 @@ div.rightButtons {
     right: 0;
     bottom: 0;
     background: rgba(121, 121, 121, 0.5);
-    /* Semi-transparent background */
     z-index: 9998;
-    /* Ensure it's on top of other elements */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,6 +263,11 @@ div.rightButtons {
 .tem1{
     width: 80%;
 }
+#signinDialog {
+    width: 90%;
+    margin-top: 100px;
+}
+
 }
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
@@ -285,6 +277,11 @@ div.rightButtons {
 .tem1{
     width: 80%;
 }
+#signinDialog {
+    width: 80%;
+    margin-top: 100px;
+}
+
 }
 /* Media Query for Small Devices (Mobile phones) */
 @media (max-width: 575.98px) {
@@ -305,6 +302,13 @@ div.rightButtons {
     button.bu.button.e-control.e-btn.e-lib {
         font-size: 13px;
         padding: 0;
+}
+#signinDialog {
+    width: 80%;
+    margin-top: 100px;
+}
+.dialog{
+    width: 50%;
 }
 }
 /* Media Query for Medium Devices (Tablets) */
@@ -327,6 +331,11 @@ div.rightButtons {
         font-size: 13px;
         padding: 0;
 }
+#signinDialog {
+    width: 70%;
+    margin-top: 100px;
+}
+
 }/* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     .tem2{
@@ -348,6 +357,11 @@ div.rightButtons {
         font-size: 13px;
         padding: 0;
 }
+#signinDialog {
+    width: 60%;
+    margin-top: 100px;
+}
+
 }
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -368,5 +382,9 @@ div.rightButtons {
     button.bu.button.e-control.e-btn.e-lib {
         font-size: 13px;
         padding: 0;
+}
+#signinDialog {
+    width: 50%;
+    margin-top: 100px;
 }
 }

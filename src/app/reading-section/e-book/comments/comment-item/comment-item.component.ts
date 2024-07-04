@@ -26,7 +26,6 @@ export class CommentItemComponent implements OnInit {
     this.getReplies();
   }
   getReplies(): void {
-    console.log(this.comment.id.toString(), this.comment.ebook.id.toString());
     this.eBookService.get_comment_replies(this.comment.id.toString(), this.comment.ebook.id.toString()).subscribe(
       (data: any) => {
         this.replies = data;
@@ -48,7 +47,6 @@ export class CommentItemComponent implements OnInit {
   }
 
   promptDeleteComment(): void {
-    console.log('prompt delete comment');
     const modalWrp = document.querySelector('.modal-wrp') as HTMLElement;
     modalWrp.classList.remove('invisible');
 
@@ -98,7 +96,6 @@ export class CommentItemComponent implements OnInit {
   saveComment(): void {
     this.eBookService.edit_comment(this.comment).subscribe(
       () => {
-        //window.location.reload();
       },
       (error: any) => {
         alert(error.message);

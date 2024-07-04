@@ -62,7 +62,6 @@ export class ChangePasswordComponent implements OnInit {
         }
       );
     }else{
-      console.log('Token not found in session storage');
       if(changePassword) {
         changePassword.style.display = 'none';
       }

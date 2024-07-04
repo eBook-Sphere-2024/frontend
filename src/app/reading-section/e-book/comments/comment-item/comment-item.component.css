@@ -1,8 +1,6 @@
-/* Existing styles */
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
-/* Additional styles */
 .this-user::after {
     font-weight: 400;
     content: "you";
@@ -129,7 +127,6 @@ a {
 
 .delete {
     color: hsl(358, 79%, 66%);
-    /* display: none; */
 }
 
 .delete:hover {
@@ -303,8 +300,6 @@ a {
     font-size: 20px;
 }
 
-
-/*Sign in Dialog*/
 #signinDialog {
     width: 400px;
     padding: 20px;
@@ -362,3 +357,50 @@ a {
 .button-containerr button:last-child:hover {
     background-color: hsl(230, 50%, 32%);
 }
+/* Media Query for very Small Devices */
+@media (max-width: 359.98px) {
+    .containerr{
+        width: 98%;
+        margin-left: 0;
+    }
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
+
+    }
+    /* Media Query for Small Devices (Mobile phones) */
+    @media (max-width: 575.98px) {
+        .containerr{
+            width: 98%;
+            margin-left: 0;
+        }
+        #signinDialog {
+            width: 80%;
+            margin-top: 100px;
+        }
+    
+    }/* Media Query for Large Devices (Desktops) */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .containerr{
+            width: 98%;
+            margin-left: 0;
+        }
+        #signinDialog {
+            width: 60%;
+            margin-top: 100px;
+        }
+    
+    }
+    /* Media Query for Large Devices (Desktops) */
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .containerr{
+            width: 98%;
+            margin-left: 0;
+        }
+        #signinDialog {
+            width: 50%;
+            margin-top: 100px;
+        }
+    
+    }

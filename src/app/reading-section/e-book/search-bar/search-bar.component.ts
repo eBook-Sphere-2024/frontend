@@ -51,8 +51,6 @@ export class SearchBarComponent implements OnInit {
           }
         }
         this.showDialog = false;
-        console.log("indirect", this.indirectsearchresults);
-        console.log("indirect length", this.indirectsearchresults.length);
       },
       (error: any) => {
         console.error('Error fetching indirect search results:', error);

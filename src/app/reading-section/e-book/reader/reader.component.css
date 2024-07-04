@@ -16,9 +16,7 @@ section {
     right: 0;
     bottom: 0;
     background: rgba(121, 121, 121, 0.5);
-    /* Semi-transparent background */
     z-index: 9998;
-    /* Ensure it's on top of other elements */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,11 +131,19 @@ section {
 section{
     width: 180%;
 }
+#signinDialog {
+    width: 90%;
+    margin-top: 100px;
+}
 }
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
     section{
         width: 120%;
+    }
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
     }
 }
 /* Media Query for Small Devices (Mobile phones) */
@@ -145,21 +151,41 @@ section{
     section{
         width: 180%;
     }
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+    .dialog{
+        width: 50%;
+    }
 }
 /* Media Query for Medium Devices (Tablets) */
 @media (min-width: 576px) and (max-width: 767.98px) {
     section{
         width: 190%;
     }
+    #signinDialog {
+        width: 70%;
+        margin-top: 100px;
+    }
+
 }/* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
     section{
         width: 120%;
+    }
+    #signinDialog {
+        width: 60%;
+        margin-top: 100px;
     }
 }
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
     section{
         width: 120%;
+    }
+    #signinDialog {
+        width: 50%;
+        margin-top: 100px;
     }
 }

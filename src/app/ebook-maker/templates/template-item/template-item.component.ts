@@ -26,7 +26,6 @@ export class TemplateItemComponent implements OnInit {
         }
       );
     }
-    console.log(this.template)
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.template.previewurl);
   }
   editTemplate() {

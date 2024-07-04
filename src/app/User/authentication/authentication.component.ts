@@ -58,12 +58,9 @@ export class AuthenticationComponent {
   registerUser() {
     this.usernameFail = '';
     this.sendFail = false;
-
-    console.log(this.userData.value);
     this.userService.post_register(this.userData.value)
       .subscribe(
         response => {
-          console.log('Registration successful:', response);
           sessionStorage.setItem('Token', JSON.stringify(response));
           if (this.browseBack == '' || this.browseBack == '/**') {
             this.router.navigate(['/User/profile']);
@@ -72,15 +69,12 @@ export class AuthenticationComponent {
           }
         },
         error => {
-          console.log(error);
           if (error.status == 400 && error.error.non_field_errors[0] == 'Username already exists')
             this.usernameFail = 'Username already exists'
           else {
-            console.log(error.error.non_field_errors[0]);
             this.sendFail = true;
             this.failMessage = error.error.non_field_errors[0];
           }
-          console.log('user registration error:', this.usernameFail);
         }
       );
   }
@@ -88,7 +82,6 @@ export class AuthenticationComponent {
     this.userService.login(this.userlogin.value)
       .subscribe(
         response => {
-          console.log('Login successful:', response);
           sessionStorage.setItem('Token', JSON.stringify(response));
           if (this.browseBack == '' || this.browseBack == '/**') {
             this.router.navigate(['/User/profile']);
@@ -98,9 +91,7 @@ export class AuthenticationComponent {
         },
         error => {
           if (error.status == 400 && error.error.massage == 'Username or password is incorrect')
-            console.log("jjjj");
           this.loginFialure = 'Username or password is incorrect';
-
         }
       );
   }

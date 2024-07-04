@@ -42,7 +42,6 @@ export class UserInfoComponent implements OnInit {
         }
       );
     } else {
-      console.log('Token not found in session storage');
       const signinDialogg = document.getElementById('signinDialogg');
       if (signinDialogg) {
         signinDialogg.style.display = 'block';
@@ -71,7 +70,6 @@ export class UserInfoComponent implements OnInit {
       this.showDialog = true;
       this.userService.uploadAvatar(this.userProfile.id, file).subscribe(
         (response: any) => {
-          console.log('Avatar uploaded successfully:', response);
           this.userProfile.avatar = response.avatarUrl;
           this.showDialog = false;
           window.location.reload();
