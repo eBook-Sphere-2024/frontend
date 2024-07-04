@@ -1,28 +1,19 @@
 <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" />
 <header class="header" id="header">
   <nav class="nav container">
-    <a (click)="navigate('/Home')" class="nav__logo"
-      ><i class="ri-book-3-line"></i>E-Book</a
-    >
+    <a (click)="navigate('/Home')" class="nav__logo"><i class="ri-book-3-line"></i>E-Book</a>
 
     <div class="nav__menu">
       <ul class="nav__list">
         <li class="nav__item">
-          <a
-            (click)="navigate('/Home')"
-            class="nav__link active-link"
-            id="home"
-          >
+          <a (click)="navigate('/Home')" class="nav__link active-link" id="home">
             <span>Home</span>
           </a>
         </li>
 
         <li class="nav__item">
-          <a (click)="navigate('/maker/editor')" class="nav__link" id="maker">
+          <a (click)="openEditor()" class="nav__link" id="maker">
             <span>Maker</span>
           </a>
         </li>
@@ -34,11 +25,7 @@
         </li>
 
         <li class="nav__item">
-          <a
-            (click)="navigate('/Home', 'contactUs')"
-            class="nav__link"
-            id="contact"
-          >
+          <a (click)="navigate('/Home', 'contactUs')" class="nav__link" id="contact">
             <span>Contact Us</span>
           </a>
         </li>
@@ -48,19 +35,9 @@
             <span>User</span>
           </a>
           <ul class="dropdown">
-            <li>
-              <a (click)="navigate('/User/profile')" *ngIf="userProfile"
-                >Profile</a
-              >
-            </li>
+            <li><a (click)="navigate('/User/profile')" *ngIf="userProfile">Profile</a></li>
             <li><a (click)="logout()" *ngIf="userProfile">Logout</a></li>
-            <li>
-              <a
-                (click)="browseTo(); navigate('/authentication')"
-                *ngIf="!userProfile"
-                >Sign in</a
-              >
-            </li>
+            <li><a (click)="browseTo();navigate('/authentication')" *ngIf="!userProfile">Sign in</a></li>
           </ul>
         </li>
       </ul>
@@ -74,20 +51,13 @@
 <div class="search" id="search-content">
   <form>
     <div class="search__form">
-      <input
-        type="search"
-        placeholder="What are you looking for?"
-        class="search__input"
-        (input)="filterSearchItems($event)"
-      />
+      <input type="search" placeholder="What are you looking for?" class="search__input"
+        (input)="filterSearchItems($event)" />
     </div>
   </form>
   <div class="dropdown2" *ngIf="filteredItems.length > 0">
     <ul>
-      <li
-        *ngFor="let item of filteredItems"
-        (click)="onSearchItemSelected(item)"
-      >
+      <li *ngFor="let item of filteredItems" (click)="onSearchItemSelected(item)">
         {{ item }}
       </li>
     </ul>

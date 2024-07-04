@@ -105,6 +105,12 @@ export class UserServices {
       catchError(error => throwError(error))
     );
   }
+  removeAvatar(id: number) {
+    let options = this.getStandardOptions();
+    return this.http.delete('http://127.0.0.1:8000/api/profile/?id=' + id, options).pipe(
+      catchError(error => this.handleError(error, 'removeAvatar'))
+    );
+  }
   getFavoriteBooksForUser(id: number) {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/FavoriteBooks/?user_id=' + id, options).pipe(

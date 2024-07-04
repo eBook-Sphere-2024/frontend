@@ -85,4 +85,16 @@ export class UserInfoComponent implements OnInit {
     this.events.emit("openSigninDialog", currentUrl);
     this.router.navigate(['/authentication']);
   }
+  removeProfile() {
+    this.showDialog = true;
+    this.userService.removeAvatar(this.userProfile.id).subscribe(
+      (data: any) => {
+        this.showDialog = false;
+        window.location.reload();
+      },
+      (error: any) => {
+        console.error('Error removing avatar:', error);
+      }
+    );
+  }
 }
