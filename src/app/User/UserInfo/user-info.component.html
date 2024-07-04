@@ -7,7 +7,7 @@
     <span>
       <div class="edit-icon">
         <img id="avatar" src="{{userProfile.avatar}}" alt="avatar" class="avatar img-fluid">
-        <i class="fa-solid fa-user-slash removeImg" id="remove-icon"></i>
+        <i class="fa-solid fa-user-slash removeImg" id="remove-icon" (click)="removeProfile()"></i>
         <i class="fas fa-edit" id="edit-icon" (click)="triggerFileInput()">
           <input type="file" id="file-input" accept="image/*" style="display: none;" (change)="onFileSelected($event)">
         </i>
