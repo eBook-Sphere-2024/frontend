@@ -38,9 +38,9 @@
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
   .row {
-      width: 188%;
-      margin-left: -2%;
-      display: flex;
+    width: 188%;
+    margin-left: -2%;
+    display: flex;
   }
 
   .col-lg-4 {
@@ -54,7 +54,7 @@
     width: 200%;
     margin-left: 5%;
     display: flex;
-}
+  }
 }
 
 /* Media Query for Large Devices (Desktops) */
@@ -62,7 +62,7 @@
   .row {
     width: 115%;
     display: flex;
-}
+  }
 }
 
 /* Media Query for Large Devices (Desktops) */
@@ -70,5 +70,5 @@
   .row {
     width: 100%;
     display: flex;
-}
+  }
 }

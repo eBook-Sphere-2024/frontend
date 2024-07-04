@@ -172,6 +172,7 @@ export class UserServices {
       catchError(error => this.handleError(error, 'BooksAnalysisNumbers'))
     );
   }
+  
   ContactMail(data: any) {
     let options = this.getStandardOptions();
     let body = data

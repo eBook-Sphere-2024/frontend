@@ -26,7 +26,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     ReactiveFormsModule,
     NgApexchartsModule,
   ],
-  exports:[
+  exports: [
     UserInfoComponent
   ]
 })

@@ -1,11 +1,9 @@
 div.bar {
-
     background-color: #3f51b5;
     color: white;
     border: none;
     justify-content: space-between;
     display: flex;
-
 }
 
 p {
@@ -17,7 +15,7 @@ p {
     display: inline;
     font-size: 16px;
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
 
@@ -29,14 +27,12 @@ button {
     text-align: center;
     display: inline;
     font-size: 16px;
-
 }
 
 div.rightButtons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
 }
 
 .box {
@@ -52,6 +48,7 @@ div.rightButtons {
     margin-left: 20%;
     color: hsl(230, 62%, 56%);
 }
+
 .button-container {
     display: flex;
     justify-content: center;
@@ -60,6 +57,7 @@ div.rightButtons {
     margin-top: 4%;
     justify-content: space-evenly;
 }
+
 .bu {
     text-align: center;
     text-decoration: none;
@@ -70,18 +68,16 @@ div.rightButtons {
     cursor: pointer;
     padding: 10px 30px;
     background-color: hsl(230, 62%, 56%);
-    ;
     color: #ffffff;
     font-weight: bold;
     border-radius: 0;
     border: 1px solid hsl(230, 62%, 56%);
-    ;
     height: 50px;
 }
+
 .bu:hover {
     background-color: #ffffff;
     color: hsl(230, 62%, 56%);
-    ;
 }
 
 #publishDialog,
@@ -206,6 +202,7 @@ div.rightButtons {
     font-size: 1.5em;
     color: hsl(230, 62%, 56%);
 }
+
 .parent-container {
     position: relative;
 }
@@ -255,136 +252,168 @@ div.rightButtons {
 .circle {
     color: hsl(230, 62%, 56%);
 }
+
 /* Media Query for very Small Devices */
 @media (max-width: 359.98px) {
-.tem2{
-    width: 150%;
-}
-.tem1{
-    width: 80%;
-}
-#signinDialog {
-    width: 90%;
-    margin-top: 100px;
+    .tem2 {
+        width: 150%;
+    }
+
+    .tem1 {
+        width: 80%;
+    }
+
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
 }
 
-}
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
-.tem2{
-    width: 180%;
-}
-.tem1{
-    width: 80%;
-}
-#signinDialog {
-    width: 80%;
-    margin-top: 100px;
+    .tem2 {
+        width: 180%;
+    }
+
+    .tem1 {
+        width: 80%;
+    }
+
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
 }
 
-}
 /* Media Query for Small Devices (Mobile phones) */
 @media (max-width: 575.98px) {
-    .tem2{
+    .tem2 {
         width: 180%;
     }
-    .tem1{
+
+    .tem1 {
         margin-top: 100px;
         margin-bottom: 50px;
     }
-    .box{
-       width: 190%;
-    }.button-container button{
+
+    .box {
+        width: 190%;
+    }
+
+    .button-container button {
         overflow-y: visible;
         width: 50%;
         height: 100px;
     }
+
     button.bu.button.e-control.e-btn.e-lib {
         font-size: 13px;
         padding: 0;
-}
-#signinDialog {
-    width: 80%;
-    margin-top: 100px;
-}
-.dialog{
-    width: 50%;
-}
-}
-/* Media Query for Medium Devices (Tablets) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-    .tem2{
-        width: 180%;
     }
-    .tem1{
+
+    #signinDialog {
+        width: 80%;
         margin-top: 100px;
-        margin-bottom: 50px;
     }
-    .box{
-       width: 160%;
-    }.button-container button{
-        overflow-y: visible;
+
+    .dialog {
         width: 50%;
-        height: 100px;
     }
-    button.bu.button.e-control.e-btn.e-lib {
-        font-size: 13px;
-        padding: 0;
-}
-#signinDialog {
-    width: 70%;
-    margin-top: 100px;
 }
 
-}/* Media Query for Large Devices (Desktops) */
+/* Media Query for Medium Devices (Tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .tem2 {
+        width: 180%;
+    }
+
+    .tem1 {
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+
+    .box {
+        width: 160%;
+    }
+
+    .button-container button {
+        overflow-y: visible;
+        width: 50%;
+        height: 100px;
+    }
+
+    button.bu.button.e-control.e-btn.e-lib {
+        font-size: 13px;
+        padding: 0;
+    }
+
+    #signinDialog {
+        width: 70%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .tem2{
+    .tem2 {
         width: 110%;
     }
-    .tem1{
+
+    .tem1 {
         margin-top: 100px;
         margin-bottom: 50px;
         margin-left: -20%;
     }
-    .box{
-       width: 85%;
-    }.button-container button{
+
+    .box {
+        width: 85%;
+    }
+
+    .button-container button {
         overflow-y: visible;
         width: 50%;
         height: 50px;
     }
+
     button.bu.button.e-control.e-btn.e-lib {
         font-size: 13px;
         padding: 0;
-}
-#signinDialog {
-    width: 60%;
-    margin-top: 100px;
+    }
+
+    #signinDialog {
+        width: 60%;
+        margin-top: 100px;
+    }
 }
 
-}
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .tem2{
+    .tem2 {
         width: 140%;
     }
-    .tem1{
+
+    .tem1 {
         margin-top: 15%;
         margin-left: -9%;
     }
-    .box{
-       width: 70%;
-    }.button-container button{
+
+    .box {
+        width: 70%;
+    }
+
+    .button-container button {
         overflow-y: visible;
         width: 50%;
         height: 50px;
     }
+
     button.bu.button.e-control.e-btn.e-lib {
         font-size: 13px;
         padding: 0;
-}
-#signinDialog {
-    width: 50%;
-    margin-top: 100px;
-}
+    }
+
+    #signinDialog {
+        width: 50%;
+        margin-top: 100px;
+    }
 }

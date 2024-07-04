@@ -75,12 +75,12 @@ export class ProfileComponent implements OnInit {
         if (error.status == 400 && error.error.message == 'Username already exists') {
           this.username_fail = 'Username already exists'
           this.failMessage = 'Username already exists';
-        }else{
+        } else {
           this.failMessage = error.error.errors.non_field_errors[0];
         }
         this.changeFail = true
         this.changeSuccefully = false
-        
+
       }
     );
   }

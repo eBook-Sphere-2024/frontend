@@ -123,7 +123,8 @@ nav .avatar {
     padding: 5px;
     border-radius: 50%;
 }
-#remove-icon{
+
+#remove-icon {
     position: absolute;
     bottom: 10px;
     right: 7px;
@@ -187,7 +188,7 @@ nav .avatar {
     color: hsl(230, 62%, 56%);
 }
 
-#signinDialogg{
+#signinDialogg {
     display: none;
     width: 400px;
     padding: 20px;
@@ -198,8 +199,8 @@ nav .avatar {
     font-family: Arial, sans-serif;
     margin: 100px auto;
 }
-#signinDialogg h2
-{
+
+#signinDialogg h2 {
     font-family: cursive;
     font-style: italic;
     font-size: medium;
@@ -210,9 +211,11 @@ nav .avatar {
     font-size: 1.5em;
     color: hsl(230, 62%, 56%);
 }
+
 #signinDialogg .button-containerr {
     margin-left: 24%;
 }
+
 .button-containerr {
     justify-content: space-between;
 }
@@ -255,6 +258,7 @@ nav .avatar {
 .button-containerr button:last-child:hover {
     background-color: hsl(230, 50%, 32%);
 }
+
 /* Media Query for very Small Devices (extra small) */
 @media (max-width: 359.98px) {
 
@@ -281,7 +285,8 @@ nav .avatar {
         width: 80%;
         margin-top: 100px;
     }
-    .dialog{
+
+    .dialog {
         width: 50%;
     }
 }

@@ -36,7 +36,7 @@ export class ChangePasswordComponent implements OnInit {
     let changePassword = document.getElementById('changePassword');
     let token = sessionStorage.getItem('Token');
     if (token) {
-      if(changePassword) {
+      if (changePassword) {
         changePassword.style.display = 'block';
       }
       this.userService.userProfile(token).subscribe(
@@ -61,8 +61,8 @@ export class ChangePasswordComponent implements OnInit {
           console.error('Error fetching user profile:', error);
         }
       );
-    }else{
-      if(changePassword) {
+    } else {
+      if (changePassword) {
         changePassword.style.display = 'none';
       }
     }

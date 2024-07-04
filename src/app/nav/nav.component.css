@@ -237,8 +237,8 @@ img {
   }
 
   .grid {
-    grid-template-columns: 1fr; 
-    gap: 1rem; 
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .section {
@@ -254,12 +254,12 @@ img {
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
   .container {
-    margin-inline: 2rem; 
+    margin-inline: 2rem;
   }
 
   .grid {
-    grid-template-columns: 1fr; 
-    gap: 1rem; 
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .section {
@@ -280,8 +280,8 @@ img {
   }
 
   .grid {
-    grid-template-columns: 1fr; 
-    gap: 1rem; 
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .section {
@@ -298,12 +298,12 @@ img {
 @media (min-width: 576px) and (max-width: 767.98px) {
   .container {
     max-width: calc(100% - 1rem);
-    margin-inline: 0.5rem; 
+    margin-inline: 0.5rem;
   }
 
   .grid {
-    grid-template-columns: 0.7fr 1fr; 
-    gap: 2rem; 
+    grid-template-columns: 0.7fr 1fr;
+    gap: 2rem;
   }
 
   .section {
@@ -311,7 +311,7 @@ img {
   }
 
   .section__title {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     margin-bottom: 2rem;
   }
 }
@@ -320,11 +320,11 @@ img {
 @media (min-width: 768px) and (max-width: 991.98px) {
   .container {
     max-width: calc(100% - 1rem);
-    margin-inline: 0.5rem; 
+    margin-inline: 0.5rem;
   }
 
   .grid {
-    gap: 2rem; 
+    gap: 2rem;
   }
 
   .section {
@@ -332,18 +332,18 @@ img {
   }
 
   .section__title {
-    font-size: 2rem; 
+    font-size: 2rem;
   }
 }
 
 /* Media Query for Extra Large Devices (Large Desktops) */
 @media (min-width: 1200px) {
   .container {
-    margin-inline: 5rem; 
+    margin-inline: 5rem;
   }
 
   .grid {
-    gap: 3rem; 
+    gap: 3rem;
   }
 
   .section {
@@ -351,6 +351,6 @@ img {
   }
 
   .section__title {
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
   }
 }

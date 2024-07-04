@@ -45,16 +45,16 @@
                     <small class="text-danger" *ngIf="userData.get('password')?.hasError('required')">Password is
                         required</small>
                     <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must
-                        contain characters and numbers</small>
-                    <small class="text-danger" *ngIf="userData.get('password')?.hasError('pattern')">Password must be at
+                        contain characters and numbers and special characters</small>
+                    <small class="text-danger" *ngIf="userData.get('password')?.hasError('minlength')">Password must be at
                         least 8 characters long.</small>
                 </div>
 
                 <button type="submit" [disabled]="userData.invalid" id="register" #register>Sign Up</button>
                 <div class="alert">
                     <small *ngIf="sendFail" class="fail"><i class="fa-solid fa-square-xmark"></i>{{ failMessage
-                      }}</small>
-                  </div>
+                        }}</small>
+                </div>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -75,8 +75,9 @@
                         required</small>
                     <small class="text-danger" *ngIf="userlogin.get('password')?.hasError('pattern')">Password must
                         contain characters and numbers</small>
-                    <small class="text-danger" *ngIf="userlogin.get('password')?.hasError('pattern')">Password must be at
-                        least 8 characters long.</small>    
+                    <small class="text-danger" *ngIf="userlogin.get('password')?.hasError('pattern')">Password must be
+                        at
+                        least 8 characters long.</small>
                 </div>
                 <small *ngIf="loginFialure" class="text-danger">{{ loginFialure }}</small>
                 <a class="forget" href="/ForgetPasswordByEmail">Forget Your Password?</a>

@@ -142,13 +142,13 @@ export class EBookService {
     return this.http.get('http://127.0.0.1:8000/api/ebookContent/?id=' + ebookId, { responseType: 'blob' }).pipe(map((res: Blob) => res));;
   }
 
-  getCommentAnalysis(id: string){
-   let options = this.getStandardOptions();
-   return this.http.get('http://127.0.0.1:8000/api/CommentAnalysis/?book_id=' + id, options).pipe(
-    catchError(error => this.handleError(error, 'get_indirectSearch'))
-  );
+  getCommentAnalysis(id: string) {
+    let options = this.getStandardOptions();
+    return this.http.get('http://127.0.0.1:8000/api/CommentAnalysis/?book_id=' + id, options).pipe(
+      catchError(error => this.handleError(error, 'get_indirectSearch'))
+    );
   }
-  geteBookAnalysis(id: string){
+  geteBookAnalysis(id: string) {
     let options = this.getStandardOptions();
     return this.http.get('http://127.0.0.1:8000/api/ReaderAnalysisSpecificBook/?ebook_id=' + id, options).pipe(
       catchError(error => this.handleError(error, 'get_indirectSearch'))

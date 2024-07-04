@@ -5,8 +5,6 @@ import { UserComponent } from './user.component';
 import { UserInfoModule } from './UserInfo/user-info.module';
 import { ForgetPasswordModule } from './forget-password/forget-password.module';
 
-
-
 @NgModule({
   declarations: [
     UserComponent,
@@ -17,7 +15,7 @@ import { ForgetPasswordModule } from './forget-password/forget-password.module';
     UserInfoModule,
     ForgetPasswordModule
   ],
-  exports:[
+  exports: [
     UserComponent
   ]
 })

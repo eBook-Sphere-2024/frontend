@@ -12,11 +12,11 @@ import { EventService } from '../../../../shared/services/EventService';
 export class EBookListComponent implements OnInit {
   @Input() eBooks: eBookItem[] = [];
 
-  constructor(private events: EventService,private bookService: EBookService) { 
+  constructor(private events: EventService, private bookService: EBookService) {
 
   }
 
   ngOnInit(): void {
   }
-  
+
 }
