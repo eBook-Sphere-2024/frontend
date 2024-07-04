@@ -27,7 +27,11 @@ export class ChangePasswordComponent implements OnInit {
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       old_password: ['', [Validators.required]],
-      new_password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.minLength(8)]],
+      new_password: ['',  [
+        Validators.required,
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~])[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~]+$'),
+        Validators.minLength(8)
+      ]],
       confirm_password: ['', [Validators.required]],
     }, { validators: this.passwordMatchValidator });
   }
@@ -36,7 +40,7 @@ export class ChangePasswordComponent implements OnInit {
     let changePassword = document.getElementById('changePassword');
     let token = sessionStorage.getItem('Token');
     if (token) {
-      if (changePassword) {
+      if(changePassword) {
         changePassword.style.display = 'block';
       }
       this.userService.userProfile(token).subscribe(
@@ -61,8 +65,8 @@ export class ChangePasswordComponent implements OnInit {
           console.error('Error fetching user profile:', error);
         }
       );
-    } else {
-      if (changePassword) {
+    }else{
+      if(changePassword) {
         changePassword.style.display = 'none';
       }
     }
@@ -79,6 +83,7 @@ export class ChangePasswordComponent implements OnInit {
         this.changeFail = false
       },
       error => {
+        console.log(error)
         this.changeFail = true
         this.changeSuccefully = false
         this.failMessage = error.error.errors.non_field_errors[0]
