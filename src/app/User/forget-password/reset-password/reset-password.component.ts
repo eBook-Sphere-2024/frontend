@@ -6,20 +6,20 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css'] 
+  styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent {
   userPassword: FormGroup;
   validationError: string = '';
   validationSuccess: string = '';
 
-  constructor(private fb: FormBuilder,private userService: UserServices,private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private userService: UserServices, private route: ActivatedRoute) {
     this.userPassword = this.fb.group({
       new_password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.minLength(8)]],
       confirm_password: ['', [Validators.required]],
     }, { validators: this.passwordMatchValidator });
   }
-  
+
   passwordMatchValidator(formGroup: AbstractControl): ValidationErrors | null {
     const newPassword = formGroup.get('new_password')?.value;
     const confirmPassword = formGroup.get('confirm_password')?.value;
@@ -44,11 +44,11 @@ export class ResetPasswordComponent {
         this.validationSuccess = data.message;
       },
       (error) => {
-        if(error.error[0] === 'Invalid token or user ID.'){
-            this.validationError = "Link is invalid or expired. Please try again.";
+        if (error.error[0] === 'Invalid token or user ID.') {
+          this.validationError = "Link is invalid or expired. Please try again.";
         }
       }
     );
   }
-  
+
 }

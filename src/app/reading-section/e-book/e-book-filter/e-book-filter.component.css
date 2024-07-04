@@ -2,7 +2,8 @@
   position: relative;
   display: inline-block;
 }
-.headd{
+
+.headd {
   border-radius: 4px;
   background-color: #e9e6e6;
   position: relative;
@@ -17,9 +18,12 @@
   width: 250px;
   cursor: pointer;
   color: black;
-}.headd i{
+}
+
+.headd i {
   margin-left: 20%;
 }
+
 .for-dropdown li a {
   text-decoration: none;
   color: #000;

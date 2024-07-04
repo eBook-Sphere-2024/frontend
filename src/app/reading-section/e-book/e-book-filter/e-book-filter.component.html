@@ -1,9 +1,9 @@
-
 <div class="for-dropdown">
   <a class="headd">Filtering by &nbsp;<i class="fa-solid fa-arrow-down"></i></a>
-<ul class="section-dropdown">
-  <li><a [routerLink]="['/reading/ebooks']" (click)="updateFilter('0')">All <i class="fa-solid fa-arrow-right"></i></a></li>
-  <li><a [routerLink]="['/reading/ebooks']" *ngFor="let category of categories"
-    (click)="updateFilter(category.id)">{{category.name}} <i class="fa-solid fa-arrow-right"></i></a></li>
-</ul>
+  <ul class="section-dropdown">
+    <li><a [routerLink]="['/reading/ebooks']" (click)="updateFilter('0')">All <i
+          class="fa-solid fa-arrow-right"></i></a></li>
+    <li><a [routerLink]="['/reading/ebooks']" *ngFor="let category of categories"
+        (click)="updateFilter(category.id)">{{category.name}} <i class="fa-solid fa-arrow-right"></i></a></li>
+  </ul>
 </div>

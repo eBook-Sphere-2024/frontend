@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-comment-list',
   templateUrl: './comment-list.component.html',
-  styleUrls: ['./comment-list.component.css'] 
+  styleUrls: ['./comment-list.component.css']
 })
 export class CommentListComponent implements OnInit {
   @Input() eBook: any;

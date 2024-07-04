@@ -144,6 +144,7 @@ label {
 .alert small i {
     margin-right: 5px;
 }
+
 /* Media Query for Small Devices (Mobile phones) */
 @media (max-width: 575.98px) {
     section {
@@ -170,7 +171,7 @@ label {
         width: 135%;
         margin-bottom: 30px;
         padding: 20px;
-        left: 0; 
+        left: 0;
         box-shadow: 5px 5px 7px 7px rgb(204 195 195);
     }
 

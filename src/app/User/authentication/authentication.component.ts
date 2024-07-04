@@ -33,9 +33,12 @@ export class AuthenticationComponent {
       last_name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.minLength(8)]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~])[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~]+$'),
+        Validators.minLength(8)
+      ]],
     });
-
     this.userlogin = this.fb.group({ // Initialize the FormGroup
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -89,9 +92,15 @@ export class AuthenticationComponent {
             this.router.navigate([this.browseBack]);
           }
         },
-        error => {
-          if (error.status == 400 && error.error.massage == 'Username or password is incorrect')
-          this.loginFialure = 'Username or password is incorrect';
+        (error:any) => {
+          console.log(error);
+          console.log(error.error);
+          console.log(error.error.message);
+          if (error.status == 400 && error.error.message == 'Username or password is incorrect') {
+            this.loginFialure = 'Username or password is incorrect';
+            this.sendFail = true;
+            console.log(error);
+          }
         }
       );
   }

@@ -52,36 +52,42 @@
     gap: 1rem;
     min-height: 9rem;
 }
+
 /* Media Query for very Small Devices */
 @media (max-width: 359.98px) {
-    .containerr{
+    .containerr {
         width: 133%;
         margin-left: -40%;
     }
+}
+
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    .containerr {
+        width: 133%;
+        margin-left: -40%;
     }
-    /* Media Query for Small Devices (Mobile phones) */
-    @media (max-width: 575.98px) {
-        .containerr{
-            width: 133%;
-            margin-left: -40%;
-        }
-    }/* Media Query for Large Devices (Desktops) */
-    @media (min-width: 768px) and (max-width: 991.98px) {
-        .containerr{
-            margin-left: -21%;
-            width: 121%;
-        }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .containerr {
+        margin-left: -21%;
+        width: 121%;
     }
-    /* Media Query for Large Devices (Desktops) */
-    @media (min-width: 992px) and (max-width: 1199.98px) {
-        .containerr{
-            margin-left: -21%;
-            width: 121%;
-        }
+}
+
+/* Media Query for Large Devices (Desktops) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .containerr {
+        margin-left: -21%;
+        width: 121%;
     }
-    /* Media Query for Extra Large Devices (Large Desktops) */
-    @media (min-width: 1200px) {
-        .containerr{
-            margin-left: 10%;
-        }
+}
+
+/* Media Query for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    .containerr {
+        margin-left: 10%;
     }
+}

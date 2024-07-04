@@ -126,64 +126,78 @@ section {
 .button-containerr button:last-child:hover {
     background-color: hsl(230, 50%, 32%);
 }
+
 /* Media Query for very Small Devices */
 @media (max-width: 359.98px) {
-section{
-    width: 180%;
-}
-#signinDialog {
-    width: 90%;
-    margin-top: 100px;
-}
-}
-/* Media Query for Small Devices (Phones and Landscape Tablets) */
-@media (min-width: 360px) and (max-width: 575.98px) {
-    section{
-        width: 120%;
-    }
-    #signinDialog {
-        width: 80%;
-        margin-top: 100px;
-    }
-}
-/* Media Query for Small Devices (Mobile phones) */
-@media (max-width: 575.98px) {
-    section{
+    section {
         width: 180%;
     }
+
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
+}
+
+/* Media Query for Small Devices (Phones and Landscape Tablets) */
+@media (min-width: 360px) and (max-width: 575.98px) {
+    section {
+        width: 120%;
+    }
+
     #signinDialog {
         width: 80%;
         margin-top: 100px;
     }
-    .dialog{
+}
+
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    section {
+        width: 180%;
+    }
+
+    #signinDialog {
+        width: 80%;
+        margin-top: 100px;
+    }
+
+    .dialog {
         width: 50%;
     }
 }
+
 /* Media Query for Medium Devices (Tablets) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-    section{
+    section {
         width: 190%;
     }
+
     #signinDialog {
         width: 70%;
         margin-top: 100px;
     }
 
-}/* Media Query for Large Devices (Desktops) */
+}
+
+/* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    section{
+    section {
         width: 120%;
     }
+
     #signinDialog {
         width: 60%;
         margin-top: 100px;
     }
 }
+
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    section{
+    section {
         width: 120%;
     }
+
     #signinDialog {
         width: 50%;
         margin-top: 100px;

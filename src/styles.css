@@ -1,19 +1,20 @@
-@import '../node_modules/@syncfusion/ej2-material-theme/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-notifications/styles/material.css';
+@import "../node_modules/@syncfusion/ej2-material-theme/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-notifications/styles/material.css";
 
 /* Scrollbar Styles */
 body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 body::-webkit-scrollbar-track {
   border-radius: 8px;
   width: 8px;

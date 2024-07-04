@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-*{
+
+* {
     background-color: #f8f8f8;
 }
+
 .ebookDetail {
     width: 80%;
     margin-left: 10%;
@@ -291,11 +293,13 @@
 .circle {
     color: hsl(230, 62%, 56%);
 }
+
 /* Media Query for very Small Devices (extra small) */
 @media (max-width: 359.98px) {
-    .parent-container{
+    .parent-container {
         width: 180%;
     }
+
     .ebookDetail {
         width: 100%;
         margin-left: 0;
@@ -328,9 +332,10 @@
 
 /* Media Query for Small Devices (Phones and Landscape Tablets) */
 @media (min-width: 360px) and (max-width: 575.98px) {
-    .parent-container{
+    .parent-container {
         width: 180%;
     }
+
     .ebookDetail {
         width: 100%;
         margin-left: 0;
@@ -363,9 +368,10 @@
 
 /* Media Query for Small Devices (Mobile phones) */
 @media (max-width: 575.98px) {
-    .parent-container{
+    .parent-container {
         width: 180%;
     }
+
     .ebookDetail {
         width: 80%;
         margin-left: 0;
@@ -394,16 +400,18 @@
         width: 70%;
         left: 15%;
     }
-    .dialog{
+
+    .dialog {
         width: 50%;
     }
 }
 
 /* Media Query for Medium Devices (Tablets) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-    .parent-container{
+    .parent-container {
         width: 190%;
     }
+
     .ebookDetail {
         width: 95%;
         margin-left: 5%;
@@ -438,9 +446,10 @@
 
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .parent-container{
+    .parent-container {
         width: 110%;
     }
+
     .ebookDetail {
         width: 85%;
         margin-left: 7.5%;
@@ -475,9 +484,10 @@
 
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .parent-container{
+    .parent-container {
         width: 100%;
     }
+
     .ebookDetail {
         width: 90%;
         margin-left: 10%;
@@ -538,9 +548,9 @@
         width: 30%;
         left: 35%;
     }
-    
-.container {
-    min-width: 992px !important;
-}
+
+    .container {
+        min-width: 992px !important;
+    }
 
 }

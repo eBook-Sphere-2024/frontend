@@ -372,53 +372,66 @@
 .button-containerr button:last-child:hover {
     background-color: hsl(230, 50%, 32%);
 }
+
 /* Media Query for very Small Devices */
 @media (max-width: 359.98px) {
-.rating-container{
-    margin-left: -25%;
-}
-.comments .header{
-    margin-left: 2%;
-}
-#signinDialog {
-    width: 90%;
-    margin-top: 100px;
-}
-
-}
-/* Media Query for Small Devices (Mobile phones) */
-@media (max-width: 575.98px) {
-    .rating-container{
+    .rating-container {
         margin-left: -25%;
     }
-    .comments .header{
+
+    .comments .header {
         margin-left: 2%;
     }
+
+    #signinDialog {
+        width: 90%;
+        margin-top: 100px;
+    }
+
+}
+
+/* Media Query for Small Devices (Mobile phones) */
+@media (max-width: 575.98px) {
+    .rating-container {
+        margin-left: -25%;
+    }
+
+    .comments .header {
+        margin-left: 2%;
+    }
+
     #signinDialog {
         width: 80%;
         margin-top: 100px;
     }
-}/* Media Query for Large Devices (Desktops) */
+}
+
+/* Media Query for Large Devices (Desktops) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .rating-container{
+    .rating-container {
         margin-left: -15%;
     }
-    .comments .header{
+
+    .comments .header {
         margin-left: 2%;
     }
+
     #signinDialog {
         width: 60%;
         margin-top: 100px;
     }
 }
+
 /* Media Query for Large Devices (Desktops) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    .rating-container{
+    .rating-container {
         margin-left: -15%;
     }
-    .comments .header{
+
+    .comments .header {
         margin-left: 2%;
     }
+
     #signinDialog {
         width: 50%;
         margin-top: 100px;
