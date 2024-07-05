@@ -20,7 +20,7 @@ export class UserInfoComponent implements OnInit {
     private userService: UserServices,
     private events: EventService,
     private router: Router
-  ){}
+  ) { }
 
   ngOnInit(): void {
     const token = sessionStorage.getItem('Token');
@@ -99,3 +99,4 @@ export class UserInfoComponent implements OnInit {
       }
     );
   }
+}

@@ -61,7 +61,7 @@ export class UserServices {
       catchError(error => this.handleError(error, 'get_user_profile'))
     );
   }
-  update_user_profile(userDetails: User) {
+  update_user_profile(userDetails: any) {
     let options = this.getStandardOptions();
     let body = userDetails
     return this.http.patch<User>('http://127.0.0.1:8000/api/users/', body, options).pipe(
@@ -172,7 +172,7 @@ export class UserServices {
       catchError(error => this.handleError(error, 'BooksAnalysisNumbers'))
     );
   }
-  
+
   ContactMail(data: any) {
     let options = this.getStandardOptions();
     let body = data

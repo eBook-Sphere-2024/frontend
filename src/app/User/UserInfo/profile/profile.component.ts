@@ -56,15 +56,14 @@ export class ProfileComponent implements OnInit {
     }
   }
   updateProfile() {
-    this.userUpdate = {
+    let userUpdate = {
       id: this.userProfile.id,
       first_name: this.userData.get('first_name')?.value,
       last_name: this.userData.get('last_name')?.value,
       username: this.userData.get('username')?.value,
-      email: this.userData.get('email')?.value,
-      password: this.userProfile.password
+      email: this.userData.get('email')?.value
     }
-    this.userService.update_user_profile(this.userUpdate).subscribe(
+    this.userService.update_user_profile(userUpdate).subscribe(
       (data: any) => {
         this.changeSuccefully = true
         this.changeFail = false
