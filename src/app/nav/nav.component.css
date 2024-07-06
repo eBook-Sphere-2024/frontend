@@ -178,7 +178,10 @@ img {
   padding-inline: 1rem;
   position: relative;
 }
-
+form{
+  margin-left: 33%;
+  width: 502px;
+}
 .search__icon {
   font-size: 1.25rem;
   color: hsl(230, 70%, 16%);
@@ -194,7 +197,7 @@ img {
 .search__close {
   position: absolute;
   top: 2rem;
-  right: 2rem;
+  right: 50%;
   font-size: 2rem;
   color: hsl(230, 70%, 16%);
   cursor: pointer;
@@ -337,6 +340,7 @@ img {
 }
 
 /* Media Query for Extra Large Devices (Large Desktops) */
+
 @media (min-width: 1200px) {
   .container {
     margin-inline: 5rem;
