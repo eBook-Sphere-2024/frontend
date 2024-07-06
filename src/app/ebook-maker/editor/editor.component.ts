@@ -285,8 +285,8 @@ export class EditorComponent implements OnInit {
     {
       text: "openDocument Text (*.odt)",
       id: "odt",
-    },{
-      text: "Word Open XML (*.dotx)",
+    }, {
+      text: "XML Document Template (*.dotx)",
       id: "dotx",
     }
   ];
