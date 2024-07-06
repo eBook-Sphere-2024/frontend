@@ -285,6 +285,9 @@ export class EditorComponent implements OnInit {
     {
       text: "openDocument Text (*.odt)",
       id: "odt",
+    },{
+      text: "Word Open XML (*.dotx)",
+      id: "dotx",
     }
   ];
 
@@ -307,6 +310,8 @@ export class EditorComponent implements OnInit {
       this.onSaveEpub(this.ebooksavedTitle);
     } else if (event.item.properties.id === 'odt') {
       this.onSaveOdt(this.ebooksavedTitle);
+    } else if (event.item.properties.id === 'dotx') {
+      this.editorObj.documentEditor.save(this.ebooksavedTitle, 'Dotx')
     }
 
   }

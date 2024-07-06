@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 import { EventService } from '../../shared/services/EventService';
@@ -28,6 +28,7 @@ export class NavComponent implements OnInit, OnDestroy {
   filteredItems: string[] = [];
   searchQuery: string = '';
   routerSubscription!: Subscription;
+  currentFragment: string = '';
 
   constructor(
     private events: EventService,
@@ -40,45 +41,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.routerSubscription = this.router.events
       .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        let url = event.url;
-        // Extract the portion after 'http://localhost:4200/'
-        const baseUrl = 'http://localhost:4200/';
-        if (url.startsWith(baseUrl)) {
-          url = url.substring(baseUrl.length);
-        }
-
-        // Find the position of '#' and trim the URL if '#' exists
-        const hashIndex = url.indexOf('#');
-        let fragment = '';
-        if (hashIndex !== -1) {
-          fragment = url.substring(hashIndex + 1);
-          url = url.substring(0, hashIndex);
-        }
-        let home = document.getElementById('home');
-        let maker = document.getElementById('maker');
-        let reading = document.getElementById('reading');
-        let contact = document.getElementById('contact');
-        let user = document.getElementById('user');
-
-        // Remove active class from all elements with the same class .nav__link
-        const navItems = document.querySelectorAll('.nav__link');
-        navItems.forEach(item => {
-          item.classList.remove('active-link');
-        });
-
-        // Add active class to current element based on the URL
-        if (url.startsWith('/Home') && fragment === 'contactUs') {
-          contact?.classList.add('active-link');
-        } else if (url.startsWith('/Home')) {
-          home?.classList.add('active-link');
-        } else if (url.startsWith('/maker')) {
-          maker?.classList.add('active-link');
-        } else if (url.startsWith('/read') || url.startsWith('/search')) {
-          reading?.classList.add('active-link');
-        } else if (url.startsWith('/User') || url.startsWith('/authentication')) {
-          user?.classList.add('active-link');
-        }
-
+        this.updateActiveLinkFromUrl(event.url);
         this.checkUserProfile();
       });
   }
@@ -105,48 +68,13 @@ export class NavComponent implements OnInit, OnDestroy {
     }
   }
 
-  navigate(url: string, fragment: string = '') {
-    let home = document.getElementById('home');
-    let maker = document.getElementById('maker');
-    let reading = document.getElementById('reading');
-    let contact = document.getElementById('contact');
-    let user = document.getElementById('user');
-    //remove active class from all elementa they have same class .nav__link
-    const navItems = document.querySelectorAll('.nav__link');
-    navItems.forEach(item => {
-      item.classList.remove('active-link');
-    });
-    //add active class to current element
-    if (url === '/Home' && fragment === 'contactUs') {
-      contact?.classList.add('active-link');
-    } else if (url === '/Home') {
-      home?.classList.add('active-link');
-    } else if (url === '/maker/editor') {
-      maker?.classList.add('active-link');
-    } else if (url === '/reading') {
-      reading?.classList.add('active-link');
-    } else if (url === '/User/profile' || url === '/authentication') {
-      user?.classList.add('active-link');
-    } else {
-
-    }
+  navigate(url: string, fragment: string = ''): void {
     this.router.navigate([url], { fragment }).then(() => {
       this.events.emitNavigation(url);
     });
   }
 
-  openEditor() {
-    this.events.emit('openEditor', true);
-    this.router.navigateByUrl('/maker/editor');
-  }
-
-  logout() {
-    sessionStorage.clear();
-    this.userProfile = null;
-    this.router.navigate(['/']);
-  }
-
-  filterSearchItems(event: any) {
+  filterSearchItems(event: any): void {
     const query = (event.target as HTMLInputElement).value;
     this.searchQuery = query;
     if (query.trim() !== '') {
@@ -157,8 +85,16 @@ export class NavComponent implements OnInit, OnDestroy {
       this.filteredItems = [];
     }
   }
-
-  onSearchItemSelected(item: string) {
+  openEditor() {
+    this.events.emit('openEditor', true);
+    this.router.navigateByUrl('/maker/editor');
+  }
+  logout() {
+    sessionStorage.clear();
+    this.userProfile = null;
+    this.router.navigate(['/']);
+  }
+  onSearchItemSelected(item: string): void {
     this.searchQuery = '';
     this.filteredItems = [];
 
@@ -200,23 +136,123 @@ export class NavComponent implements OnInit, OnDestroy {
         break;
     }
 
-    let searchClose = document.getElementById('search-close');
+    const searchClose = document.getElementById('search-close');
     if (searchClose) {
       searchClose.click();
     }
     this.searchQuery = '';
   }
 
-  browseTo() {
+  browseTo(): void {
     try {
       const currentUrl = this.router.url;
       const url = new URL(currentUrl, window.location.origin);
       const pathWithoutHash = url.pathname + url.search;
-      if (pathWithoutHash.includes('/resetPassword'))
-        return
-      this.events.emit("openSigninDialog", pathWithoutHash);
+      if (pathWithoutHash.includes('/resetPassword')) return;
+      this.events.emit('openSigninDialog', pathWithoutHash);
     } catch (error) {
-      console.error("Error capturing URL or emitting event:", error);
+      console.error('Error capturing URL or emitting event:', error);
     }
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const aboutUs = document.getElementById('aboutUs');
+    const contactUs = document.getElementById('contactUs');
+
+    if (!aboutUs || !contactUs) return;
+
+    const aboutUsTop = aboutUs.getBoundingClientRect().top;
+    const contactUsTop = contactUs.getBoundingClientRect().top;
+
+    if (aboutUsTop <= 0 && contactUsTop > 0) {
+      if (this.currentFragment !== 'aboutUs') {
+        this.currentFragment = 'aboutUs';
+        this.updateActiveLinkFromFragment('aboutUs');
+      }
+    } else if (contactUsTop <= 0) {
+      if (this.currentFragment !== 'contactUs') {
+        this.currentFragment = 'contactUs';
+        this.updateActiveLinkFromFragment('contactUs');
+      }
+    } else {
+      if (this.currentFragment !== '') {
+        this.currentFragment = '';
+        this.updateActiveLinkFromFragment('');
+      }
+    }
+  }
+
+  updateActiveLinkFromUrl(url: string): void {
+    const baseUrl = 'http://localhost:4200/';
+    if (url.startsWith(baseUrl)) {
+      url = url.substring(baseUrl.length);
+    }
+
+    const hashIndex = url.indexOf('#');
+    let fragment = '';
+    if (hashIndex !== -1) {
+      fragment = url.substring(hashIndex + 1);
+      url = url.substring(0, hashIndex);
+    }
+
+    this.updateActiveLink(url, fragment);
+  }
+
+  updateActiveLink(url: string, fragment: string = ''): void {
+    let home = document.getElementById('home');
+    let maker = document.getElementById('maker');
+    let reading = document.getElementById('reading');
+    let contact = document.getElementById('contact');
+    let user = document.getElementById('user');
+
+    const navItems = document.querySelectorAll('.nav__link');
+    navItems.forEach(item => {
+      item.classList.remove('active-link');
+    });
+
+    if (url.startsWith('/Home') && fragment === 'contactUs') {
+      contact?.classList.add('active-link');
+    } else if (url.startsWith('/Home')) {
+      home?.classList.add('active-link');
+    } else if (url.startsWith('/maker')) {
+      maker?.classList.add('active-link');
+    } else if (url.startsWith('/read') || url.startsWith('/search')) {
+      reading?.classList.add('active-link');
+    } else if (url.startsWith('/User') || url.startsWith('/authentication')) {
+      user?.classList.add('active-link');
+    }
+
+    this.updateUrl(url, fragment);
+  }
+
+  updateActiveLinkFromFragment(fragment: string): void {
+    let home = document.getElementById('home');
+    let about = document.getElementById('about');
+    let contact = document.getElementById('contact');
+
+    const navItems = document.querySelectorAll('.nav__link');
+    navItems.forEach(item => {
+      item.classList.remove('active-link');
+    });
+
+    if (fragment === 'contactUs') {
+      contact?.classList.add('active-link');
+    } else if (fragment === 'aboutUs') {
+      about?.classList.add('active-link');
+    } else {
+      home?.classList.add('active-link');
+    }
+
+    this.updateUrl('/Home', fragment);
+  }
+
+  updateUrl(url: string, fragment: string = ''): void {
+    const baseUrl = 'http://localhost:4200/';
+    let fullUrl = baseUrl + url;
+    if (fragment) {
+      fullUrl += `#${fragment}`;
+    }
+    history.pushState(null, '', fullUrl);
   }
 }
