@@ -184,7 +184,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   updateActiveLinkFromUrl(url: string): void {
-    const baseUrl = 'http://localhost:4200/';
+    const baseUrl = 'http://localhost:4200';
     if (url.startsWith(baseUrl)) {
       url = url.substring(baseUrl.length);
     }
@@ -248,7 +248,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   updateUrl(url: string, fragment: string = ''): void {
-    const baseUrl = 'http://localhost:4200/';
+    const baseUrl = 'http://localhost:4200';
     let fullUrl = baseUrl + url;
     if (fragment) {
       fullUrl += `#${fragment}`;

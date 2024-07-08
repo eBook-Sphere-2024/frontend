@@ -278,7 +278,10 @@ p {
   background: #e9ecef;
   border-radius: 8px;
 }
-
+.sucess{
+  color: rgb(94 196 149) !important;
+  font-size: large;
+}
 /* Media Query for Extra Small Devices (Mobile Phones) */
 @media (max-width: 359.98px) {
   .back {

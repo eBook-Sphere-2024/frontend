@@ -84,6 +84,8 @@ export class CommentItemComponent implements OnInit {
     const newTextContent = event.target.textContent; // Trim any leading or trailing whitespace
     if (newTextContent.length > 4) {
       this.comment.content = newTextContent;
+    }else{
+      alert("Comment must be at least 5 characters long");
     }
   }
   toggleEditComment(): void {

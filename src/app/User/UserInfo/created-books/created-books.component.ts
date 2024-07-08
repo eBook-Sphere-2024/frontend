@@ -42,6 +42,5 @@ export class CreatedBooksComponent implements OnInit {
         }
       );
     }
-
   }
 }

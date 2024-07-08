@@ -37,7 +37,6 @@ export class ProfileComponent implements OnInit {
           this.userService.get_user_profile(this.userProfile.id.toString()).subscribe(
             (data: any) => {
               this.userProfile.avatar = data.profile_image;
-
               // Set form values here, inside the subscription block
               this.userData.get('first_name')?.setValue(this.userProfile.first_name);
               this.userData.get('last_name')?.setValue(this.userProfile.last_name);
@@ -79,7 +78,6 @@ export class ProfileComponent implements OnInit {
         }
         this.changeFail = true
         this.changeSuccefully = false
-
       }
     );
   }
