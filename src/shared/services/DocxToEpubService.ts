@@ -10,6 +10,7 @@ import { DOMParser } from "@xmldom/xmldom";
 export class DocxToEpubService {
   async convertDocxToEpub(docxBlob: Blob, epubName: string): Promise<void> {
     try {
+      // read file as array buffer
       const arrayBuffer = await this.readFileAsArrayBuffer(docxBlob);
       const htmlContent = await this.transformDocxToHtml(arrayBuffer);
       this.convertHtmlToEpub(htmlContent, epubName);
